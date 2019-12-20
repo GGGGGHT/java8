@@ -6,13 +6,11 @@ import lombok.NoArgsConstructor;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.*;
 
 /**
  * @Desc 学习stream的一些常用的方法
@@ -30,6 +28,10 @@ import static java.util.stream.Collectors.toList;
 public class LearnStream {
     private static List<User> userList = null;
 
+    /**
+     * @target:
+     *   为userList填充数据
+     */
     @Before
     public void doSomeThingBefore() {
         userList = new ArrayList<>(5);
@@ -41,7 +43,8 @@ public class LearnStream {
     }
 
     /**
-     * 用来创建stream的几种方式
+     * @target:
+     *  学习用来创建stream的几种方式
      */
     @Test
     public void createTest() {
@@ -89,14 +92,94 @@ public class LearnStream {
         }).collect(toList());
         System.out.println(collect);
     }
+
+    /**
+     * collect在流中生成列表，map，等常用的数据结构,也可以生成自定义的结构
+     * @target:
+     *  获取出用户所有的名字做为一个list
+     */
+    @Test
+    public void collectListTest() {
+        List<String> collect = userList.stream().map(User::getName).collect(toList());
+        System.out.println(collect);
+    }
+
+    /**
+     * collect在流中生成列表，map，等常用的数据结构,也可以生成自定义的结构
+     * @target:
+     *  获取出用户所有的名字做为一个list
+     */
+    @Test
+    public void collectSetTest() {
+        Set<String> collect = userList.stream().map(User::getName).collect(toSet());
+        System.out.println(collect);
+    }
+
+    /**
+     * collect在流中生成列表，map，等常用的数据结构,也可以生成自定义的结构
+     * @target:
+     *  获取出用户所有的名字做为map的K,年龄作为map的V
+     */
+    @Test
+    public void collectMapTest() {
+        Map<String,Integer> collect = userList.stream().collect(toMap(User::getName,User::getAge));
+        System.out.println(collect);
+    }
+
+    /**
+     * @target:
+     *  获取出所有用户的名字 生成一个Treeset
+     *  需要注意的是如果生成TreeSet必须要实现一个Comparable接口
+     *  如未实现该接口则会抛java.lang.ClassCastException: com.ggggght.learningjava8.stream.User cannot be cast to java.lang.Comparable
+     */
+    @Test
+    public void collectTreeSetTest() {
+        TreeSet collect = userList.stream().collect(Collectors.toCollection(TreeSet::new));
+        System.out.println(collect);
+    }
+
+    /**
+     * @target:
+     *  为所有的男生与女生分组
+     */
+    @Test
+    public void groupTest() {
+        // 执行完该操作后所有的用户都在一个map中 此时key为false的是女生组 key为true的是男生组
+        Map<Boolean, List<User>> users = userList.stream().collect(groupingBy(user -> Objects.equals(user.getSex(), "男")));
+
+        // 获取出女生
+        List<User> females = users.get(false);
+        for (User female : females) {
+            System.out.println(female);
+        }
+
+        // 获取出男生
+        List<User> males = users.get(true);
+        males.stream().forEach(System.out::println);
+    }
+
+    /**
+     * @target:
+     *   列出所有的用户名 以<em><<em/>开始,以<em>><em/>结束,每个中间以<b>-<b/>分割
+     */
+    @Test
+    public void joinTest() {
+        String collect = userList.stream().map(User::getName).collect(joining("-", "<", ">"));
+        System.out.println(collect);
+    }
 }
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @SuppressWarnings("all")
-class User {
+class User implements Comparable{
     String name;
     Integer age;
     String sex;
+
+    @Override
+    public int compareTo(Object o) {
+        return this.age < ((User) o).getAge() ? 1 : -1;
+    }
 }
