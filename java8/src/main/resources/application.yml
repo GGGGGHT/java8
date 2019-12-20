@@ -1,0 +1,6 @@
+spring:
+  main:
+    banner-mode: "off" # 若想关闭banner 此处并须是"off"  如果是off则会抛异常
+
+
+debug: true
