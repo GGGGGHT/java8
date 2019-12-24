@@ -72,15 +72,6 @@ public class LearnStream {
         Stream<Double> generate = Stream.generate(() -> Math.random());
     }
 
-    @Test
-    public void test1() {
-        System.out.println(1 ^ 1 ^ 2 ^ 2);
-        System.out.println(1 ^ 10 ^ 10 ^ 1);
-        /*System.out.println(2 ^ 2);
-        System.out.println(-1 ^ -1);
-        System.out.println('A' ^ 'A');*/
-
-    }
 
     /**
      * @target: 过滤出userList中所有的男性成员并输出
