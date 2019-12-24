@@ -29,3 +29,9 @@ build/
 
 ### VS Code ###
 .vscode/
+### Other Folder ###
+../docker/
+../hadoop/
+../java-study/
+../mall/
+../springcloud-mq/

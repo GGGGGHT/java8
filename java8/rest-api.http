@@ -1,0 +1,9 @@
+GET https://{{ip}}/users/octocat/orgs
+Accept: application/json
+
+
+###
+GET https://localhost:9200/
+Accept: application/json
+
+###
