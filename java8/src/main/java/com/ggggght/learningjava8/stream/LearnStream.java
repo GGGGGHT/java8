@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import java.util.*;
 import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -254,10 +255,11 @@ public class LearnStream {
      */
     @Test
     public void reduceTest() {
-        Integer reduce = userList.stream().map(User::getAge).reduce(0, (count, item) -> {
-            return count + item;
-        });
-        System.out.println(reduce / userList.size());
+        /*Optional<Integer> reduce = userList.stream().map(User::getAge).reduce(Integer::sum);
+        System.out.println(reduce.get() / userList.size());*/
+        Double avg = userList.stream()
+                .collect(averagingInt(User::getAge));
+        System.out.println(avg);
     }
 
     /**
@@ -271,17 +273,50 @@ public class LearnStream {
 
     @Test
     public void test() {
-        Consumer<String> con = System.out::print;
-        TreeSet<Integer> set = new TreeSet<>(Integer::compare);
-        con.accept("a");
-        User user = new User("ght",30,"man");
-        Supplier<String> supplier = () -> user.getSex();
-        String s = supplier.get();
+        // Consumer<String> con = System.out::print;
+        // TreeSet<Integer> set = new TreeSet<>(Integer::compare);
+        // con.accept("a");
+        // User user = new User("ght",30,"man");
+        // Supplier<String> supplier = () -> user.getSex();
+        // String s = supplier.get();
+        //
+        // Supplier<Integer> integerSupplier = user::getAge;
+        // System.out.println(integerSupplier.get());
 
-        Supplier<Integer> integerSupplier = user::getAge;
-        System.out.println(integerSupplier.get());
+        // Function<T, R> 函数型接口传入T 返回R
+        // Stream.of("aaa", "bbb", "ccc");
+        // List<String> list = Arrays.asList("aaa", "bbb", "ccc", "ddd", "eee");
+        // Stream<Stream<Character>> streamStream = list.stream()
+        //         .map(String::toUpperCase)
+        //         .map(LearnStream::filterCharacter);
+        // streamStream.forEach((s) -> s.forEach(System.out::println));
+        Optional<User> max = userList.stream()
+                .max((e1, e2) -> Double.compare(e1.getAge(), e2.getAge()));
+        Optional<Integer> min = userList.stream()
+                .map(User::getAge)
+                .min(Integer::compare);
+        System.out.println(max.get());
+        System.out.println(min.get());
     }
 
+    /**
+     * @target
+     *   给定一个数组如[1,2,3,4,5] 要求返回他们的平方构成的数组
+     */
+    @Test
+    public void squarTest() {
+        int[] arr = {1, 2, 3, 4, 5};
+        Arrays.stream(arr)
+                .map(i -> i * i)
+                .forEach(System.out::println);
+    }
+    public static Stream<Character> filterCharacter(String string) {
+        List<Character> list = new ArrayList<>(string.length());
 
+        for (char c : string.toCharArray()) {
+            list.add(c);
+        }
+        return list.stream();
+    }
 }
 
