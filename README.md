@@ -3,5 +3,5 @@
 
 - [x] stream
 - [ ] lambda
-- [ ] optional
+- [x] optional
 - [ ] 线程池
