@@ -9,10 +9,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.concurrent.Executors;
-import java.util.concurrent.LinkedBlockingDeque;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 
 /**
  * @author ght
@@ -22,6 +19,10 @@ import java.util.concurrent.TimeUnit;
 
 @SuppressWarnings("all")
 public class LearnThread {
+    private static final int COREPOOLSIZE = 10;
+    private static final int MAXPOOLSIZE = 10;
+    private static final long KEEPALIVETIME = 0L;
+    private static final BlockingQueue WORKINGQUEUE = new LinkedBlockingDeque();
 
     /**
      * 问题：现有一个线程池，参数corePoolSize = 5，maximumPoolSize = 10，BlockingQueue阻塞队列长度为5，
@@ -93,7 +94,7 @@ public class LearnThread {
         Instant start = Instant.now();
         nums.forEach(v -> isPrime(v));
         Instant end = Instant.now();
-        System.out.println("expend time: " + Duration.between(start,end).getNano());
+        System.out.println("expend time: " + Duration.between(start, end).getNano());
 
         //使用parallel stream api
 
@@ -109,5 +110,14 @@ public class LearnThread {
             if (num % i == 0) return false;
         }
         return true;
+    }
+
+    @Test
+    public void test1() {
+        ThreadPoolExecutor pool = new ThreadPoolExecutor(COREPOOLSIZE,
+                MAXPOOLSIZE,
+                KEEPALIVETIME,
+                TimeUnit.SECONDS,
+                WORKINGQUEUE);
     }
 }
