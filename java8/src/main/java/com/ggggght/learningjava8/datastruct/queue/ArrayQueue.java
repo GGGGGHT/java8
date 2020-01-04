@@ -1,4 +1,4 @@
-package com.ggggght.learningjava8.datastruct;
+package com.ggggght.learningjava8.datastruct.queue;
 
 import java.util.Arrays;
 
