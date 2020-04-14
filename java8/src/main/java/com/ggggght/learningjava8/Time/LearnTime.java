@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjusters;
+import java.time.temporal.TemporalUnit;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -205,6 +206,25 @@ public class LearnTime {
         System.out.println();
         LocalDateTime newDate = now.parse(format, dtf);
         System.out.println(newDate);
+    }
+
+    /**
+     * @target Date类型和LocalDateTime相互转换
+     */
+    @Test
+    public void dateToLocalDateTime() {
+        // 先获取当前时间
+        Date date = new Date();
+        // 获取当前的时区
+        ZoneId zoneId = ZoneId.systemDefault();
+        Instant instant = date.toInstant();
+        LocalDateTime localDateTime = LocalDateTime.ofInstant(instant, zoneId);
+        System.out.println(localDateTime);
+
+        LocalDateTime ldt = LocalDateTime.now();
+        ZonedDateTime zdt = ldt.atZone(zoneId);
+        Date date1 = Date.from(zdt.toInstant());
+        System.out.println(date1);
     }
 
 }
