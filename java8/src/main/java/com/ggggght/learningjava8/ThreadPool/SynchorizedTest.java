@@ -12,6 +12,11 @@ package com.ggggght.learningjava8.ThreadPool;
  * 对于同步方法,JVM采用ACC_SYNCHRONIZED标志符来实现同步
  * 对于同步代码块,采用monitorenter和monitorexit来实现同步
  *
+ * 总结:
+ *  并发编程中通过同步互斥访问临界资源来解决线程安全问题，Java中常用synchronized标记同步块达到加锁的目的。
+ *  synchronized用法有两种，修饰方法和修饰同步代码块。
+ *  synchronized的实现原理：每一个Java对象都会关联一个Monitor，通过Monitor对线程的操作实现synchronized对象锁。
+ *  并发编程中synchronized可以保证原子性、可见性、有序性。
  */
 
 @SuppressWarnings("all")
