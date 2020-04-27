@@ -45,12 +45,13 @@ public class ShellSort {
                 }
             }
         }
-        System.out.println("1:" + Arrays.toString(source));
+        // System.out.println("1:" + Arrays.toString(source));
         return source;
     }
 
     public static void main(String[] args) {
         int[] arr = {8, 9, 1, 7, 2, 3, 5, 4, 6, 0};
         shell(arr);
+        System.out.println(Arrays.toString(arr));
     }
 }

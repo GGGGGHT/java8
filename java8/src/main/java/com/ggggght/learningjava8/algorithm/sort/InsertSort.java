@@ -32,15 +32,15 @@ public class InsertSort {
     }
 
     public static void main(String[] args) {
-        /*int[] arr = {101, 34, 119, 10};
-        System.out.println(Arrays.toString(insert(arr)));*/
-        int[] arr = new int[80000];
+        int[] arr = {101, 34, 119, 10};
+        System.out.println(Arrays.toString(insert(arr)));
+        /*int[] arr = new int[80000];
         for (int i = 0; i < 80000; i++) {
             arr[i] = (int) (Math.random() * 8000000);
         }
         Instant start = Instant.now();
         insert(arr);
         Instant end = Instant.now();
-        System.out.println(Duration.between(start, end).toMillis());
+        System.out.println(Duration.between(start, end).toMillis());*/
     }
 }

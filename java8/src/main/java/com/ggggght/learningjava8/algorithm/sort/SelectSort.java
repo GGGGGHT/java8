@@ -34,12 +34,12 @@ public class SelectSort {
     }
 
     public static void main(String[] args) {
-        // int[] arr = {3, -1, 5, 2, 10};
+        int[] arr = {3, -1, 5, 2, 10};
         // int[] arr = {101, 34,119, 10};
-        int[] arr = new int[80000];
-        for (int i = 0; i < 80000; i++) {
-            arr[i] = (int) (Math.random() * 8000000);
-        }
+        // int[] arr = new int[80000];
+        // for (int i = 0; i < 80000; i++) {
+        //     arr[i] = (int) (Math.random() * 8000000);
+        // }
         Instant start = Instant.now();
         SelectSort(arr);
         Instant end = Instant.now();
