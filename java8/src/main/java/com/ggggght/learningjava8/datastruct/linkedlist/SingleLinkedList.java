@@ -91,25 +91,15 @@ public class SingleLinkedList {
         }
     }
 
+    /**
+     * 打印单链表
+     */
     public static void show() {
         if (isEmpty()) {
             return;
         }
 
         HeroNode tmp = head;
-        while (hasNext(tmp)) {
-            System.out.println(tmp + "--->");
-            tmp = tmp.next;
-        }
-        System.out.println(tmp);
-    }
-
-    public static void show(HeroNode node) {
-        /*if (isEmpty()) {
-            return;
-        }*/
-
-        HeroNode tmp = node;
         while (hasNext(tmp)) {
             System.out.println(tmp + "--->");
             tmp = tmp.next;
@@ -435,6 +425,73 @@ public class SingleLinkedList {
         }
     }
 
+    /**
+     * 给定一个链表的头结点 head,以及两个整数 from 和 to ,在链表上把第 from 个节点和第 to 个节点这一部分进行翻转。
+     * 例如：给定如下链表，from = 2, to = 4 head-->5-->4-->3-->2-->1 将其翻转后，链表变成 head-->5--->2-->3-->4-->1
+     *
+     * @param args
+     */
+    public static void reverse(HeroNode node,int start, int end) {
+        if (start > end) {
+            throw new IllegalArgumentException();
+        }
+
+        HeroNode startpre = null;
+        HeroNode endNext = null;
+        HeroNode tmp = node.next;
+        HeroNode startNode = null;
+        int count = 1;
+
+        // 获取到了开始之前的和结束之前的
+        while (tmp != null) {
+            if (count+1 == start) {
+                startpre = tmp;
+            } else if (count == end + 1) {
+                endNext = tmp;
+            }
+            tmp = tmp.next;
+            count++;
+        }
+        startNode = startpre.next;
+        // 从这时候开始循环
+        HeroNode temp = startpre.next;
+        HeroNode reverse = new HeroNode();
+        while (temp != endNext) {
+            HeroNode n = temp.next;
+            temp.next = reverse.next;
+            reverse.next = temp;
+            temp = n;
+        }
+        startpre.next = reverse.next;
+        startNode.next = endNext;
+    }
+
+    /**
+     * 给定一个单链表，设计一个算法实现链表向右旋转 K 个位置。
+     * 举例：给定 head->1->2->3->4->5->NULL, K=3,
+     * 右旋后即为 head->3->4->5-->1->2->NULL
+     */
+    public static void reverseK(HeroNode node, int k) {
+        // 先需要找到第K个位置
+        HeroNode kNode = node;
+        HeroNode KNodeCur = node;
+        while (k > 0) {
+            KNodeCur = kNode = kNode.next;
+            k--;
+        }
+        HeroNode headNext = node.next;
+        node.next = kNode;
+        while (kNode.next != null) {
+            kNode = kNode.next;
+        }
+        kNode.next = headNext;
+        while (kNode.next != KNodeCur) {
+            kNode = kNode.next;
+        }
+        kNode.next = null;
+    }
+
+
     public static void main(String[] args) {
         HeroNode heroNode1 = new HeroNode(1, "zs", "");
         HeroNode heroNode2 = new HeroNode(2, "ls", "");
@@ -447,16 +504,20 @@ public class SingleLinkedList {
         list.addTail(heroNode4);
         list.addTail(heroNode5);
         list.addTail(heroNode2);*/
-        list.addHead(heroNode1);
-        list.addHead(heroNode2);
-        list.addHead(heroNode3);
-        list.addHead(heroNode4);
-        list.addHead(heroNode5); // 5 -> 4 -> 3 -> 2 -> 1
+        addHead(heroNode1);
+        addHead(heroNode2);
+        addHead(heroNode3);
+        addHead(heroNode4);
+        addHead(heroNode5); // 5 -> 4 -> 3 -> 2 -> 1
         System.out.println("----添加完成后-------");
         show();
-        groupReverse(head, 2);// 0 --> 5 --> 4 --> 3 --> 2 --> 1  期望 0 --> 4 --> 5 --> 2 --> 3 --> 1
-        System.out.println("----K反转后-------");
+        System.out.println();
+        reverse(head, 2, 4);
         show();
+        System.out.println();
+        /*groupReverse(head, 2);// 0 --> 5 --> 4 --> 3 --> 2 --> 1  期望 0 --> 4 --> 5 --> 2 --> 3 --> 1
+        System.out.println("----K反转后-------");
+        show();*/
         /* reverseRegion(head, 2, 4); // 0 --> 5 --> 4 --> 3 --> 2 --> 1  期望 0 --> 5 --> 2 --> 3 --> 4 --> 1
         System.out.println("----逆向一段后-------");
         show();*/

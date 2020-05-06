@@ -2,6 +2,7 @@ package com.ggggght.learningjava8.datastruct.solution;
 
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Stack;
 
@@ -11,40 +12,44 @@ import java.util.Stack;
  * @Desc 使用栈来解决实际问题
  * 即传入一条计算指令如 7+3-2*5+4/4 直接给出结果
  * 给定一个中缀表达式 将其转为前缀(波兰表达式) 或后缀(逆波兰表达式)
- * 4 * 5 - 8 + 6 + 8 / 2
- * 4 5 * 8 - 6 + 8 2 / +
- * 4 5 * 8 - 6 + 8 2 / +
- * 1 + ((2 +3) * 4) / 5 = 5
- * 314+5/2-28*+-
- * 355/2-28*+-
- * 312-28*+-
- * 3(-1)28*+-
- * 3(-1)16+-
- * 315-
- * -12
- * <p>
- * 314+5/-2-28*+
- * 355/-2-28*+
- * 31-2-28*+
- * 22-28*+
- * 028*+
- * 016+
+ * 中缀表达式:4 * 5 - 8 + 6 + 8 / 2
+ * 后缀表达式:4 5 * 8 - 6 + 8 2 / +
+ * 中缀表达式:1 + ((2 +3) * 4) / 5 = 5
+ * 后缀表达式:3 1 4 + 5 / - 2 2 8 * + -
+ * 计算过程:
+ * 3 5 5 / - 2 - 2 8 * +
+ * 3 1 - 2 - 2 8 * +
+ * 2 2 - 2 8 * +
+ * 0 2 8 * +
+ * 0 16 +
  * 16
- * 1 2 3 + 4 * 5 / +
- * <p>
- * 3 - (1 + 4) / 5 - 2 + (2 * 8) = 16
+ * 中缀表达式转后缀表达式步骤:
+ * 1. 初始化两个栈,运算符栈S1和存储中间结果的栈S2
+ * 2. 从左到右扫描中缀表达式.
+ * 3. 遇到操作数时,将其压入s2
+ * 4. 遇到运算符时,比较其与s1栈顶运算符的优先级:
+ *    1. 如果S1为空,或栈顶运算符为左括号'(',则直接将此运算符入栈
+ *    2. 否则,若优先级比栈运算符高.也将运算符压入s1
+ *    3. 否则,将s1栈顶的运算符弹出并压入到s2中,再将转到(4.1)与s1中新的栈顶运算符相比较
+ * 5. 遇到括号时:
+ *    1. 如果是左括号'(',则直接压入到s1
+ *    2. 如果是右括号')',则依次弹出s1栈顶的运算符,并压入s2,直到s1栈顶的运算符为左括号后.弹出左括号.将这一对括号丢弃
+ * 6. 重复2-5的步骤.直到表达式的最右边
+ * 7. 将s1中剩余的运算符依次弹出并压入s2中
+ * 8. 依次弹出s2中的元素并输出,结果的逆序即为中缀表达式对应的后缀表达式
  * @date 2020-01-05 2:24 PM
  */
 
 @SuppressWarnings("all")
 public class Calc {
     public static void main(String[] args) {
-        List<String> list = PolishExpression.toInfixExpression("4*3-4/2+(6/2)-1");
+        /*List<String> list = PolishExpression.toInfixExpression("4*3-4/2+(6/2)-1");
         List<String> polishExpression = PolishExpression.parseSuffixExpression(list);
+        polishExpression.stream().forEach(System.out::print);
         PolishExpression.calculate(polishExpression);
         System.out.println();
         System.out.println(PolishExpression.calc(PolishExpression.convert("4*3-4/2+(6/2)-1")));
-        System.out.println(PolishExpression.calc("43*42/-62/+1-"));
+        System.out.println(PolishExpression.calc("43*42/-62/+1-"));*/
     }
 
 }
@@ -214,9 +219,9 @@ class PolishExpression {
                     opStack.push(c);
                     continue;
                 } else if ((c == '+' || c == '-') && (opStack.peek() == '+' || opStack.peek() == '-')) {
-                    numStack.push("" + opStack.pop()); // 1 1
+                    numStack.push("" + opStack.pop());
                     while (!opStack.isEmpty() && (opStack.peek() == '+' || opStack.peek() == '-')) {
-                        numStack.push("" + opStack.pop()); // 1 2
+                        numStack.push("" + opStack.pop());
                     }
                     opStack.push(c);
                     continue;
@@ -251,10 +256,10 @@ class PolishExpression {
  * 操作符类
  */
 class Operation {
-    private static int ADDITION = 1;
-    private static int SUBTRACTION = 1;
-    private static int MULTIPLICATION = 2;
-    private static int DIVISION = 2;
+    private static final int ADDITION = 1;
+    private static final int SUBTRACTION = 1;
+    private static final int MULTIPLICATION = 2;
+    private static final int DIVISION = 2;
 
     public static int getValue(String operation) {
         int result;

@@ -178,11 +178,11 @@ public class DoublyLinkedList {
         HeroNode2 heroNode4 = new HeroNode2(3, "zl", "");
         HeroNode2 heroNode5 = new HeroNode2(5, "tq", "");
         DoublyLinkedList list = new DoublyLinkedList();
-        list.addTo(heroNode1);
-        list.addTo(heroNode2);
-        list.addTo(heroNode3);
-        list.addTo(heroNode4);
-        list.addTo(heroNode5);
+        addTo(heroNode1);
+        addTo(heroNode2);
+        addTo(heroNode3);
+        addTo(heroNode4);
+        addTo(heroNode5);
         System.out.println("---添加完成后---");
         show();
         list.remove(heroNode3);

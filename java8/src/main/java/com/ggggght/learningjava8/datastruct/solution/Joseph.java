@@ -8,7 +8,9 @@ import lombok.NoArgsConstructor;
  * @author ght
  * @Desc 解决约瑟夫问题
  * @date 2020-01-04 8:01 PM
- * 1. 首先构造一个带头尾节点的环型链表
+ * 使用环型链表来解决
+ *  1 2 3 4 5
+ *  2 4 1 5 3
  */
 
 @SuppressWarnings("all")
@@ -16,9 +18,9 @@ public class Joseph {
 
     public static void main(String[] args) {
         CircleSingleLinkedList k = new CircleSingleLinkedList();
-        k.addBoy(10);
+        k.addBoy(5);
         k.show();
-        k.pop(3);
+        k.pop(2);
     }
 
 }
@@ -77,13 +79,15 @@ class CircleSingleLinkedList {
         Boy helper = first;
         Boy cur = first;
 
+        // 当循环结束后 helper指向first之前的节点 即也就是helper指向的是环中的最后一个节点
         while (helper.getNext() != first) {
             helper = helper.getNext();
         }
 
+        // 当环中只剩最后一个节点时则退出循环
         while (cur.getNext() != cur) {
-            // 出队
-            if (start+1 == i) {
+            // 满足条件时出队
+            if (++start == i) {
                 // 前一个节点指向下一个节点
                 helper = helper.getNext();
                 System.out.println(cur.getNext().getNo() + "chu dui~~");
@@ -93,7 +97,6 @@ class CircleSingleLinkedList {
             }
             cur = cur.getNext();
             helper = helper.getNext();
-            start++;
         }
         System.out.println(cur.getNo() + "chu dui~~");
     }
