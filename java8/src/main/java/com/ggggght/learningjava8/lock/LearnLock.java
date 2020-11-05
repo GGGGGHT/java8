@@ -1,7 +1,6 @@
 package com.ggggght.learningjava8.lock;
 
-import org.junit.Test;
-import sun.applet.Main;
+
 
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.LockSupport;

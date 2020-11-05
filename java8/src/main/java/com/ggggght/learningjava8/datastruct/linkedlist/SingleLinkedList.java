@@ -1,9 +1,9 @@
 package com.ggggght.learningjava8.datastruct.linkedlist;
 
-import javafx.beans.binding.When;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+//import javafx.beans.binding.When;
+//import lombok.AllArgsConstructor;
+//import lombok.Data;
+//import lombok.NoArgsConstructor;
 
 import java.util.Stack;
 
@@ -547,9 +547,9 @@ public class SingleLinkedList {
     }
 }
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+//@Data
+//@NoArgsConstructor
+//@AllArgsConstructor
 @SuppressWarnings("all")
 class HeroNode {
     public int no;
@@ -557,6 +557,9 @@ class HeroNode {
     public String nickName;
     /* 指向下一个结点的指针 */
     public HeroNode next;
+
+    public HeroNode() {
+    }
 
     public HeroNode(int no, String name, String nickName) {
         this.no = no;
