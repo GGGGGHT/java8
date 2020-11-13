@@ -1,11 +1,8 @@
 package com.ggggght.learningjava8.guava;
 
 import com.google.common.collect.*;
-import org.checkerframework.checker.nullness.qual.Nullable;
-import org.jetbrains.annotations.NotNull;
 import org.junit.Test;
 
-import java.io.PrintStream;
 import java.util.*;
 
 /**
@@ -120,5 +117,46 @@ public class MultiableCollection {
 
         System.out.println("map.keys() = " + map.keys());
         System.out.println("map.values() = " + map.values());
+    }
+
+    /**
+     * @desc: BiMap<K,V> 使用inverse() 可以转成 BiMap<V,K>
+     */
+    @Test
+    public void biMapTest() {
+        BiMap<String, Integer> map = HashBiMap.create();
+        map.put("hello", 1);
+        map.put("world", 2);
+        map.put("ght", 3);
+        map.put("gggg", 4);
+        map.forEach((key, value) -> System.out.println(key + " --> " + value));
+        BiMap<Integer, String> inverse = map.inverse();
+        inverse.forEach((key, value) -> System.out.println(key + " --> " + value));
+    }
+
+    /**
+     * @desc: classToInstanceMap 可以根据类型来存储不同类型的对象
+     */
+    @Test
+    public void classToInstanceMapTest() {
+        ClassToInstanceMap<Object> clazzMap = MutableClassToInstanceMap.create();
+        clazzMap.putInstance(Integer.class, 1);
+        clazzMap.putInstance(HashMap.class, new HashMap());
+        clazzMap.putInstance(String.class, "flying");
+        System.out.println("clazzMap.getInstance(Integer.class) = " + clazzMap.getInstance(Integer.class));
+        System.out.println("clazzMap.getInstance(String.class) = " + clazzMap.getInstance(String.class));
+    }
+
+
+    @Test
+    public void rangeSetTest() {
+        RangeSet<Integer> rangeSet = TreeRangeSet.create();
+        rangeSet.add(Range.closed(1, 10)); // {[1, 10]}
+        rangeSet.add(Range.closedOpen(11, 15)); // disconnected range: {[1, 10], [11, 15)}
+        rangeSet.add(Range.closedOpen(15, 20)); // connected range; {[1, 10], [11, 20)}
+        rangeSet.add(Range.openClosed(0, 0)); // empty range; {[1, 10], [11, 20)}
+        rangeSet.remove(Range.open(5, 10)); // splits [1, 10]; {[1, 5], [10, 10], [11, 20)}
+
+        System.out.println(rangeSet.asRanges());
     }
 }
