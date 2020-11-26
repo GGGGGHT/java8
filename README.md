@@ -7,6 +7,7 @@
 - [ ] 线程池
 - [x] java.time
 - [ ] guava 
+- [x] 使用ASM动态生成class
 
 
 ## 方法引用
