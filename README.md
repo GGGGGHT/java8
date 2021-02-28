@@ -24,3 +24,27 @@
 `Stream`中的元素可以来自任何位置.
 
 Lambda 只能读取final或者有效的final变量  不能修改任何local变量 
+
+
+### JVMTI
+
+`JVMTI`[^1] JVM TOOL Interface,jvm工具接口，是JVM提供的一套对JVM进行操作的工具接口。通过JVMTI，可以实现对JVM的多种操作 
+通过接口注册各种事件勾子，在JVM事件触发时，同时触发预定义的勾子，以实现对各个JVM事件的响应。
+事件包括： 
+* 类文件加载
+* 异常产生与捕获
+* 线程启动和结束
+* 进入和退出临界区
+* 成员变量修改
+* GC开始和结束
+* 方法调用进入和退出
+* 临界区竞争与等待
+* VM启动与退出
+
+[^1]: https://docs.oracle.com/javase/8/docs/platform/jvmti/jvmti.html
+
+
+
+####启动方式
+- 随Java进程启动而启动 eg: java -agentlib: xxx
+- 运行时载入，通过attach API 将模块（jar包)动态attach到指定进程id的java进程内 eg: arthas
