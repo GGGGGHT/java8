@@ -23,6 +23,10 @@ public class Leetcode_110 {
 	}
 
 	public static void main(String[] args) {
+
+		TreeNode head = new TreeNode(2, null, new TreeNode(3, null, new TreeNode(4, null, new TreeNode(5, null, new TreeNode(6)))));
+		System.out.println(new Leetcode_111().minDepth(head));
+
 		// [1,2,2,3,null,null,3,4,null,null,4]  //
 		TreeNode root = new TreeNode(1);
 		TreeNode node2 = new TreeNode(2);
@@ -46,5 +50,6 @@ public class Leetcode_110 {
 
 		// root.right = new TreeNode(2, null, new TreeNode(3));
 		System.out.println(new Leetcode_110().isBalanced(root));
+
 	}
 }
