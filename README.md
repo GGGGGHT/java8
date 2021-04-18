@@ -45,6 +45,24 @@ Lambda 只能读取final或者有效的final变量  不能修改任何local变�
 
 
 
-####启动方式
+#### 启动方式
+
 - 随Java进程启动而启动 eg: java -agentlib: xxx
 - 运行时载入，通过attach API 将模块（jar包)动态attach到指定进程id的java进程内 eg: arthas
+
+
+
+
+
+
+
+###  javac  [名称检查器](https://github.com/GGGGGHT/java8/tree/master/java8/src/main/java/com/ggggght/learningjava8/compiler)
+
+使用: 
+
+```shell
+>: javac com/ggggght/learningjava8/compiler/NameChecker.java
+>: javac com/ggggght/learningjava8/compiler/NameCheckProcessor.java
+>: javac -g -processor com.ggggght.learningjava8.compiler.NameCheckProcessorcom/ggggght/learningjava8/compiler/BADLY_NAMED_CODE.java
+```
+
