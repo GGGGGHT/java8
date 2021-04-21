@@ -1,5 +1,7 @@
 package com.ggggght.learningjava8.jmx;
 
+//import com.sun.tools.attach.VirtualMachine;
+//import com.sun.tools.attach.VirtualMachineDescriptor;
 import com.sun.tools.attach.VirtualMachine;
 import com.sun.tools.attach.VirtualMachineDescriptor;
 import org.apache.ibatis.javassist.ClassPool;
@@ -19,8 +21,7 @@ import java.util.List;
 /**
  * @author ght
  */
-public class JMXAgent implements ClassFileTransformer
-{
+public class JMXAgent implements ClassFileTransformer {
     public static void main(String[] args) throws Exception {
         List<VirtualMachineDescriptor> list = VirtualMachine.list();
         // list.forEach(System.out::println);
