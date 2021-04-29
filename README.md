@@ -61,8 +61,18 @@ Lambda 只能读取final或者有效的final变量  不能修改任何local变�
 使用: 
 
 ```shell
->: javac com/ggggght/learningjava8/compiler/NameChecker.java
->: javac com/ggggght/learningjava8/compiler/NameCheckProcessor.java
->: javac -g -processor com.ggggght.learningjava8.compiler.NameCheckProcessorcom/ggggght/learningjava8/compiler/BADLY_NAMED_CODE.java
+$ javac com/ggggght/learningjava8/compiler/NameChecker.java
+$ javac com/ggggght/learningjava8/compiler/NameCheckProcessor.java
+$ javac -g -processor com.ggggght.learningjava8.compiler.NameCheckProcessorcom/ggggght/learningjava8/compiler/BADLY_NAMED_CODE.java
 ```
 
+### Java agent(https://github.com/GGGGGHT/java8/tree/master/java8/src/main/java/com/ggggght/learningjava8/agent)
+
+使用java agent 增强方法
+
+```shell
+$ echo 'Premain-Class: com.ggggght.agent.HelloAgent' >> mainfest.mf
+$ echo 'Can-Retransform-Classes: true' >> mainfest.mf
+$ echo 'Agent-Class: com.ggggght.learningjava8.agent.Bootstrap' >> mainfest.mf
+$ jar cvmf mainfest.mf trace.jar com/ggggght/learningjava8/agent
+$ java com/ggggght/learningjava8/agent/start
