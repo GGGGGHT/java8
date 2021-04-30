@@ -5,7 +5,7 @@ import javax.management.MXBean;
 /**
  * @author ggggght
  */
-@MXBean
+// @MXBean
 public interface HelloMBean {
     void sayHello();
     int add(int x, int y);
