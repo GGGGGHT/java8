@@ -1,6 +1,7 @@
 package com.ggggght.learningjava8;
 
 
+import com.ggggght.learningjava8.jmx.Hello;
 import org.dom4j.DocumentException;
 
 import org.mybatis.spring.annotation.MapperScan;
@@ -15,7 +16,7 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 
 import javax.management.*;
 import java.io.IOException;
-
+import java.lang.management.ManagementFactory;
 
 
 @SpringBootApplication
@@ -31,6 +32,17 @@ public class Learningjava8Application implements ApplicationRunner {
 	StringRedisTemplate template;
 
 	public static void main(String[] args) throws IOException, DocumentException, MalformedObjectNameException, NotCompliantMBeanException, InstanceAlreadyExistsException, MBeanRegistrationException {
+		MBeanServer mbs = ManagementFactory.getPlatformMBeanServer();
+		
+		// Construct the ObjectName for the Hello MBean we will register
+		ObjectName mbeanName = new ObjectName("com.example:type=Hello");
+		
+		// Create the Hello World MBean
+		Hello mbean = new Hello();
+		
+		// Register the Hello World MBean
+		mbs.registerMBean(mbean, mbeanName);
+		
 		// MBeanServer mbs = ManagementFactory.getPlatformMBeanServer();
 		// mbs.registerMBean(new Hello(),new ObjectName( "com.ggggght:type=Hello"));
 		SpringApplication.run(Learningjava8Application.class, args);

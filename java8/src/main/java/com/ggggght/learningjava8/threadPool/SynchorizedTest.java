@@ -1,4 +1,4 @@
-package com.ggggght.learningjava8.ThreadPool;
+package com.ggggght.learningjava8.threadPool;
 
 
 /**

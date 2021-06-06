@@ -1,13 +1,12 @@
-package com.ggggght.learningjava8.ThreadPool;
+package com.ggggght.learningjava8.threadPool;
 
 import org.junit.Test;
-import org.omg.PortableInterceptor.INACTIVE;
 
 import java.time.Duration;
 import java.time.Instant;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 import java.util.concurrent.*;
 
@@ -119,5 +118,26 @@ public class LearnThread {
                 KEEPALIVETIME,
                 TimeUnit.SECONDS,
                 WORKINGQUEUE);
+    }
+}
+
+class TestCallable {
+    public static void main(String[] args) throws ExecutionException, InterruptedException {
+        final ThreadDemo threadDemo = new ThreadDemo();
+        FutureTask<Integer> futureTask = new FutureTask<Integer>(threadDemo);
+        new Thread(futureTask).start();
+        final Optional<Integer> value = Optional.ofNullable(futureTask.get());
+        value.ifPresent(System.out::print);
+    }
+}
+
+class ThreadDemo implements Callable<Integer> {
+    @Override
+    public Integer call() throws Exception {
+        int sum = 0;
+        for (int i = 0; i < 100; i++) {
+            sum += i;
+        }
+        return sum;
     }
 }
