@@ -1,17 +1,23 @@
 package com.ggggght.learningjava8.Time;
 
-import org.apache.commons.lang3.time.FastDateFormat;
 import org.junit.Test;
 
 import java.text.SimpleDateFormat;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.Temporal;
+import java.time.temporal.TemporalAdjuster;
 import java.time.temporal.TemporalAdjusters;
-import java.time.temporal.TemporalUnit;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.*;
+
+import static java.time.DayOfWeek.MONDAY;
+import static java.time.temporal.ChronoField.*;
+import static java.time.temporal.TemporalAdjusters.lastDayOfMonth;
+import static java.time.temporal.TemporalAdjusters.nextOrSame;
 
 /**
  * @author ght
@@ -227,4 +233,83 @@ public class LearnTime {
         System.out.println(date1);
     }
 
+    @Test
+    public void getTest() {
+        System.out.println(LocalDateTime.now().get(MICRO_OF_SECOND));
+    }
+
+    @Test
+    public void test() {
+        LocalDate date = LocalDate.of(2014, 3, 18);
+        date = date.with(MONTH_OF_YEAR, 9); // 2014-09-18
+        System.out.println(date);
+        date = date.plusYears(2).minusDays(10); // 2016-09-j08
+        date.withYear(2011);
+        System.out.println(date);
+    }
+
+    @Test
+    public void withAttributeTest() {
+        LocalDate date1 = LocalDate.now(); // 2021-06-08
+        LocalDate date2 = date1.withYear(2011); // 2011-06-08
+        LocalDate date3 = date2.withDayOfMonth(25); // 2011-06-25
+        LocalDate date4 = date3.with(MONTH_OF_YEAR, 9);
+        System.out.println(date4);
+    }
+
+    @Test
+    public void temporalAdjustersTest() {
+        LocalDate date1 = LocalDate.now(); // 2021-06-28
+        LocalDate date2 = date1.with(nextOrSame(DayOfWeek.SUNDAY));// 2021-06-13
+        LocalDate date3 = date2.with(lastDayOfMonth()); // 06-30
+        System.out.println("date1 = " + date1);
+        System.out.println("date2 = " + date2);
+        System.out.println("date3 = " + date3);
+    }
+
+    @Test
+    public void useNextWorkingDay() {
+        LocalDate now = LocalDate.of(2021, 06, 13);
+        LocalDate nextDay = now.with(t -> new NextWorkingDay().adjustInto(t));
+        System.out.println("now = " + now);
+        System.out.println("nextDay = " + nextDay);
+
+        now.with(temporal -> {
+            DayOfWeek dow = DayOfWeek.of(temporal.get(DAY_OF_WEEK));
+            int dayToAdd = 1;
+            if (dow == DayOfWeek.FRIDAY) {
+                dayToAdd = 3;
+            } else if (dow == DayOfWeek.SATURDAY) {
+                dayToAdd = 2;
+            }
+
+            return temporal.plus(dayToAdd, ChronoUnit.DAYS);
+        });
+    }
+
+    /**
+     * 实现一个定制的TemporalAdjuster请设计一个NextWorkingDay类，
+     * 该类实现了TemporalAdjuster接口，能够计算明天的日期，同时过滤掉周六和周日这些节假日。
+     * 格式如下所示：
+     * <pre>
+     *      date = date.with(new NextWorkingDay())
+     *  </pre>
+     * 如果当天的星期介于周一至周五之间，日期向后移动一天；如果当天是周六或者周日，则返回下一个周一。
+     */
+    class NextWorkingDay implements TemporalAdjuster {
+
+        @Override
+        public Temporal adjustInto(Temporal temporal) {
+            int day = temporal.get(DAY_OF_WEEK);
+            if (day >= 1 && day < 5) {
+                return temporal.plus(1, ChronoUnit.DAYS);
+            }
+
+            if (day == 5) {
+                return temporal.plus(3, ChronoUnit.DAYS);
+            }
+
+            return temporal.with(nextOrSame(MONDAY));
+        }
+    }
 }
