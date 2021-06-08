@@ -312,4 +312,24 @@ public class LearnTime {
             return temporal.with(nextOrSame(MONDAY));
         }
     }
+
+    @Test
+    public void formatTest() {
+        LocalDate date = LocalDate.of(2021, 3, 18);
+        String s1 = date.format(DateTimeFormatter.BASIC_ISO_DATE);
+        System.out.println("s1 = " + s1);
+        String s2 = date.format(DateTimeFormatter.ISO_LOCAL_DATE);
+        System.out.println("s2 = " + s2);
+        LocalDate date1 = LocalDate.parse("20210318", DateTimeFormatter.BASIC_ISO_DATE);
+        LocalDate date2 = LocalDate.parse("2021-03-18", DateTimeFormatter.ISO_LOCAL_DATE);
+
+        System.out.println("date1.equals(date2) = " + date1.equals(date2));
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate date3 = LocalDate.of(2014, 3, 18);
+        String formattedDate = date3.format(formatter);
+        System.out.println("formattedDate = " + formattedDate);
+        LocalDate date4 = LocalDate.parse(formattedDate, formatter);
+        System.out.println("date4 = " + date4);
+    }
 }
