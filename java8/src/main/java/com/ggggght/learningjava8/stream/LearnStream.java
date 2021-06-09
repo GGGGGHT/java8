@@ -1,18 +1,14 @@
 package com.ggggght.learningjava8.stream;
 
 
+import com.ggggght.learningjava8.po.User;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.*;
-import java.util.function.Consumer;
-import java.util.function.Function;
-import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
-
-import com.ggggght.learningjava8.po.*;
 
 import static java.util.stream.Collectors.*;
 
@@ -307,9 +303,10 @@ public class LearnStream {
     public void squarTest() {
         int[] arr = {1, 2, 3, 4, 5};
         Arrays.stream(arr)
-                .map(i -> i * i)
-                .forEach(System.out::println);
+              .map(i -> i * i)
+              .forEach(System.out::println);
     }
+
     public static Stream<Character> filterCharacter(String string) {
         List<Character> list = new ArrayList<>(string.length());
 
@@ -317,6 +314,25 @@ public class LearnStream {
             list.add(c);
         }
         return list.stream();
+    }
+
+    /**
+     * peek在流的每个元素恢复运行之前 ，插入执行一个动作
+     */
+    @Test
+    public void peekTest() {
+        List<Integer> nums = Arrays.asList(5, 2, 1, 6, 10);
+        List<Integer> res = nums.stream()
+                                .peek(i -> System.out.println("from stream: " + i))
+                                .map(i -> i + 17)
+                                .peek(i -> System.out.println("after map: " + i))
+                                .filter(i -> i % 2 == 0)
+                                .peek(i -> System.out.println("after filter: " + i))
+                                .limit(3)
+                                .peek(i -> System.out.println("after filter: " + i))
+                                .collect(toList());
+
+        res.forEach(System.out::println);
     }
 }
 
