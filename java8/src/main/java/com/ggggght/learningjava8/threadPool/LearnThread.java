@@ -1,5 +1,6 @@
 package com.ggggght.learningjava8.threadPool;
 
+import org.jetbrains.annotations.NotNull;
 import org.junit.Test;
 
 import java.time.Duration;
@@ -139,5 +140,30 @@ class ThreadDemo implements Callable<Integer> {
             sum += i;
         }
         return sum;
+    }
+    
+    public void catchException() throws InterruptedException {
+        ThreadPoolExecutor poolExecutor = new ThreadPoolExecutor(1, 1, 0L, TimeUnit.HOURS,
+                new LinkedBlockingDeque<>(),
+                new ThreadFactory() {
+                    @Override
+                    public Thread newThread(@NotNull Runnable r) {
+                        Thread thread = new Thread(r);
+                        thread.setUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
+                            @Override
+                            public void uncaughtException(Thread t, Throwable e) {
+                                System.out.println(e);
+                            }
+                        });
+                        return thread;
+                    }
+                });
+    
+        poolExecutor.execute(() -> {
+            int i = 1 / 0;
+        });
+    
+        poolExecutor.shutdown();
+        poolExecutor.awaitTermination(1L, TimeUnit.MINUTES);
     }
 }

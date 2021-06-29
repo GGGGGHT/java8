@@ -3,7 +3,7 @@ package com.ggggght.learningjava8.gof23_lambda;
 /**
  * 使用lambda优化策略模式的实现
  */
-public class Strategy {
+class Strategy {
 	private final ValidationStrategy strategy;
 
 	public Strategy(ValidationStrategy strategy) {
