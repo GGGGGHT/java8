@@ -171,6 +171,8 @@ public class LearnTime {
 
     /**
      * @target Period   用来计算两个日期之间的间隔
+     * @bug 当两个时间跨度超过一年后 getMonth的返回值有错误
+     * @fix ChronoUnit.MONTHS.between 使用这个函数来获得两个时间之间的月份差
      */
     @Test
     public void periodTest() {
@@ -183,6 +185,10 @@ public class LearnTime {
         System.out.println(date1 + "与" + date2 + "的间隔的年数为" + years + "年");
         System.out.println(date1 + "与" + date2 + "的间隔的月数为" + months + "月");
         System.out.println(date1 + "与" + date2 + "的间隔的天数为" + days + "天");
+
+
+        long month = ChronoUnit.MONTHS.between(date1, date2);
+        System.out.println(date1 + "与" + date2 + "的间隔的月数为" + month + "月");
     }
 
     /**
