@@ -53,5 +53,7 @@ public class UseUnSafe {
 		Instant end = Instant.now();
 		// 433 431 576 689 422
 		System.out.println(Duration.between(start, end).toMillis());
+		
+		System.out.println("UNSAFE.addressSize() = " + UNSAFE.addressSize());
 	}
 }
