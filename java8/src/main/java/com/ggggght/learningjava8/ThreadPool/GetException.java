@@ -1,5 +1,7 @@
 package com.ggggght.learningjava8.ThreadPool;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.concurrent.*;
 
 /**
@@ -12,12 +14,14 @@ public class GetException {
 		// normal();
 		// catchException
 		// useFutureTask();
-		myThreadPoolExecutor myThreadPoolExecutor = new myThreadPoolExecutor(1, 1, 0, TimeUnit.MINUTES, new LinkedBlockingDeque<>());
-		myThreadPoolExecutor.execute(() -> {
-			int i = 1 / 0;
-		});
-		myThreadPoolExecutor.shutdown();
-		pool.shutdown();
+		// myThreadPoolExecutor myThreadPoolExecutor = new myThreadPoolExecutor(1, 1, 0, TimeUnit.MINUTES, new LinkedBlockingDeque<>());
+		// myThreadPoolExecutor.execute(() -> {
+		// 	int i = 1 / 0;
+		// });
+		// myThreadPoolExecutor.shutdown();
+		// pool.shutdown();
+
+		useThreadCatch();
 	}
 
 	/**
@@ -52,6 +56,32 @@ public class GetException {
 
 		pool.submit(futureTask);
 		futureTask.get();
+	}
+
+	public static void useThreadCatch() throws InterruptedException {
+		ThreadPoolExecutor poolExecutor = new ThreadPoolExecutor(1, 1, 0L, TimeUnit.HOURS,
+		                                                         new LinkedBlockingDeque<>(),
+		                                                         new ThreadFactory() {
+			                                                         @Override
+			                                                         public Thread newThread(@NotNull Runnable r) {
+				                                                         Thread thread = new Thread(r);
+				                                                         thread.setUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
+					                                                         @Override
+					                                                         public void uncaughtException(Thread t, Throwable e) {
+						                                                         System.out.println(e);
+					                                                         }
+				                                                         });
+				                                                         return thread;
+			                                                         }
+		                                                         }
+		);
+
+		poolExecutor.execute(() -> {
+			int i = 1 / 0;
+		});
+
+		poolExecutor.shutdown();
+		poolExecutor.awaitTermination(1L, TimeUnit.MINUTES);
 	}
 
 	static class myThreadPoolExecutor extends ThreadPoolExecutor {
