@@ -40,4 +40,28 @@ public class PSTest {
 	public void measureThroughput() throws InterruptedException {
 		TimeUnit.MILLISECONDS.sleep(100);
 	}
+	
+	/**
+	 * 测试平均执行时间
+	 * @throws InterruptedException
+	 */
+	@Benchmark
+	@BenchmarkMode(Mode.AverageTime)
+	@OutputTimeUnit(TimeUnit.MICROSECONDS)
+	public void measureAvgTime() throws InterruptedException {
+		// TimeUnit.MILLISECONDS.sleep(100);
+		// System.out.println("Hello world");
+	}
+	
+	/**
+	 * 对执行时间进行采样 不测试总运行时间
+	 * JMH还尝试自动调整采样频率
+	 * @throws InterruptedException
+	 */
+	@Benchmark
+	@BenchmarkMode(Mode.SampleTime)
+	@OutputTimeUnit(TimeUnit.MICROSECONDS)
+	public void measureSamples() throws InterruptedException {
+		TimeUnit.MILLISECONDS.sleep(100);
+	}
 }
