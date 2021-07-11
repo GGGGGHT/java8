@@ -40,7 +40,7 @@ import org.openjdk.jmh.runner.options.OptionsBuilder;
  * Fixture method有三个等级
  * 1. 每一次基准测试时执行  TearDown 只会在最后一次Iteration时才会执行
  * 2. 每一次迭代时执行 Warmup Iteration 这两个阶段都会执行
- * 3. 每一次调用时执行 每次都会进行调用
+ * 3. 每一次调用时执行
  */
 @State(Scope.Thread)
 public class JMHSample_06_FixtureLevel {
