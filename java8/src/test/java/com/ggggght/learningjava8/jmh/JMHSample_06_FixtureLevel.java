@@ -38,14 +38,14 @@ import org.openjdk.jmh.runner.options.OptionsBuilder;
 
 /**
  * Fixture method有三个等级
- * 1. 每一次基准测试时执行
- * 2. 每一次迭代时执行
- * 3. 每一次调用时执行
+ * 1. 每一次基准测试时执行  TearDown 只会在最后一次Iteration时才会执行
+ * 2. 每一次迭代时执行 Warmup Iteration 这两个阶段都会执行
+ * 3. 每一次调用时执行 每次都会进行调用
  */
 @State(Scope.Thread)
 public class JMHSample_06_FixtureLevel {
 
-    double x;
+    double x = 4.0d;
 
     /*
      * Fixture methods have different levels to control when they should be run.
@@ -60,7 +60,7 @@ public class JMHSample_06_FixtureLevel {
      * metrics, so you can use this to do some heavy-lifting.
      */
 
-    @TearDown(Level.Iteration)
+    @TearDown(Level.Invocation)
     public void check() {
         System.out.println("invoke check!");
         assert x > Math.PI : "Nothing changed?";
@@ -71,11 +71,11 @@ public class JMHSample_06_FixtureLevel {
         x++;
     }
 
-    @Benchmark
-    public void measureWrong() {
-        double x = 0;
-        x++;
-    }
+    // @Benchmark
+    // public void measureWrong() {
+    //     double x = 0;
+    //     x++;
+    // }
 
     /*
      * ============================== HOW TO RUN THIS TEST: ====================================
@@ -104,7 +104,7 @@ public class JMHSample_06_FixtureLevel {
                 .include(JMHSample_06_FixtureLevel.class.getSimpleName())
                 .forks(1)
                 .jvmArgs("-ea")
-                .shouldFailOnError(true) // switch to "true" to fail the complete run
+                .shouldFailOnError(false) // switch to "true" to fail the complete run
                 .build();
 
         new Runner(opt).run();
