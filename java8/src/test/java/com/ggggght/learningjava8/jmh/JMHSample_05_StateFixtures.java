@@ -36,6 +36,7 @@ public class JMHSample_05_StateFixtures {
 
     @Setup
     public void prepare() {
+        System.out.println("start execute!");
         x = Math.PI;
     }
 
@@ -45,6 +46,7 @@ public class JMHSample_05_StateFixtures {
 
     @TearDown
     public void check() {
+        System.out.println("execute end!");
         assert x > Math.PI : "Nothing changed?";
     }
 
