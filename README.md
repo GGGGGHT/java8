@@ -76,3 +76,7 @@ $ echo 'Can-Retransform-Classes: true' >> mainfest.mf
 $ echo 'Agent-Class: com.ggggght.learningjava8.agent.Bootstrap' >> mainfest.mf
 $ jar cvmf mainfest.mf trace.jar com/ggggght/learningjava8/agent
 $ java com/ggggght/learningjava8/agent/start
+
+
+--- 
+测试action运行
