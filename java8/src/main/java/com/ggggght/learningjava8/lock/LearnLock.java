@@ -5,6 +5,7 @@ import java.util.concurrent.Exchanger;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.LockSupport;
+import java.util.concurrent.locks.ReentrantLock;
 import org.junit.Test;
 
 /**
@@ -89,7 +90,7 @@ public class LearnLock {
   }
 
   @Test
-  public void exchange() throws IOException {
+  public void exchangeTest() throws IOException {
     Exchanger<Object> exchanger = new Exchanger<>();
 
     new Thread(() -> {
@@ -116,5 +117,19 @@ public class LearnLock {
 
       System.out.println(Thread.currentThread().getName() + " received: " + res);
     }, "t2").start();
+  }
+
+  @Test
+  public void reentrantLockTest() {
+    ReentrantLock reentrantLock = new ReentrantLock();
+
+    reentrantLock.lock();
+    try {
+      System.out.println("hello");
+    } catch (Exception e) {
+      e.printStackTrace();
+    }finally {
+      reentrantLock.unlock();
+    }
   }
 }
