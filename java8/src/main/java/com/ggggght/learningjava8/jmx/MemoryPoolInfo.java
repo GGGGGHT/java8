@@ -1,8 +1,12 @@
 package com.ggggght.learningjava8.jmx;
 
+import java.io.IOException;
+import java.lang.management.ClassLoadingMXBean;
 import java.lang.management.GarbageCollectorMXBean;
 import java.lang.management.ManagementFactory;
 import java.lang.management.MemoryPoolMXBean;
+import java.lang.management.RuntimeMXBean;
+import java.lang.management.ThreadMXBean;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import org.slf4j.Logger;
@@ -12,7 +16,7 @@ import org.slf4j.LoggerFactory;
 public class MemoryPoolInfo {
   private static final Logger LOGGER = LoggerFactory.getLogger(MemoryPoolInfo.class);
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         final List<MemoryPoolMXBean> pools = ManagementFactory.getMemoryPoolMXBeans();
         int poolsFound = 0;
         int poolsWithStats = 0;
@@ -31,5 +35,8 @@ public class MemoryPoolInfo {
             LOGGER.info("{} collection count = {}", name, collector.getCollectionCount());
         });
 
+        final ClassLoadingMXBean classLoadingMXBean = ManagementFactory.getClassLoadingMXBean();
+        LOGGER.info("total loading class: {}", classLoadingMXBean.getTotalLoadedClassCount());
+        LOGGER.info("loaded class count: {}", classLoadingMXBean.getLoadedClassCount());
     }
 }
