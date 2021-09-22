@@ -10,6 +10,7 @@
 - [x] 使用ASM动态生成class
 - [ ] mybatis
 - [ ] btrace
+- [x] HSDB
 
 ## 方法引用
 
@@ -81,3 +82,15 @@ $ java com/ggggght/learningjava8/agent/start
 
 --- 
 测试action运行
+
+
+# HSDB
+before jdk8
+```shell
+java -cp $JAVA_HOME/lib/sa-jdi.jar sun.jvm.hotspot.HSDB
+```
+
+after jdk9
+```shell
+jhsdb hsdb 
+```
