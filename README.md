@@ -8,7 +8,8 @@
 - [x] java.time
 - [ ] guava 
 - [x] 使用ASM动态生成class
-
+- [ ] mybatis
+- [ ] btrace
 
 ## 方法引用
 
