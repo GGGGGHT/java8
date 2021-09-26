@@ -10,7 +10,7 @@
 - [x] 使用ASM动态生成class
 - [ ] mybatis
 - [ ] btrace
-- [x] HSDB
+- [ ] HSDB
 
 ## 方法引用
 
