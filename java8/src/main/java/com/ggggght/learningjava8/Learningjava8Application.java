@@ -32,7 +32,7 @@ public class Learningjava8Application implements ApplicationRunner {
 	StringRedisTemplate template;
 
 	public static void main(String[] args) throws IOException, DocumentException, MalformedObjectNameException, NotCompliantMBeanException, InstanceAlreadyExistsException, MBeanRegistrationException {
-		MBeanServer mbs = ManagementFactory.getPlatformMBeanServer();
+		// MBeanServer mbs = ManagementFactory.getPlatformMBeanServer();
 		
 		// Construct the ObjectName for the Hello MBean we will register
 		ObjectName mbeanName = new ObjectName("com.example:type=Hello");
