@@ -8,22 +8,21 @@ import java.util.Arrays;
  * <a href='https://openjdk.java.net/jeps/193'>jep193</a>
  */
 public class Use_VarHandle {
-	// static final VarHandle VH_FOO_FIELD_I;
-	//
-	// static {
-	// 	try {
-	// 		VH_FOO_FIELD_I = MethodHandles.lookup().
-	// 		                              in(Foo.class).
-	// 		                              findVarHandle(Foo.class, "i", int.class);
-	// 	} catch (Exception e) {
-	// 		throw new Error(e);
-	// 	}
-	// }
+	static final VarHandle VH_FOO_FIELD_I;
+
+	static {
+		try {
+			VH_FOO_FIELD_I = MethodHandles.lookup().
+			                              in(Foo.class).
+			                              findVarHandle(Foo.class, "i", int.class);
+		} catch (Exception e) {
+			throw new Error(e);
+		}
+	}
 
 	public static void main(String[] args) {
-		// Object res = VH_FOO_FIELD_I.getAndSet(2);
-
-		// System.out.println(res);
+		Object res = VH_FOO_FIELD_I.getAndSet(2);
+		System.out.println(res);
 
 		String[] sa = {"hello", "world"};
 		System.out.println(Arrays.toString(sa));
