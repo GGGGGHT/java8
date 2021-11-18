@@ -146,6 +146,7 @@ public class LearnLambda {
     });
   }
 
+  @FunctionalInterface
   interface Task {
     void execute();
   }
