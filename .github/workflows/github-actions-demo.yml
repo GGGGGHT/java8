@@ -40,7 +40,7 @@ jobs:
           distribution: 'zulu'
       - name: 'Test'
         shell: bash
-        run: mvn -B -P!standard-with-extra-repos verify -U -Dmaven.javadoc.skip=true
+        run: mvn -B -P!standard-with-extra-repos verify -U -Dmaven.javadoc.skip=true -f $ROOT_POM
 
   publish_snapshot:
     name: 'Publish snapshot'
