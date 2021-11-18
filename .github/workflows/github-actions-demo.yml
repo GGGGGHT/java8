@@ -13,8 +13,8 @@ jobs:
     name: "${{ matrix.root-pom }} on JDK ${{ matrix.java }}"
     strategy:
       matrix:
-        java: [ 8, 11 ]
-        root-pom: [ 'pom.xml', 'android/pom.xml' ]
+        java: [ 11 ]
+        root-pom: [ 'pom.xml' ]
     runs-on: ubuntu-latest
     env:
       ROOT_POM: ${{ matrix.root-pom }}
@@ -40,7 +40,7 @@ jobs:
           distribution: 'zulu'
       - name: 'Test'
         shell: bash
-        run: mvn -B -P!standard-with-extra-repos verify -U -Dmaven.javadoc.skip=true -f $ROOT_POM
+        run: mvn -B -P!standard-with-extra-repos verify -U -Dmaven.javadoc.skip=true
 
   publish_snapshot:
     name: 'Publish snapshot'
