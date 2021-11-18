@@ -14,7 +14,7 @@ jobs:
     strategy:
       matrix:
         java: [ 11 ]
-        root-pom: [ 'pom.xml' ]
+        root-pom: [ 'java8/pom.xml' ]
     runs-on: ubuntu-latest
     env:
       ROOT_POM: ${{ matrix.root-pom }}
