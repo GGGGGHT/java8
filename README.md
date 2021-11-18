@@ -1,4 +1,5 @@
 # java8
+[![Build Status](https://github.com/GGGGGHT/java8/workflows/CI/badge.svg?branch=master)](https://github.com/GGGGGHT/java8/actions)<br/>
 学习java的使用包括java及其他工具类的使用 
 
 - [x] Stream
