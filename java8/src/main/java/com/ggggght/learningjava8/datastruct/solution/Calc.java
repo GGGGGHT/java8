@@ -188,7 +188,7 @@ class PolishExpression {
 				numStack.push("" + (c - 48));
 			}
 			else { // 扫描到的不是数字
-				// 1.第一种情况 操作栈为空
+					// 1.第一种情况 操作栈为空
 				if (opStack.isEmpty()) {
 					opStack.push(c);
 				}

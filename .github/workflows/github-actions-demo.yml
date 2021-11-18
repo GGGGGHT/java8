@@ -38,6 +38,9 @@ jobs:
         with:
           java-version: ${{ matrix.java }}
           distribution: 'zulu'
+      - name: 'format-check'
+        uses: bash
+        run: mvn spring-javaformat:validate -Dmaven.test.skip=true
       - name: 'Test'
         shell: bash
         run: mvn -B -P!standard-with-extra-repos verify -U -Dmaven.javadoc.skip=true -f $ROOT_POM

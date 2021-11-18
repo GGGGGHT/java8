@@ -188,7 +188,7 @@ class Node {
 			return this.right.remove(val, this);
 		}
 		else { // this.val == removeVal
-			// 当前节点已经是根结点
+				// 当前节点已经是根结点
 			if (this == par && null == this.getRight() && null == this.getRight()) {
 				// root = null;
 				return null;
