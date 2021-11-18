@@ -37,77 +37,71 @@ import org.openjdk.jmh.runner.options.Options;
 import org.openjdk.jmh.runner.options.OptionsBuilder;
 
 /**
- * Fixture method有三个等级
- * 1. 每一次基准测试时执行  TearDown 只会在最后一次Iteration时才会执行
- * 2. 每一次迭代时执行 Warmup Iteration 这两个阶段都会执行
- * 3. 每一次调用时执行
+ * Fixture method有三个等级 1. 每一次基准测试时执行 TearDown 只会在最后一次Iteration时才会执行 2. 每一次迭代时执行 Warmup
+ * Iteration 这两个阶段都会执行 3. 每一次调用时执行
  */
 @State(Scope.Thread)
 public class JMHSample_06_FixtureLevel {
 
-    double x = 4.0d;
+	double x = 4.0d;
 
-    /*
-     * Fixture methods have different levels to control when they should be run.
-     * There are at least three Levels available to the user. These are, from
-     * top to bottom:
-     *
-     * Level.Trial: before or after the entire benchmark run (the sequence of iterations)
-     * Level.Iteration: before or after the benchmark iteration (the sequence of invocations)
-     * Level.Invocation; before or after the benchmark method invocation (WARNING: read the Javadoc before using)
-     *
-     * Time spent in fixture methods does not count into the performance
-     * metrics, so you can use this to do some heavy-lifting.
-     */
+	/*
+	 * Fixture methods have different levels to control when they should be run. There are
+	 * at least three Levels available to the user. These are, from top to bottom:
+	 *
+	 * Level.Trial: before or after the entire benchmark run (the sequence of iterations)
+	 * Level.Iteration: before or after the benchmark iteration (the sequence of
+	 * invocations) Level.Invocation; before or after the benchmark method invocation
+	 * (WARNING: read the Javadoc before using)
+	 *
+	 * Time spent in fixture methods does not count into the performance metrics, so you
+	 * can use this to do some heavy-lifting.
+	 */
 
-    @TearDown(Level.Invocation)
-    public void check() {
-        System.out.println("invoke check!");
-        assert x > Math.PI : "Nothing changed?";
-    }
+	@TearDown(Level.Invocation)
+	public void check() {
+		System.out.println("invoke check!");
+		assert x > Math.PI : "Nothing changed?";
+	}
 
-    @Benchmark
-    public void measureRight() {
-        x++;
-    }
+	@Benchmark
+	public void measureRight() {
+		x++;
+	}
 
-    // @Benchmark
-    // public void measureWrong() {
-    //     double x = 0;
-    //     x++;
-    // }
+	// @Benchmark
+	// public void measureWrong() {
+	// double x = 0;
+	// x++;
+	// }
 
-    /*
-     * ============================== HOW TO RUN THIS TEST: ====================================
-     *
-     * You can see measureRight() yields the result, and measureWrong() fires
-     * the assert at the end of first iteration! This will not generate the results
-     * for measureWrong(). You can also prevent JMH for proceeding further by
-     * requiring "fail on error".
-     *
-     * You can run this test:
-     *
-     * a) Via the command line:
-     *    $ mvn clean install
-     *    $ java -ea -jar target/benchmarks.jar JMHSample_06 -f 1
-     *    (we requested single fork; there are also other options, see -h)
-     *
-     *    You can optionally supply -foe to fail the complete run.
-     *
-     * b) Via the Java API:
-     *    (see the JMH homepage for possible caveats when running from IDE:
-     *      http://openjdk.java.net/projects/code-tools/jmh/)
-     */
+	/*
+	 * ============================== HOW TO RUN THIS TEST:
+	 * ====================================
+	 *
+	 * You can see measureRight() yields the result, and measureWrong() fires the assert
+	 * at the end of first iteration! This will not generate the results for
+	 * measureWrong(). You can also prevent JMH for proceeding further by requiring
+	 * "fail on error".
+	 *
+	 * You can run this test:
+	 *
+	 * a) Via the command line: $ mvn clean install $ java -ea -jar target/benchmarks.jar
+	 * JMHSample_06 -f 1 (we requested single fork; there are also other options, see -h)
+	 *
+	 * You can optionally supply -foe to fail the complete run.
+	 *
+	 * b) Via the Java API: (see the JMH homepage for possible caveats when running from
+	 * IDE: http://openjdk.java.net/projects/code-tools/jmh/)
+	 */
 
-    public static void main(String[] args) throws RunnerException {
-        Options opt = new OptionsBuilder()
-                .include(JMHSample_06_FixtureLevel.class.getSimpleName())
-                .forks(1)
-                .jvmArgs("-ea")
-                .shouldFailOnError(false) // switch to "true" to fail the complete run
-                .build();
+	public static void main(String[] args) throws RunnerException {
+		Options opt = new OptionsBuilder().include(JMHSample_06_FixtureLevel.class.getSimpleName()).forks(1)
+				.jvmArgs("-ea").shouldFailOnError(false) // switch to "true" to fail the
+															// complete run
+				.build();
 
-        new Runner(opt).run();
-    }
+		new Runner(opt).run();
+	}
 
 }

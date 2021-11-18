@@ -8,6 +8,7 @@ import org.springframework.core.env.AbstractEnvironment;
 @Configuration
 @ComponentScan(basePackages = "com.ggggght.learningjava8.autowired")
 public class CalculatingServiceBootstrap {
+
 	static {
 		System.setProperty(AbstractEnvironment.ACTIVE_PROFILES_PROPERTY_NAME, "Java8");
 		System.setProperty(AbstractEnvironment.DEFAULT_PROFILES_PROPERTY_NAME, "Java7");
@@ -23,4 +24,5 @@ public class CalculatingServiceBootstrap {
 
 		app.close();
 	}
+
 }

@@ -10,16 +10,16 @@ import java.util.concurrent.atomic.AtomicReference;
  * <a href='https://openjdk.java.net/jeps/193'>jep193</a>
  */
 public class Use_VarHandle {
+
 	static final VarHandle VH_FOO_FIELD_I;
 	static final VarHandle OBJ_HANDLE;
 
 	static {
 		try {
-			VH_FOO_FIELD_I = MethodHandles.lookup().
-			                              in(Foo.class).
-			                              findStaticVarHandle(Foo.class, "i", int.class);
+			VH_FOO_FIELD_I = MethodHandles.lookup().in(Foo.class).findStaticVarHandle(Foo.class, "i", int.class);
 			OBJ_HANDLE = MethodHandles.lookup().unreflectVarHandle(Foo.class.getDeclaredField("obj"));
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			throw new Error(e);
 		}
 	}
@@ -42,7 +42,7 @@ public class Use_VarHandle {
 		HandleTest b = new HandleTest();
 		HandleTest c = new HandleTest();
 		new Thread(() -> {
-			while (a.getX() == 0){
+			while (a.getX() == 0) {
 			}
 			VarHandle.loadLoadFence();
 			System.out.println(a.getX());
@@ -53,7 +53,8 @@ public class Use_VarHandle {
 		new Thread(() -> {
 			try {
 				Thread.sleep(1000L);
-			} catch (InterruptedException e) {
+			}
+			catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 			a.setX(1);
@@ -65,12 +66,14 @@ public class Use_VarHandle {
 			VarHandle.releaseFence();
 		}, "Thread A").start();
 
-
 	}
+
 }
 
 class Foo {
+
 	static int i;
+
 	Object obj;
 
 	public static int getI() {
@@ -88,11 +91,14 @@ class Foo {
 	public void setObj(Object obj) {
 		this.obj = obj;
 	}
+
 }
 
 @Data
 class HandleTest {
+
 	int x;
+
 	int y;
 
 }

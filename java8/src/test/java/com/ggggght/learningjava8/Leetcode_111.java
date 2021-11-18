@@ -1,19 +1,20 @@
 package com.ggggght.learningjava8;
 
-
 /**
  * @desc:
  * @date: 2021/3/26 17:20
  * @author: ggggght
  */
 public class Leetcode_111 {
+
 	public static void main(String[] args) {
-		// TreeNode head = new TreeNode(2, null, new TreeNode(3, null, new TreeNode(4, null, new TreeNode(5, null, new TreeNode(6)))));
-		//[5,4,8,11,null,13,4,7,2,null,null,null,1], targetSum = 22
-		//          5
-		//      4       8
-		//  11    n   13   4
-		// 7  2          1
+		// TreeNode head = new TreeNode(2, null, new TreeNode(3, null, new TreeNode(4,
+		// null, new TreeNode(5, null, new TreeNode(6)))));
+		// [5,4,8,11,null,13,4,7,2,null,null,null,1], targetSum = 22
+		// 5
+		// 4 8
+		// 11 n 13 4
+		// 7 2 1
 		TreeNode root = new TreeNode(5);
 		TreeNode node1 = new TreeNode(4);
 		TreeNode node2 = new TreeNode(8);
@@ -31,8 +32,9 @@ public class Leetcode_111 {
 		node3.left = node6;
 		node3.right = node7;
 		node5.left = node8;
-		System.out.println(new Leetcode_111().hasPathSum(root,22));
+		System.out.println(new Leetcode_111().hasPathSum(root, 22));
 	}
+
 	public int minDepth(TreeNode root) {
 		if (null == root) {
 			return 0;

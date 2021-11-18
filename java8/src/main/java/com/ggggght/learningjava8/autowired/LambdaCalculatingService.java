@@ -9,6 +9,7 @@ import java.util.stream.Stream;
 @Service
 @Profile("Java8")
 public class LambdaCalculatingService implements CalculatingService {
+
 	@Override
 	public Integer sum(Integer... values) {
 		int sum = Stream.of(values).reduce(0, Integer::sum);
@@ -16,4 +17,5 @@ public class LambdaCalculatingService implements CalculatingService {
 
 		return sum;
 	}
+
 }

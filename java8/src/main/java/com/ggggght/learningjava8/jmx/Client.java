@@ -10,39 +10,40 @@ import java.util.Set;
 import java.util.TreeSet;
 
 public class Client {
+
 	/**
 	 * Inner class that will handle the notifications.
 	 */
 	public static class ClientListener implements NotificationListener {
+
 		@Override
-		public void handleNotification(Notification notification,
-		                               Object handback) {
+		public void handleNotification(Notification notification, Object handback) {
 			echo("\nReceived notification:");
 			echo("\tClassName: " + notification.getClass().getName());
 			echo("\tSource: " + notification.getSource());
 			echo("\tType: " + notification.getType());
 			echo("\tMessage: " + notification.getMessage());
 			if (notification instanceof AttributeChangeNotification) {
-				AttributeChangeNotification acn =
-						(AttributeChangeNotification) notification;
+				AttributeChangeNotification acn = (AttributeChangeNotification) notification;
 				echo("\tAttributeName: " + acn.getAttributeName());
 				echo("\tAttributeType: " + acn.getAttributeType());
 				echo("\tNewValue: " + acn.getNewValue());
 				echo("\tOldValue: " + acn.getOldValue());
 			}
 		}
+
 	}
 
-	/* For simplicity, we declare "throws Exception".
-	   Real programs will usually want finer-grained exception handling. */
+	/*
+	 * For simplicity, we declare "throws Exception". Real programs will usually want
+	 * finer-grained exception handling.
+	 */
 	public static void main(String[] args) throws Exception {
 		// Create an RMI connector client and
 		// connect it to the RMI connector server
 		//
-		echo("\nCreate an RMI connector client and " +
-				     "connect it to the RMI connector server");
-		JMXServiceURL url =
-				new JMXServiceURL("service:jmx:rmi:///jndi/rmi://:9999/jmxrmi");
+		echo("\nCreate an RMI connector client and " + "connect it to the RMI connector server");
+		JMXServiceURL url = new JMXServiceURL("service:jmx:rmi:///jndi/rmi://:9999/jmxrmi");
 		JMXConnector jmxc = JMXConnectorFactory.connect(url, null);
 
 		System.out.println(jmxc);
@@ -79,8 +80,7 @@ public class Client {
 		// Query MBean names
 
 		echo("\nQuery MBeanServer MBeans:");
-		Set<ObjectName> names =
-				new TreeSet<ObjectName>(mbsc.queryNames(null, null));
+		Set<ObjectName> names = new TreeSet<ObjectName>(mbsc.queryNames(null, null));
 		for (ObjectName name : names) {
 			echo("\tObjectName = " + name);
 		}
@@ -99,8 +99,7 @@ public class Client {
 		// Create a dedicated proxy for the MBean instead of
 		// going directly through the MBean server connection
 		//
-		HelloMBean mbeanProxy =
-				JMX.newMBeanProxy(mbsc, mbeanName, HelloMBean.class, true);
+		HelloMBean mbeanProxy = JMX.newMBeanProxy(mbsc, mbeanName, HelloMBean.class, true);
 
 		echo("\n mbeanProxy is: " + mbeanProxy);
 		// Add notification listener on Hello MBean
@@ -133,7 +132,6 @@ public class Client {
 		echo("\nInvoke sayHello() in Hello MBean...");
 		mbeanProxy.sayHello();
 
-
 		// Invoke "add" in Hello MBean
 		//
 		echo("\nInvoke add(2, 3) in Hello MBean...");
@@ -150,13 +148,13 @@ public class Client {
 		// Construct the ObjectName for the QueueSampler MXBean
 		//
 		// ObjectName mxbeanName =
-		// 		new ObjectName("com.example:type=QueueSampler");
+		// new ObjectName("com.example:type=QueueSampler");
 
 		// Create a dedicated proxy for the MXBean instead of
 		// going directly through the MBean server connection
 		//
 		// QueueSamplerMXBean mxbeanProxy =
-		// 		JMX.newMXBeanProxy(mbsc, mxbeanName, QueueSamplerMXBean.class);
+		// JMX.newMXBeanProxy(mbsc, mxbeanName, QueueSamplerMXBean.class);
 
 		// Get QueueSample attribute in QueueSampler MXBean
 		//
@@ -193,7 +191,8 @@ public class Client {
 	private static void sleep(int millis) {
 		try {
 			Thread.sleep(millis);
-		} catch (InterruptedException e) {
+		}
+		catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 	}
@@ -202,8 +201,10 @@ public class Client {
 		try {
 			echo("\nPress <Enter> to continue...");
 			System.in.read();
-		} catch (IOException e) {
+		}
+		catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
+
 }

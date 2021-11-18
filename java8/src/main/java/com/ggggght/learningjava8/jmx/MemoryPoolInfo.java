@@ -14,29 +14,30 @@ import org.slf4j.LoggerFactory;
 
 @SuppressWarnings("all")
 public class MemoryPoolInfo {
-  private static final Logger LOGGER = LoggerFactory.getLogger(MemoryPoolInfo.class);
 
-    public static void main(String[] args) throws IOException {
-        final List<MemoryPoolMXBean> pools = ManagementFactory.getMemoryPoolMXBeans();
-        int poolsFound = 0;
-        int poolsWithStats = 0;
+	private static final Logger LOGGER = LoggerFactory.getLogger(MemoryPoolInfo.class);
 
-        pools.forEach(pool -> {
-            final String name = pool.getName();
-            LOGGER.info("found pool: {}",name);
-        });
+	public static void main(String[] args) throws IOException {
+		final List<MemoryPoolMXBean> pools = ManagementFactory.getMemoryPoolMXBeans();
+		int poolsFound = 0;
+		int poolsWithStats = 0;
 
-        final List<GarbageCollectorMXBean> collectors =
-            ManagementFactory.getGarbageCollectorMXBeans();
-        int collectorsFound = 0;
-        collectors.forEach(collector -> {
-            final String name = collector.getName();
-            LOGGER.info("found collector: {}", name);
-            LOGGER.info("{} collection count = {}", name, collector.getCollectionCount());
-        });
+		pools.forEach(pool -> {
+			final String name = pool.getName();
+			LOGGER.info("found pool: {}", name);
+		});
 
-        final ClassLoadingMXBean classLoadingMXBean = ManagementFactory.getClassLoadingMXBean();
-        LOGGER.info("total loading class: {}", classLoadingMXBean.getTotalLoadedClassCount());
-        LOGGER.info("loaded class count: {}", classLoadingMXBean.getLoadedClassCount());
-    }
+		final List<GarbageCollectorMXBean> collectors = ManagementFactory.getGarbageCollectorMXBeans();
+		int collectorsFound = 0;
+		collectors.forEach(collector -> {
+			final String name = collector.getName();
+			LOGGER.info("found collector: {}", name);
+			LOGGER.info("{} collection count = {}", name, collector.getCollectionCount());
+		});
+
+		final ClassLoadingMXBean classLoadingMXBean = ManagementFactory.getClassLoadingMXBean();
+		LOGGER.info("total loading class: {}", classLoadingMXBean.getTotalLoadedClassCount());
+		LOGGER.info("loaded class count: {}", classLoadingMXBean.getLoadedClassCount());
+	}
+
 }

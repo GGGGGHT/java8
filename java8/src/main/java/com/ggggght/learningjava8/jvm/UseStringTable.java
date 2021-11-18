@@ -7,10 +7,10 @@
 //
 // @SuppressWarnings("all")
 // public class UseStringTable {
-//   private static final Logger LOGGER = LoggerFactory.getLogger(UseStringTable.class);
+// private static final Logger LOGGER = LoggerFactory.getLogger(UseStringTable.class);
 //
-//     public static void main(String[] args) {
-//         final StringTable stringTable = VM.getVM().getStringTable();
-//         System.out.println(stringTable.getTheTable());
-//     }
+// public static void main(String[] args) {
+// final StringTable stringTable = VM.getVM().getStringTable();
+// System.out.println(stringTable.getTheTable());
+// }
 // }

@@ -16,6 +16,7 @@ import java.util.Objects;
 
 @SuppressWarnings("all")
 public class SelectSort {
+
 	public static int[] SelectSort(int[] source) {
 		int len = source.length;
 		for (int i = 0; i < len - 1; i++) {
@@ -35,76 +36,75 @@ public class SelectSort {
 		}
 		return source;
 	}
-	
+
 	public static void main(String[] args) {
-		int[] arr = {3, -1, 5, 2, 10};
+		int[] arr = { 3, -1, 5, 2, 10 };
 		// int[] arr = {101, 34,119, 10};
 		// int[] arr = new int[80000];
 		// for (int i = 0; i < 80000; i++) {
-		//     arr[i] = (int) (Math.random() * 8000000);
+		// arr[i] = (int) (Math.random() * 8000000);
 		// }
-		//Instant start = Instant.now();
+		// Instant start = Instant.now();
 		select(arr);
 		System.out.println(Arrays.toString(arr));
-		//Instant end = Instant.now();
-		//System.out.println(Duration.between(start, end).toMillis());
+		// Instant end = Instant.now();
+		// System.out.println(Duration.between(start, end).toMillis());
 	}
-	
+
 	public static void mySelectSort(int[] arr) {
 		int len = arr.length;
-		
+
 		for (int i = 0; i < len; i++) {
 			int min = i;
 			for (int j = i + 1; j < len; j++) {
 				min = arr[min] < arr[j] ? min : j;
 			}
-			
+
 			if (min != i) {
 				swap(arr, i, min);
 			}
 		}
 	}
-	
+
 	// public static void select(int[] arr) {
-	// 	// min为最小的位置
-	// 	for (int j = 0; j < arr.length - 1; j++) {
-	// 		int min = j;
-	// 		for (int i = j + 1; i < arr.length; i++) {
-	// 			min = arr[min] > arr[i] ? i : min;
-	// 		}
-	//
-	// 		if (min != j) {
-	// 			swap(arr, j, min);
-	// 		}
-	//
-	// 	}
-	//
-	// 	System.out.println(Arrays.toString(arr));
+	// // min为最小的位置
+	// for (int j = 0; j < arr.length - 1; j++) {
+	// int min = j;
+	// for (int i = j + 1; i < arr.length; i++) {
+	// min = arr[min] > arr[i] ? i : min;
 	// }
-	
+	//
+	// if (min != j) {
+	// swap(arr, j, min);
+	// }
+	//
+	// }
+	//
+	// System.out.println(Arrays.toString(arr));
+	// }
+
 	private static void swap(int[] arr, int i, int j) {
 		arr[i] = arr[i] ^ arr[j];
 		arr[j] = arr[i] ^ arr[j];
 		arr[i] = arr[i] ^ arr[j];
 	}
-	
+
 	public static void select(int[] arr) {
 		if (Objects.isNull(arr) || 0 == arr.length) {
 			return;
 		}
-		
+
 		int min = 0, len = arr.length, tmp = 0;
-		for (int j = 0; j< len; j++) {
+		for (int j = 0; j < len; j++) {
 			for (int i = j; i < len; i++) {
 				min = arr[i] < arr[min] ? i : min;
 			}
-			
+
 			if (tmp != min) {
 				swap(arr, tmp++, min);
 			}
 		}
-		
-		
-		
+
 	}
+
 }

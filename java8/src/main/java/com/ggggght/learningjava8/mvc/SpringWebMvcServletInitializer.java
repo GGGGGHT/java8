@@ -22,4 +22,5 @@ public class SpringWebMvcServletInitializer extends AbstractAnnotationConfigDisp
 	protected String[] getServletMappings() {
 		return of("/*");
 	}
+
 }

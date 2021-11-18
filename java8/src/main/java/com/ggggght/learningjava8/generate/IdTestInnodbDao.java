@@ -4,16 +4,18 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
 public interface IdTestInnodbDao {
-    int deleteByPrimaryKey(Integer id);
 
-    int insert(IdTestInnodb record);
+	int deleteByPrimaryKey(Integer id);
 
-    int insertSelective(IdTestInnodb record);
+	int insert(IdTestInnodb record);
 
-    @Select("select * from id_test_innodb where id = #{id}")
-    IdTestInnodb selectByPrimaryKey(Integer id);
+	int insertSelective(IdTestInnodb record);
 
-    int updateByPrimaryKeySelective(IdTestInnodb record);
+	@Select("select * from id_test_innodb where id = #{id}")
+	IdTestInnodb selectByPrimaryKey(Integer id);
 
-    int updateByPrimaryKey(IdTestInnodb record);
+	int updateByPrimaryKeySelective(IdTestInnodb record);
+
+	int updateByPrimaryKey(IdTestInnodb record);
+
 }

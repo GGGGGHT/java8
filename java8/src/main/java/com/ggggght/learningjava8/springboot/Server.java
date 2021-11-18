@@ -6,6 +6,7 @@ package com.ggggght.learningjava8.springboot;
  * @author: ggggght
  */
 public interface Server {
+
 	/**
 	 * 启动服务器
 	 */
@@ -17,7 +18,9 @@ public interface Server {
 	void stop();
 
 	enum Type {
-		HTTP,
-		FTP
+
+		HTTP, FTP
+
 	}
+
 }

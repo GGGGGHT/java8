@@ -11,134 +11,133 @@ import org.openjdk.jmh.runner.options.WarmupMode;
 import java.util.concurrent.*;
 
 /**
- * Fixtures have different Levels to control when they are about to run.
- * Level.Invocation is useful sometimes to do some per-invocation work
- * which should not count as payload (e.g. sleep for some time to emulate
- * think time)
+ * Fixtures have different Levels to control when they are about to run. Level.Invocation
+ * is useful sometimes to do some per-invocation work which should not count as payload
+ * (e.g. sleep for some time to emulate think time)
  */
 @OutputTimeUnit(TimeUnit.MICROSECONDS)
 public class JMHSample_07_FixtureLevelInvocation {
 
-    /*
-     * Fixtures have different Levels to control when they are about to run.
-     * Level.Invocation is useful sometimes to do some per-invocation work,
-     * which should not count as payload. PLEASE NOTE the timestamping and
-     * synchronization for Level.Invocation helpers might significantly offset
-     * the measurement, use with care. See Level.Invocation javadoc for further
-     * discussion.
-     *
-     * Consider this sample:
-     */
+	/*
+	 * Fixtures have different Levels to control when they are about to run.
+	 * Level.Invocation is useful sometimes to do some per-invocation work, which should
+	 * not count as payload. PLEASE NOTE the timestamping and synchronization for
+	 * Level.Invocation helpers might significantly offset the measurement, use with care.
+	 * See Level.Invocation javadoc for further discussion.
+	 *
+	 * Consider this sample:
+	 */
 
-    /*
-     * This state handles the executor.
-     * Note we create and shutdown executor with Level.Trial, so
-     * it is kept around the same across all iterations.
-     */
+	/*
+	 * This state handles the executor. Note we create and shutdown executor with
+	 * Level.Trial, so it is kept around the same across all iterations.
+	 */
 
-    @State(Scope.Benchmark)
-    public static class NormalState {
-        ExecutorService service;
+	@State(Scope.Benchmark)
+	public static class NormalState {
 
-        @Setup(Level.Trial)
-        public void up() {
-            service = Executors.newCachedThreadPool();
-        }
+		ExecutorService service;
 
-        @TearDown(Level.Trial)
-        public void down() {
-            service.shutdown();
-        }
+		@Setup(Level.Trial)
+		public void up() {
+			service = Executors.newCachedThreadPool();
+		}
 
-    }
+		@TearDown(Level.Trial)
+		public void down() {
+			service.shutdown();
+		}
 
-    /*
-     * This is the *extension* of the basic state, which also
-     * has the Level.Invocation fixture method, sleeping for some time.
-     */
+	}
 
-    public static class LaggingState extends NormalState {
-        public static final int SLEEP_TIME = Integer.getInteger("sleepTime", 10);
+	/*
+	 * This is the *extension* of the basic state, which also has the Level.Invocation
+	 * fixture method, sleeping for some time.
+	 */
 
-        @Setup(Level.Invocation)
-        public void lag() throws InterruptedException {
-            TimeUnit.MILLISECONDS.sleep(SLEEP_TIME);
-        }
-    }
+	public static class LaggingState extends NormalState {
 
-    /*
-     * This allows us to formulate the task: measure the task turnaround in
-     * "hot" mode when we are not sleeping between the submits, and "cold" mode,
-     * when we are sleeping.
-     */
+		public static final int SLEEP_TIME = Integer.getInteger("sleepTime", 10);
 
-    @Benchmark
-    @BenchmarkMode(Mode.AverageTime)
-    public double measureHot(NormalState e, final Scratch s) throws ExecutionException, InterruptedException {
-        return e.service.submit(new Task(s)).get();
-    }
+		@Setup(Level.Invocation)
+		public void lag() throws InterruptedException {
+			TimeUnit.MILLISECONDS.sleep(SLEEP_TIME);
+		}
 
-    @Benchmark
-    @BenchmarkMode(Mode.AverageTime)
-    public double measureCold(LaggingState e, final Scratch s) throws ExecutionException, InterruptedException {
-        return e.service.submit(new Task(s)).get();
-    }
+	}
 
-    /*
-     * This is our scratch state which will handle the work.
-     */
+	/*
+	 * This allows us to formulate the task: measure the task turnaround in "hot" mode
+	 * when we are not sleeping between the submits, and "cold" mode, when we are
+	 * sleeping.
+	 */
 
-    @State(Scope.Thread)
-    public static class Scratch {
-        private double p;
-        public double doWork() {
-            p = Math.log(p);
-            return p;
-        }
-    }
+	@Benchmark
+	@BenchmarkMode(Mode.AverageTime)
+	public double measureHot(NormalState e, final Scratch s) throws ExecutionException, InterruptedException {
+		return e.service.submit(new Task(s)).get();
+	}
 
-    public static class Task implements Callable<Double> {
-        private Scratch s;
+	@Benchmark
+	@BenchmarkMode(Mode.AverageTime)
+	public double measureCold(LaggingState e, final Scratch s) throws ExecutionException, InterruptedException {
+		return e.service.submit(new Task(s)).get();
+	}
 
-        public Task(Scratch s) {
-            this.s = s;
-        }
+	/*
+	 * This is our scratch state which will handle the work.
+	 */
 
-        @Override
-        public Double call() {
-            return s.doWork();
-        }
-    }
+	@State(Scope.Thread)
+	public static class Scratch {
 
-    /*
-     * ============================== HOW TO RUN THIS TEST: ====================================
-     *
-     * You can see the cold scenario is running longer, because we pay for
-     * thread wakeups.
-     *
-     * You can run this test:
-     *
-     * a) Via the command line:
-     *    $ mvn clean install
-     *    $ java -jar target/benchmarks.jar JMHSample_07 -f 1
-     *    (we requested single fork; there are also other options, see -h)
-     *
-     * b) Via the Java API:
-     *    (see the JMH homepage for possible caveats when running from IDE:
-     *      http://openjdk.java.net/projects/code-tools/jmh/)
-     */
+		private double p;
 
-    public static void main(String[] args) throws RunnerException {
-        Options opt = new OptionsBuilder()
-                .include(JMHSample_07_FixtureLevelInvocation.class.getSimpleName())
-                // .addProfiler(WinPerfAsmProfiler.class)
-                .forks(1)
-                .warmupBatchSize(10)
-                .warmupIterations(10)
-                // .measurementIterations()
-                .build();
+		public double doWork() {
+			p = Math.log(p);
+			return p;
+		}
 
-        new Runner(opt).run();
-    }
+	}
+
+	public static class Task implements Callable<Double> {
+
+		private Scratch s;
+
+		public Task(Scratch s) {
+			this.s = s;
+		}
+
+		@Override
+		public Double call() {
+			return s.doWork();
+		}
+
+	}
+
+	/*
+	 * ============================== HOW TO RUN THIS TEST:
+	 * ====================================
+	 *
+	 * You can see the cold scenario is running longer, because we pay for thread wakeups.
+	 *
+	 * You can run this test:
+	 *
+	 * a) Via the command line: $ mvn clean install $ java -jar target/benchmarks.jar
+	 * JMHSample_07 -f 1 (we requested single fork; there are also other options, see -h)
+	 *
+	 * b) Via the Java API: (see the JMH homepage for possible caveats when running from
+	 * IDE: http://openjdk.java.net/projects/code-tools/jmh/)
+	 */
+
+	public static void main(String[] args) throws RunnerException {
+		Options opt = new OptionsBuilder().include(JMHSample_07_FixtureLevelInvocation.class.getSimpleName())
+				// .addProfiler(WinPerfAsmProfiler.class)
+				.forks(1).warmupBatchSize(10).warmupIterations(10)
+				// .measurementIterations()
+				.build();
+
+		new Runner(opt).run();
+	}
 
 }

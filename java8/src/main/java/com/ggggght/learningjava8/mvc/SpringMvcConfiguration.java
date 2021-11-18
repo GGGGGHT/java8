@@ -8,4 +8,5 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @Configurable
 @ComponentScan(basePackageClasses = SpringMvcConfiguration.class)
 public class SpringMvcConfiguration {
+
 }

@@ -11,22 +11,20 @@ import org.slf4j.LoggerFactory;
 import java.util.concurrent.TimeUnit;
 
 /**
- * 代码生成的位置  target/generated-sources/annotations/.../{Class_name}_{Method_name}.java
+ * 代码生成的位置 target/generated-sources/annotations/.../{Class_name}_{Method_name}.java
  */
 @SuppressWarnings("all")
 public class PSTest {
+
 	private static final Logger LOGGER = LoggerFactory.getLogger(PSTest.class);
-	
+
 	// @Benchmark
-    public static void main(String[] args) throws RunnerException {
-		Options opt = new OptionsBuilder()
-				.include(PS.class.getSimpleName())
-				.forks(1)
-				.build();
-		
+	public static void main(String[] args) throws RunnerException {
+		Options opt = new OptionsBuilder().include(PS.class.getSimpleName()).forks(1).build();
+
 		new Runner(opt).run();
 	}
-	
+
 	/**
 	 * 测试吞吐量
 	 * @throws InterruptedException
@@ -37,7 +35,7 @@ public class PSTest {
 	public void measureThroughput() throws InterruptedException {
 		TimeUnit.MILLISECONDS.sleep(100);
 	}
-	
+
 	/**
 	 * 测试平均执行时间
 	 * @throws InterruptedException
@@ -49,10 +47,9 @@ public class PSTest {
 		// TimeUnit.MILLISECONDS.sleep(100);
 		// System.out.println("Hello world");
 	}
-	
+
 	/**
-	 * 对执行时间进行采样 不测试总运行时间
-	 * JMH还尝试自动调整采样频率
+	 * 对执行时间进行采样 不测试总运行时间 JMH还尝试自动调整采样频率
 	 * @throws InterruptedException
 	 */
 	@Benchmark
@@ -61,7 +58,7 @@ public class PSTest {
 	public void measureSamples() throws InterruptedException {
 		TimeUnit.MILLISECONDS.sleep(100);
 	}
-	
+
 	@Benchmark
 	public void measureUnshared(ThreadState state) {
 		// All benchmark threads will call in this method.
@@ -71,7 +68,7 @@ public class PSTest {
 		// will measure unshared case.
 		state.x++;
 	}
-	
+
 	@Benchmark
 	public void measureShared(BenchmarkState state) {
 		// All benchmark threads will call in this method.
@@ -81,14 +78,19 @@ public class PSTest {
 		// shared case.
 		state.x++;
 	}
-	
+
 	@State(Scope.Thread)
 	public static class ThreadState {
+
 		volatile double x = Math.PI;
+
 	}
-	
+
 	@State(Scope.Benchmark)
 	public static class BenchmarkState {
+
 		volatile double x = Math.PI;
+
 	}
+
 }

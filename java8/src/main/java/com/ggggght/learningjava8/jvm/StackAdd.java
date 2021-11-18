@@ -5,22 +5,25 @@ import org.slf4j.LoggerFactory;
 
 @SuppressWarnings("all")
 public class StackAdd {
-  private static final Logger LOGGER = LoggerFactory.getLogger(StackAdd.class);
-    public int baseValue = 4095;
 
-    public static void main(String[] args) {
-        StackAdd adder = new StackAdd();
-        int i = 123;
-        int j = 456;
-        int r = adder.add(i, j);
+	private static final Logger LOGGER = LoggerFactory.getLogger(StackAdd.class);
 
-        System.out.println(r);
-    }
+	public int baseValue = 4095;
 
-    private int add(int i, int j) {
-        int tmp = i + j;
-        tmp += baseValue;
+	public static void main(String[] args) {
+		StackAdd adder = new StackAdd();
+		int i = 123;
+		int j = 456;
+		int r = adder.add(i, j);
 
-        return tmp;
-    }
+		System.out.println(r);
+	}
+
+	private int add(int i, int j) {
+		int tmp = i + j;
+		tmp += baseValue;
+
+		return tmp;
+	}
+
 }

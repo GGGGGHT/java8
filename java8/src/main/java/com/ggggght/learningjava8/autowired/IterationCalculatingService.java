@@ -8,6 +8,7 @@ import java.util.Arrays;
 @Service
 @Profile("Java7")
 public class IterationCalculatingService implements CalculatingService {
+
 	@Override
 	public Integer sum(Integer... values) {
 		int sum = 0;
@@ -18,4 +19,5 @@ public class IterationCalculatingService implements CalculatingService {
 
 		return sum;
 	}
+
 }

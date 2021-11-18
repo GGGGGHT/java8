@@ -16,9 +16,11 @@ import java.lang.annotation.*;
 // @Import(ServerImportSelector.class)
 @Import(ServerImportBeanDefinitionRegistrar.class)
 public @interface EnableServer {
+
 	// @Alias("type")
 	// Server.Type value();
 
 	@Alias("value")
 	Server.Type type();
+
 }

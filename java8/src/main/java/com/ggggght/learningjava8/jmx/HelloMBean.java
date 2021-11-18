@@ -7,11 +7,15 @@ import javax.management.MXBean;
  */
 // @MXBean
 public interface HelloMBean {
-    void sayHello();
-    int add(int x, int y);
 
-    String getName();
+	void sayHello();
 
-    int getCacheSize();
-    void setCacheSize(int size);
+	int add(int x, int y);
+
+	String getName();
+
+	int getCacheSize();
+
+	void setCacheSize(int size);
+
 }

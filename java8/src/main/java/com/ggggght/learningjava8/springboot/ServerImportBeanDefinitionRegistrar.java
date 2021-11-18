@@ -14,14 +14,15 @@ import java.util.stream.Stream;
  * @author: ggggght
  */
 public class ServerImportBeanDefinitionRegistrar implements ImportBeanDefinitionRegistrar {
+
 	@Override
 	public void registerBeanDefinitions(AnnotationMetadata importingClassMetadata, BeanDefinitionRegistry registry) {
 		final ServerImportSelector importSelector = new ServerImportSelector();
 		final String[] selectedClassNames = importSelector.selectImports(importingClassMetadata);
-		Stream.of(selectedClassNames).map(BeanDefinitionBuilder::genericBeanDefinition).map(BeanDefinitionBuilder::getBeanDefinition).forEach(
-				beanDefinition -> {
+		Stream.of(selectedClassNames).map(BeanDefinitionBuilder::genericBeanDefinition)
+				.map(BeanDefinitionBuilder::getBeanDefinition).forEach(beanDefinition -> {
 					BeanDefinitionReaderUtils.registerWithGeneratedName(beanDefinition, registry);
-				}
-		);
+				});
 	}
+
 }

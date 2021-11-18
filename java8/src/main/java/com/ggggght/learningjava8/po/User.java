@@ -8,17 +8,21 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @SuppressWarnings("all")
-public class User implements Comparable{
-    String name;
-    Integer age;
-    String sex;
+public class User implements Comparable {
 
-    public User(Integer age) {
-        this.age = age;
-    }
+	String name;
 
-    @Override
-    public int compareTo(Object o) {
-        return this.age < ((User) o).getAge() ? 1 : -1;
-    }
+	Integer age;
+
+	String sex;
+
+	public User(Integer age) {
+		this.age = age;
+	}
+
+	@Override
+	public int compareTo(Object o) {
+		return this.age < ((User) o).getAge() ? 1 : -1;
+	}
+
 }

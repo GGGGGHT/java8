@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class FtpServer implements Server {
+
 	@Override
 	public void start() {
 		System.out.println("FTP start...");
@@ -18,4 +19,5 @@ public class FtpServer implements Server {
 	public void stop() {
 		System.out.println("FTP close...");
 	}
+
 }

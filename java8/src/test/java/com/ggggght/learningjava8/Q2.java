@@ -7,31 +7,32 @@ import java.util.Arrays;
 
 @SuppressWarnings("all")
 public class Q2 {
+
 	private static final int CHARLENGTH = 15;
+
 	private static final int ANUM = 97;
+
 	private static final int ZNUM = 122;
+
 	private static final int _0SUM = 48;
+
 	private static final int _9SUM = 57;
-	
+
 	/**
-	 * 某产品的⽤户注册邀请码为⼀串有⼩写字⺟和数字组成的字符串，字符串⻓度为16。当⽤户数据邀
-	 * 请码的时候，系统需要对邀请码做有效性验证，假设验证规则如下：
+	 * 某产品的⽤户注册邀请码为⼀串有⼩写字⺟和数字组成的字符串，字符串⻓度为16。当⽤户数据邀 请码的时候，系统需要对邀请码做有效性验证，假设验证规则如下：
 	 * <p>
-	 * 3、将奇数位总和加上偶数位总和，结果可以被10整除；
-	 * 4、⼩写字⺟对应数值，可由下⾯键值对确定；
-	 * [(a,1), (b,2), (c,3)…,(i,9), (j,1), (k, 2)…]，亦即，按字⺟顺序，1-9循环。
-	 * 输⼊：输⼊16位字符串，表示邀请码
-	 * 输出：输出“ok”或者“error”
+	 * 3、将奇数位总和加上偶数位总和，结果可以被10整除； 4、⼩写字⺟对应数值，可由下⾯键值对确定； [(a,1), (b,2), (c,3)…,(i,9),
+	 * (j,1), (k, 2)…]，亦即，按字⺟顺序，1-9循环。 输⼊：输⼊16位字符串，表示邀请码 输出：输出“ok”或者“error”
 	 */
 	public static void main(String[] args) {
-	
+
 	}
-	
+
 	private static boolean check(String str) {
 		if (str.length() != 16) {
 			return false;
 		}
-		
+
 		final int lastCharIndex = findLastChar(str);
 		final int lastNumIndex = findLastNum(str);
 		// System.out.printf("%d\t%d", lastNumIndex, lastCharIndex);
@@ -41,7 +42,7 @@ public class Q2 {
 		int res = 0;
 		for (int i = lastCharIndex; i >= 0; i--) {
 			final char curChar = str.charAt(i);
-			
+
 			int curCharCode = isChar(curChar) ? getCharCode(curChar) : getNumCode(curChar);
 			if ((tmp++ & 1) == 1) {
 				res += curCharCode;
@@ -55,33 +56,30 @@ public class Q2 {
 				res += curCharCode;
 			}
 		}
-		
+
 		return res % 10 == 0;
 	}
-	
+
 	/**
 	 * 获取数字所对应的数值
-	 *
 	 * @param curChar
 	 * @return
 	 */
 	private static int getNumCode(char curChar) {
 		return curChar - _0SUM >= 5 ? 2 * ((int) curChar) - 1 : (int) curChar;
 	}
-	
+
 	/**
 	 * 返回当前的字符串所对应的数值
-	 *
 	 * @param charAt
 	 * @return
 	 */
 	private static int getCharCode(char curChar) {
 		return ((curChar - ANUM) % 9) + 1;
 	}
-	
+
 	/**
 	 * 找到最后一个数字索的引位置
-	 *
 	 * @param str
 	 * @return
 	 */
@@ -97,10 +95,9 @@ public class Q2 {
 		}
 		return res;
 	}
-	
+
 	/**
 	 * 找到最后一个字符的索引位置
-	 *
 	 * @param str
 	 * @return
 	 */
@@ -116,14 +113,14 @@ public class Q2 {
 		}
 		return res;
 	}
-	
+
 	/**
 	 * 判断当前的元素是否是字符
-	 *
 	 * @param c
 	 * @return
 	 */
 	private static boolean isChar(char c) {
 		return c >= ANUM && c <= ZNUM;
 	}
+
 }

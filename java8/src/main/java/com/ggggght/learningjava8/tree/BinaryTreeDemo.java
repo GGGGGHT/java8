@@ -1,7 +1,5 @@
 package com.ggggght.learningjava8.tree;
 
-
-
 import java.util.Objects;
 
 /**
@@ -12,177 +10,184 @@ import java.util.Objects;
 
 @SuppressWarnings("all")
 public class BinaryTreeDemo {
-    public static void main(String[] args) {
-        Hero root = new Hero(1,"zs");
-        Hero node2 = new Hero(2,"ls");
-        Hero node3 = new Hero(3,"ww");
-        Hero node4 = new Hero(4,"zl");
-        Hero node5 = new Hero(5,"cs");
 
-        root.setLeft(node2);
-        root.setRight(node3);
-        node3.setRight(node4);
-        node3.setLeft(node5);
-        BinaryTree binaryTree = new BinaryTree(root);
-        System.out.println(binaryTree.get(3));
-        /*System.out.println("preOrder: ");
-        binaryTree.preOrder();
-        System.out.println("infixOrder: ");
-        binaryTree.infixOrder();
-        System.out.println("postOrder: ");
-        binaryTree.postOrder();*/
+	public static void main(String[] args) {
+		Hero root = new Hero(1, "zs");
+		Hero node2 = new Hero(2, "ls");
+		Hero node3 = new Hero(3, "ww");
+		Hero node4 = new Hero(4, "zl");
+		Hero node5 = new Hero(5, "cs");
 
-    }
+		root.setLeft(node2);
+		root.setRight(node3);
+		node3.setRight(node4);
+		node3.setLeft(node5);
+		BinaryTree binaryTree = new BinaryTree(root);
+		System.out.println(binaryTree.get(3));
+		/*
+		 * System.out.println("preOrder: "); binaryTree.preOrder();
+		 * System.out.println("infixOrder: "); binaryTree.infixOrder();
+		 * System.out.println("postOrder: "); binaryTree.postOrder();
+		 */
+
+	}
+
 }
 
 class BinaryTree {
-    private Hero root;
 
-    public BinaryTree(Hero root) {
-        this.root = root;
-    }
+	private Hero root;
 
-    /**
-     * 前序遍历
-     */
-    public void preOrder() {
-        if (Objects.isNull(root)) {
-            System.out.println("二叉树为空");
-            return;
-        }
-        root.preOrder();
-    }
+	public BinaryTree(Hero root) {
+		this.root = root;
+	}
 
-    /**
-     * 中序遍历
-     */
-    public void infixOrder() {
-        if (Objects.isNull(root)) {
-            System.out.println("二叉树为空");
-            return;
-        }
-        root.infixOrder();
-    }
+	/**
+	 * 前序遍历
+	 */
+	public void preOrder() {
+		if (Objects.isNull(root)) {
+			System.out.println("二叉树为空");
+			return;
+		}
+		root.preOrder();
+	}
 
-    /**
-     * 后序遍历
-     */
-    public void postOrder() {
-        if (Objects.isNull(root)) {
-            System.out.println("二叉树为空");
-            return;
-        }
-        root.postOrder();
-    }
+	/**
+	 * 中序遍历
+	 */
+	public void infixOrder() {
+		if (Objects.isNull(root)) {
+			System.out.println("二叉树为空");
+			return;
+		}
+		root.infixOrder();
+	}
 
-    public Hero get(int id) {
-        return root.get(id);
-    }
+	/**
+	 * 后序遍历
+	 */
+	public void postOrder() {
+		if (Objects.isNull(root)) {
+			System.out.println("二叉树为空");
+			return;
+		}
+		root.postOrder();
+	}
+
+	public Hero get(int id) {
+		return root.get(id);
+	}
+
 }
 
 class Hero {
-    private Integer id;
-    private String name;
-    private Hero left;
-    private Hero right;
 
-    public Hero getLeft() {
-        return left;
-    }
+	private Integer id;
 
-    public void setLeft(Hero left) {
-        this.left = left;
-    }
+	private String name;
 
-    public Hero getRight() {
-        return right;
-    }
+	private Hero left;
 
-    public void setRight(Hero right) {
-        this.right = right;
-    }
+	private Hero right;
 
-    public Integer getId() {
-        return id;
-    }
+	public Hero getLeft() {
+		return left;
+	}
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public void setLeft(Hero left) {
+		this.left = left;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public Hero getRight() {
+		return right;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setRight(Hero right) {
+		this.right = right;
+	}
 
-    @Override
-    public String toString() {
-        return "Hero{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
-    }
+	public Integer getId() {
+		return id;
+	}
 
-    public Hero(Integer id, String name) {
-        this.id = id;
-        this.name = name;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    /**
-     * 前序遍历
-     */
-    public void preOrder() {
-        System.out.println(this);
-        if (!Objects.isNull(this.getLeft())) {
-            this.left.preOrder();
-        }
-        if (!Objects.isNull(this.getRight())) {
-            this.right.preOrder();
-        }
-    }
+	public String getName() {
+		return name;
+	}
 
-    /**
-     * 中序遍历
-     */
-    public void infixOrder() {
-        if (!Objects.isNull(this.getLeft())) {
-            this.left.infixOrder();
-        }
-        System.out.println(this);
-        if (!Objects.isNull(this.getRight())) {
-            this.right.infixOrder();
-        }
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    /**
-     * 后序遍历
-     */
-    public void postOrder() {
-        if (!Objects.isNull(this.getLeft())) {
-            this.left.postOrder();
-        }
-        if (!Objects.isNull(this.getRight())) {
-            this.right.postOrder();
-        }
-        System.out.println(this);
+	@Override
+	public String toString() {
+		return "Hero{" + "id=" + id + ", name='" + name + '\'' + '}';
+	}
 
-    }
+	public Hero(Integer id, String name) {
+		this.id = id;
+		this.name = name;
+	}
 
-    public Hero get(int id) {
-        // 在左边找
-        if (this != null) {
-            if (this.id > id) {
-                return this.left.get(id);
-            } else if (this.id < id) {
-                // 在右边找
-                return this.right.get(id);
-            }else {
-                return this;
-            }
-        }
-        return null;
-    }
+	/**
+	 * 前序遍历
+	 */
+	public void preOrder() {
+		System.out.println(this);
+		if (!Objects.isNull(this.getLeft())) {
+			this.left.preOrder();
+		}
+		if (!Objects.isNull(this.getRight())) {
+			this.right.preOrder();
+		}
+	}
+
+	/**
+	 * 中序遍历
+	 */
+	public void infixOrder() {
+		if (!Objects.isNull(this.getLeft())) {
+			this.left.infixOrder();
+		}
+		System.out.println(this);
+		if (!Objects.isNull(this.getRight())) {
+			this.right.infixOrder();
+		}
+	}
+
+	/**
+	 * 后序遍历
+	 */
+	public void postOrder() {
+		if (!Objects.isNull(this.getLeft())) {
+			this.left.postOrder();
+		}
+		if (!Objects.isNull(this.getRight())) {
+			this.right.postOrder();
+		}
+		System.out.println(this);
+
+	}
+
+	public Hero get(int id) {
+		// 在左边找
+		if (this != null) {
+			if (this.id > id) {
+				return this.left.get(id);
+			}
+			else if (this.id < id) {
+				// 在右边找
+				return this.right.get(id);
+			}
+			else {
+				return this;
+			}
+		}
+		return null;
+	}
+
 }

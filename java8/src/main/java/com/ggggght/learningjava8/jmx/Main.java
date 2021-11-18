@@ -1,10 +1,8 @@
 package com.ggggght.learningjava8.jmx;/*
- * Main.java - main class for the Hello MBean and QueueSampler MXBean example.
- * Create the Hello MBean and QueueSampler MXBean, register them in the platform
- * MBean server, then wait forever (or until the program is interrupted).
- */
-
-
+										* Main.java - main class for the Hello MBean and QueueSampler MXBean example.
+										* Create the Hello MBean and QueueSampler MXBean, register them in the platform
+										* MBean server, then wait forever (or until the program is interrupted).
+										*/
 
 import java.lang.management.ManagementFactory;
 import java.util.Queue;
@@ -13,8 +11,11 @@ import javax.management.MBeanServer;
 import javax.management.ObjectName;
 
 public class Main {
-	/* For simplicity, we declare "throws Exception".
-	   Real programs will usually want finer-grained exception handling. */
+
+	/*
+	 * For simplicity, we declare "throws Exception". Real programs will usually want
+	 * finer-grained exception handling.
+	 */
 	public static void main(String[] args) throws Exception {
 		// Get the Platform MBean Server
 		MBeanServer mbs = ManagementFactory.getPlatformMBeanServer();
@@ -45,4 +46,5 @@ public class Main {
 		System.out.println("Waiting for incoming requests...");
 		Thread.sleep(Long.MAX_VALUE);
 	}
+
 }

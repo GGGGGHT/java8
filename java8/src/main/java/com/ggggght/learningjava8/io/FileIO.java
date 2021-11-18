@@ -16,27 +16,31 @@ import java.nio.file.Paths;
  * @date: 2020/7/13
  */
 public class FileIO {
+
 	@Test
 	public void fileTest() {
 		ByteBuffer buffer = MappedByteBuffer.allocateDirect(10240);
 		buffer.get();
-		
+
 		try {
 			final FileInputStream fileInputStream = new FileInputStream(new File(Paths.get("").toUri()));
 			final FileChannel channel = fileInputStream.getChannel();
 			final MappedByteBuffer map = channel.map(FileChannel.MapMode.READ_WRITE, 0, 4096);
-			
-		} catch (FileNotFoundException e) {
+
+		}
+		catch (FileNotFoundException e) {
 			e.printStackTrace();
-		} catch (Exception e) {
-		
+		}
+		catch (Exception e) {
+
 		}
 	}
-	
+
 	@Test
 	public void _test() {
 		int i = 10;
-		i = i++ *2;
+		i = i++ * 2;
 		System.out.println("i = " + i);
 	}
+
 }

@@ -1,9 +1,9 @@
 package com.ggggght.learningjava8.gof23_lambda;
 
-
 import java.util.Objects;
 
 public class Observe_lambda {
+
 	public static void main(String[] args) {
 		Feed feed = new Feed();
 		feed.registerObserver((tweet) -> {
@@ -26,4 +26,5 @@ public class Observe_lambda {
 
 		feed.notifyObservers("money");
 	}
+
 }

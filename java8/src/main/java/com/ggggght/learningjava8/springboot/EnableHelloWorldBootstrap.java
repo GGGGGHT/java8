@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Configuration;
 // @EnableHelloWorld
 @EnableServer(type = Server.Type.HTTP)
 public class EnableHelloWorldBootstrap {
+
 	public static void main(String[] args) {
 		final AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
 		context.register(EnableHelloWorldBootstrap.class);
@@ -25,4 +26,5 @@ public class EnableHelloWorldBootstrap {
 		server.stop();
 		context.close();
 	}
+
 }

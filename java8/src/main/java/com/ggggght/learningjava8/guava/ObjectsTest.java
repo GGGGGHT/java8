@@ -9,25 +9,26 @@ import static com.google.common.base.Objects.*;
 
 public class ObjectsTest {
 
-    @Test
-    public void objectsMethodTest() {
-        System.out.println("equal(\"a\",\"a\") = " + equal("a", "a"));
-        Preconditions.checkState(equal(java.util.Objects.hash("haha"),Objects.hashCode("haha")));
-        System.out.println("MoreObjects.toStringHelper(this).add(\"c\", \"1\").toString() = " + MoreObjects.toStringHelper(this).add("c", "1").toString());
-        // compare two person first compare with age then name
-    }
+	@Test
+	public void objectsMethodTest() {
+		System.out.println("equal(\"a\",\"a\") = " + equal("a", "a"));
+		Preconditions.checkState(equal(java.util.Objects.hash("haha"), Objects.hashCode("haha")));
+		System.out.println("MoreObjects.toStringHelper(this).add(\"c\", \"1\").toString() = "
+				+ MoreObjects.toStringHelper(this).add("c", "1").toString());
+		// compare two person first compare with age then name
+	}
+
 }
 
-class Person implements Comparable<Person>{
-    Integer age;
-    String name;
+class Person implements Comparable<Person> {
 
-    @Override
-    public int compareTo(Person other) {
-        return ComparisonChain.start().
-                compare(this.age, other.age).
-                compare(this.name, other.name).
-                result();
-    }
+	Integer age;
+
+	String name;
+
+	@Override
+	public int compareTo(Person other) {
+		return ComparisonChain.start().compare(this.age, other.age).compare(this.name, other.name).result();
+	}
 
 }

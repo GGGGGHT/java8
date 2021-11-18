@@ -8,9 +8,11 @@
 // import java.io.IOException;
 //
 // public class Start {
-// 	public static void main(String[] args) throws IOException, AttachNotSupportedException, AgentLoadException, AgentInitializationException {
-// 		VirtualMachine vm = VirtualMachine.attach("67182");
-// 		vm.loadAgent("/Users/admin/IdeaProjects/java8/java8/target/classes/trace.jar", "com.ggggght.learningjava8.controller.TestController.sayHello");
-// 		vm.detach();
-// 	}
+// public static void main(String[] args) throws IOException, AttachNotSupportedException,
+// AgentLoadException, AgentInitializationException {
+// VirtualMachine vm = VirtualMachine.attach("67182");
+// vm.loadAgent("/Users/admin/IdeaProjects/java8/java8/target/classes/trace.jar",
+// "com.ggggght.learningjava8.controller.TestController.sayHello");
+// vm.detach();
+// }
 // }

@@ -12,18 +12,20 @@ import org.slf4j.LoggerFactory;
  */
 @SuppressWarnings("all")
 public class UseToS {
-  private static final Logger LOGGER = LoggerFactory.getLogger(UseToS.class);
 
-  public static void main(String[] args) {
-    UseToS useToS = new UseToS();
-    useToS.compute(10, 20);
-  }
+	private static final Logger LOGGER = LoggerFactory.getLogger(UseToS.class);
 
-  private int compute(int i, int i1) {
-    i = i + 1;
-    i1 = i1 - 2;
-    int tmp = i * i1;
+	public static void main(String[] args) {
+		UseToS useToS = new UseToS();
+		useToS.compute(10, 20);
+	}
 
-    return tmp;
-  }
+	private int compute(int i, int i1) {
+		i = i + 1;
+		i1 = i1 - 2;
+		int tmp = i * i1;
+
+		return tmp;
+	}
+
 }

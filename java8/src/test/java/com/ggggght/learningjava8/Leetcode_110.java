@@ -6,28 +6,31 @@ package com.ggggght.learningjava8;
  * @author: ggggght
  */
 public class Leetcode_110 {
+
 	public boolean isBalanced(TreeNode root) {
 		if (root == null) {
 			return true;
 		}
 
-		return Math.abs(getHeight(root.left) - getHeight(root.right)) <= 1 && isBalanced(root.left) && isBalanced(root.right);
+		return Math.abs(getHeight(root.left) - getHeight(root.right)) <= 1 && isBalanced(root.left)
+				&& isBalanced(root.right);
 	}
 
 	private int getHeight(TreeNode root) {
-		if(root == null) {
+		if (root == null) {
 			return 0;
 		}
 
-		return Math.max(getHeight(root.left),getHeight(root.right)) + 1;
+		return Math.max(getHeight(root.left), getHeight(root.right)) + 1;
 	}
 
 	public static void main(String[] args) {
 
-		TreeNode head = new TreeNode(2, null, new TreeNode(3, null, new TreeNode(4, null, new TreeNode(5, null, new TreeNode(6)))));
+		TreeNode head = new TreeNode(2, null,
+				new TreeNode(3, null, new TreeNode(4, null, new TreeNode(5, null, new TreeNode(6)))));
 		System.out.println(new Leetcode_111().minDepth(head));
 
-		// [1,2,2,3,null,null,3,4,null,null,4]  //
+		// [1,2,2,3,null,null,3,4,null,null,4] //
 		TreeNode root = new TreeNode(1);
 		TreeNode node2 = new TreeNode(2);
 		TreeNode node3 = new TreeNode(2);
@@ -46,10 +49,9 @@ public class Leetcode_110 {
 
 		node5.right = node7;
 
-
-
 		// root.right = new TreeNode(2, null, new TreeNode(3));
 		System.out.println(new Leetcode_110().isBalanced(root));
 
 	}
+
 }

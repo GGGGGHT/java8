@@ -8,15 +8,17 @@ import java.util.concurrent.*;
  * 如何拿到ThreadPoolExecutor中submit提交后的异常
  */
 public class GetException {
+
 	static ExecutorService pool = Executors.newFixedThreadPool(2);
 
 	public static void main(String[] args) throws ExecutionException, InterruptedException {
 		// normal();
 		// catchException
 		// useFutureTask();
-		// myThreadPoolExecutor myThreadPoolExecutor = new myThreadPoolExecutor(1, 1, 0, TimeUnit.MINUTES, new LinkedBlockingDeque<>());
+		// myThreadPoolExecutor myThreadPoolExecutor = new myThreadPoolExecutor(1, 1, 0,
+		// TimeUnit.MINUTES, new LinkedBlockingDeque<>());
 		// myThreadPoolExecutor.execute(() -> {
-		// 	int i = 1 / 0;
+		// int i = 1 / 0;
 		// });
 		// myThreadPoolExecutor.shutdown();
 		// pool.shutdown();
@@ -42,7 +44,8 @@ public class GetException {
 		pool.submit(() -> {
 			try {
 				int i = 1 / 0;
-			} catch (Exception e) {
+			}
+			catch (Exception e) {
 				e.printStackTrace();
 			}
 		});
@@ -59,22 +62,20 @@ public class GetException {
 	}
 
 	public static void useThreadCatch() throws InterruptedException {
-		ThreadPoolExecutor poolExecutor = new ThreadPoolExecutor(1, 1, 0L, TimeUnit.HOURS,
-		                                                         new LinkedBlockingDeque<>(),
-		                                                         new ThreadFactory() {
-			                                                         @Override
-			                                                         public Thread newThread(@NotNull Runnable r) {
-				                                                         Thread thread = new Thread(r);
-				                                                         thread.setUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
-					                                                         @Override
-					                                                         public void uncaughtException(Thread t, Throwable e) {
-						                                                         System.out.println(e);
-					                                                         }
-				                                                         });
-				                                                         return thread;
-			                                                         }
-		                                                         }
-		);
+		ThreadPoolExecutor poolExecutor = new ThreadPoolExecutor(1, 1, 0L, TimeUnit.HOURS, new LinkedBlockingDeque<>(),
+				new ThreadFactory() {
+					@Override
+					public Thread newThread(@NotNull Runnable r) {
+						Thread thread = new Thread(r);
+						thread.setUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
+							@Override
+							public void uncaughtException(Thread t, Throwable e) {
+								System.out.println(e);
+							}
+						});
+						return thread;
+					}
+				});
 
 		poolExecutor.execute(() -> {
 			int i = 1 / 0;
@@ -86,7 +87,8 @@ public class GetException {
 
 	static class myThreadPoolExecutor extends ThreadPoolExecutor {
 
-		public myThreadPoolExecutor(int corePoolSize, int maximumPoolSize, long keepAliveTime, TimeUnit unit, BlockingQueue<Runnable> workQueue) {
+		public myThreadPoolExecutor(int corePoolSize, int maximumPoolSize, long keepAliveTime, TimeUnit unit,
+				BlockingQueue<Runnable> workQueue) {
 			super(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue);
 		}
 
@@ -98,6 +100,7 @@ public class GetException {
 				t.printStackTrace();
 			}
 		}
+
 	}
 
 }

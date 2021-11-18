@@ -7,20 +7,20 @@ import org.slf4j.LoggerFactory;
 
 @SuppressWarnings("all")
 public class UseJavac {
-  private static final Logger LOGGER = LoggerFactory.getLogger(UseJavac.class);
 
-    public static void main(String[] args) {
-        final JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
+	private static final Logger LOGGER = LoggerFactory.getLogger(UseJavac.class);
 
-        if (compiler == null) {
-            return;
-        }
+	public static void main(String[] args) {
+		final JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
 
-        String path = "F:\\H.java";
-        final int result = compiler.run(null, null, null, new String[] {
-            "-d", "F:", path
-        });
+		if (compiler == null) {
+			return;
+		}
 
-        System.out.println(result);
-    }
+		String path = "F:\\H.java";
+		final int result = compiler.run(null, null, null, new String[] { "-d", "F:", path });
+
+		System.out.println(result);
+	}
+
 }

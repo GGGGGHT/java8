@@ -7,8 +7,11 @@ package com.ggggght.learningjava8;
  */
 
 public class TreeNode {
+
 	int val;
+
 	TreeNode left;
+
 	TreeNode right;
 
 	TreeNode() {
@@ -23,5 +26,5 @@ public class TreeNode {
 		this.left = left;
 		this.right = right;
 	}
-}
 
+}

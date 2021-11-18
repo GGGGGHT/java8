@@ -18,8 +18,10 @@ import static java.lang.annotation.ElementType.LOCAL_VARIABLE;
  */
 @Service("transactional service")
 @Transactional
-@Target({TYPE, FIELD, METHOD, PARAMETER, CONSTRUCTOR, LOCAL_VARIABLE})
+@Target({ TYPE, FIELD, METHOD, PARAMETER, CONSTRUCTOR, LOCAL_VARIABLE })
 @Retention(RetentionPolicy.RUNTIME)
 public @interface TransactionService {
+
 	String value() default "";
+
 }
