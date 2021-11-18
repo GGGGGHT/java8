@@ -39,7 +39,7 @@ jobs:
           java-version: ${{ matrix.java }}
           distribution: 'zulu'
       - name: 'format-check'
-        uses: bash
+        shell: bash
         run: mvn spring-javaformat:validate -Dmaven.test.skip=true
       - name: 'Test'
         shell: bash
