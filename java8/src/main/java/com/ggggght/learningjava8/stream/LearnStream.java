@@ -377,10 +377,8 @@ public class LearnStream {
 				.limit(3);
 
 		res.forEach(i -> System.out.println(Arrays.toString(i)));
-		System.out.println(
-				"IntStream.rangeClosed(0,10).count() = " + IntStream.rangeClosed(0, 10)
-						.boxed()
-						.collect(summingInt(i -> i)));
+		System.out.println("IntStream.rangeClosed(0,10).count() = "
+				+ IntStream.rangeClosed(0, 10).boxed().collect(summingInt(i -> i)));
 
 		IntSummaryStatistics collect = IntStream.range(0, 10).boxed().collect(summarizingInt(i -> i));
 		System.out.println("collect = " + collect);
@@ -393,13 +391,18 @@ public class LearnStream {
 	@Test
 	public void getMaxByGrouping() {
 		// 根据性别取出每个组年龄最大的用户
-		Map<String, User> collect = userList.stream()
-				.collect(groupingBy(User::getSex,
-						collectingAndThen(maxBy(Comparator.comparingInt(User::getAge)), Optional::get)));
+		Map<String, User> collect = userList.stream().collect(groupingBy(User::getSex,
+				collectingAndThen(maxBy(Comparator.comparingInt(User::getAge)), Optional::get)));
 
 		// Preconditions.checkState(collect.size() == 2);
-		for (Map.Entry<String, User> entry : collect.entrySet()) {
-			System.out.println(entry.getKey() + " -> " + entry.getValue());
-		}
+		collect.entrySet()
+				.stream()
+				.map(entry -> entry.getKey() + " -> " + entry.getValue())
+				.forEach(System.out::println);
+
+		// 根据性别求年龄的平均值
+		Map<String, Double> users = userList.stream().collect(groupingBy(User::getSex, averagingInt(User::getAge)));
+		users.entrySet().forEach(e -> System.out.println(e.getKey() + " -> " + e.getValue()));
 	}
+
 }
