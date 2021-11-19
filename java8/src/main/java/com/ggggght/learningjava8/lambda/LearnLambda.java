@@ -3,10 +3,16 @@ package com.ggggght.learningjava8.lambda;
 import com.ggggght.learningjava8.po.User;
 import com.google.common.base.Preconditions;
 import java.util.Collection;
+import java.util.Map;
 import java.util.Objects;
+import java.util.function.BiFunction;
+import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -30,6 +36,8 @@ import org.springframework.util.CollectionUtils;
  * 匿名类和Lambda表达式中的this和super的含义: 匿名类: this代表的是类自身 lambda: 代表的是包含类
  * <p>
  * 匿名类可以屏蔽包含类的变量 即可以有重名变量 lambda不可以
+ *
+ * 流的特点: 只能遍历一次
  */
 
 @SuppressWarnings("all")
@@ -155,11 +163,17 @@ public class LearnLambda {
 	}
 
 	@Data
+	@NoArgsConstructor
+	@AllArgsConstructor
 	class Apple {
 
 		private String color;
 
 		private Integer weight;
+
+		public Apple(Integer weight) {
+			this.weight = weight;
+		}
 
 	}
 
@@ -196,10 +210,53 @@ public class LearnLambda {
 	}
 
 	public Collection<Apple> doFilterApples(Collection<Apple> inventory, Predicate<Apple> p) {
-		if (CollectionUtils.isEmpty(inventory))
+		if (CollectionUtils.isEmpty(inventory)) {
 			return inventory;
+		}
 
 		return inventory.stream().filter(p).collect(Collectors.toSet());
+	}
+
+	@Test
+	public void testReturn() {
+		List<Object> list = new ArrayList<>();
+		// return boolean
+		Predicate<String> p = a -> list.add(a);
+		// return void
+		Consumer<String> b = s -> list.add(s);
+	}
+
+	@Test
+	public void generateApple() {
+		Function<Integer, Apple> f = weight -> new Apple(weight);
+
+		List<Integer> weights = List.of(1, 2, 3);
+		List<Apple> apples = weights.stream().map(i -> f.apply(i)).collect(Collectors.toList());
+		Preconditions.checkState(apples.size() == 3);
+
+		BiFunction<String, Integer, Apple> b = (s, i) -> new Apple(s, i);
+		Map<Integer, String> map = Map.of(100, "green", 200, "red", 300, "yellow");
+		List<Apple> apples1 = map.entrySet().stream().map(e -> b.apply(e.getValue(), e.getKey()))
+				.collect(Collectors.toList());
+		Preconditions.checkState(apples1.size() == 3);
+	}
+
+	@Test
+	public void functionThenAccept() {
+		Function<Integer, Integer> f = x -> x + 1;
+		Function<Integer, Integer> g = t -> t * 2;
+
+		Function<Integer, Integer> h = f.andThen(g);
+	}
+
+	@Test
+	public void iteratorStream() {
+		List<String> list = List.of("Java8", "In", "action");
+		Stream<String> stream = list.stream();
+		stream.forEach(System.out::println);
+		// java.lang.IllegalStateException: stream has already been operated upon or
+		// closed
+		stream.forEach(System.out::println);
 	}
 
 }
