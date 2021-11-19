@@ -2,7 +2,7 @@ package com.ggggght.learningjava8.stream;
 
 import com.ggggght.learningjava8.po.User;
 import com.google.common.base.Preconditions;
-import java.util.function.BinaryOperator;
+import org.apache.commons.math3.stat.descriptive.summary.Sum;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -169,6 +169,8 @@ public class LearnStream {
 		// 获取出男生
 		List<User> males = users.get(true);
 		males.stream().forEach(System.out::println);
+
+		// 多级分组
 	}
 
 	/**
@@ -364,12 +366,40 @@ public class LearnStream {
 		// 将数值流转换为Stream
 		Stream<Integer> boxed = intStream.boxed();
 		// int max = intStream.max().orElse(1);
-		Stream<int[]> res = IntStream.rangeClosed(1, 100).boxed()
-				.flatMap(a -> IntStream.rangeClosed(a, 100).filter(b -> Math.sqrt(a * a + b * b) % 1 == 0)
-						.mapToObj(b -> new int[] { a, b, (int) Math.sqrt(a * a + b * b) }))
+		// Stream<int[]> res = IntStream.rangeClosed(1, 100).boxed()
+		// .flatMap(a -> IntStream.rangeClosed(a, 100).filter(b -> Math.sqrt(a * a + b *
+		// b) % 1 == 0)
+		// .mapToObj(b -> new int[] { a, b, (int) Math.sqrt(a * a + b * b) }))
+		// .limit(3);
+		Stream<double[]> res = IntStream.rangeClosed(1, 100).boxed()
+				.flatMap(a -> IntStream.rangeClosed(a, 100)
+						.mapToObj(b -> new double[] { a, b, Math.sqrt(a * a + b * b) }).filter(d -> d[2] % 1 == 0))
 				.limit(3);
 
 		res.forEach(i -> System.out.println(Arrays.toString(i)));
+		System.out.println(
+				"IntStream.rangeClosed(0,10).count() = " + IntStream.rangeClosed(0, 10)
+						.boxed()
+						.collect(summingInt(i -> i)));
+
+		IntSummaryStatistics collect = IntStream.range(0, 10).boxed().collect(summarizingInt(i -> i));
+		System.out.println("collect = " + collect);
+		collect.getSum();
+		collect.getAverage();
+
+		Integer result = userList.stream().collect(reducing(0, User::getAge, Integer::sum));
 	}
 
+	@Test
+	public void getMaxByGrouping() {
+		// 根据性别取出每个组年龄最大的用户
+		Map<String, User> collect = userList.stream()
+				.collect(groupingBy(User::getSex,
+						collectingAndThen(maxBy(Comparator.comparingInt(User::getAge)), Optional::get)));
+
+		// Preconditions.checkState(collect.size() == 2);
+		for (Map.Entry<String, User> entry : collect.entrySet()) {
+			System.out.println(entry.getKey() + " -> " + entry.getValue());
+		}
+	}
 }
