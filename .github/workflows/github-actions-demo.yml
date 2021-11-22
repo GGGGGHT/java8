@@ -30,9 +30,6 @@ jobs:
         with:
           java-version: ${{ matrix.java }}
           distribution: 'zulu'
-      - name: 'Test'
-        shell: bash
-        run: mvn -B -P!standard-with-extra-repos verify -U -Dmaven.javadoc.skip=true -f pom.xml
       - name: Checkstyle for Java
         uses: dbelyaev/action-checkstyle@v0.4.0
         with:
