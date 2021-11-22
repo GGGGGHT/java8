@@ -28,7 +28,4 @@ module learningjava {
   requires spring.webmvc;
   requires wildfly.common;
   requires jmh.core;
-
-  exports com.ggggght.learningjava8.ThreadPool;
 }
-
