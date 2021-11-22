@@ -47,57 +47,8 @@ jobs:
           workdir: . # optional, default is .
           # Report level for reviewdog [info, warning, error]
           level: # optional, default is info
-          # Reporter of reviewdog command [github-pr-check, github-pr-review].
-          reporter: # optional, default is github-pr-check
-          # Filtering mode for the reviewdog command [added, diff_context, file, nofilter].
-      Default is added.
-
-      filter_mode: # optional, default is added
-      # Exit code for reviewdog when errors are found [true, false]
-      Default is `false`.
-
-      fail_on_error: # optional, default is false
-      # Additional reviewdog flags
-      reviewdog_flags: # optional, default is
-      # Checkstyle configuration specifies which ruleset to apply during scan.
-      There are two built-in configurations in checkstyle: [ google_checks.xml, sun_checks.xml ].
-      google_checks.xml configures Checkstyle for the Google coding conventions (https://google.github.io/styleguide/javaguide.html)
-      sun_checks.xml configures Checkstyle for the Sun coding conventions (https://www.oracle.com/java/technologies/javase/codeconventions-contents.html)
-
-      checkstyle_config: # default is google_checks.xml
-      # Checkstyle version to be used during analysis.
-      For a list of available version numbers go to [Checkstyle release page](https://github.com/checkstyle/checkstyle/releases/).
-
-      checkstyle_version: # optional, default is 8.43
-
-  publish_snapshot:
-    name: 'Publish snapshot'
-    needs: test
-    if: github.event_name == 'push' && github.repository == 'google/guava'
-    runs-on: ubuntu-latest
-    steps:
-      - name: 'Check out repository'
-        uses: actions/checkout@v2.4.0
-      - name: 'Cache local Maven repository'
-        uses: actions/cache@v2.1.6
-        with:
-          path: ~/.m2/repository
-          key: maven-${{ hashFiles('**/pom.xml') }}
-          restore-keys: |
-            maven-
-      - name: 'Set up JDK 11'
-        uses: actions/setup-java@v2
-        with:
-          java-version: 11
-          distribution: 'zulu'
-          server-id: sonatype-nexus-snapshots
           server-username: CI_DEPLOY_USERNAME
           server-password: CI_DEPLOY_PASSWORD
-      - name: 'Publish'
-        env:
-          CI_DEPLOY_USERNAME: ${{ secrets.CI_DEPLOY_USERNAME }}
-          CI_DEPLOY_PASSWORD: ${{ secrets.CI_DEPLOY_PASSWORD }}
-        run: ./util/deploy_snapshot.sh
 
   generate_docs:
     name: 'Generate latest docs'
