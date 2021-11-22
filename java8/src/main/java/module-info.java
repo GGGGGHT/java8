@@ -27,4 +27,5 @@ module learningjava8 {
   requires annotations;
   requires spring.webmvc;
   requires wildfly.common;
+  requires jmh.core;
 }
