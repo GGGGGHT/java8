@@ -1,4 +1,4 @@
-module learningjava8 {
+module learningjava {
   requires java.base;
   requires junit;
   requires hutool.all;

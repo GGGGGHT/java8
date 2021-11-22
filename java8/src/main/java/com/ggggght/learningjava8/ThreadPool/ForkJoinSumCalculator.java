@@ -26,7 +26,9 @@ public class ForkJoinSumCalculator extends RecursiveTask<Long> {
 
   @Override protected Long compute() {
     int length = end - start;
-    if(length <= THRESHOLD) return computeSequentially();
+    if(length <= THRESHOLD) {
+      return computeSequentially();
+    }
 
     ForkJoinSumCalculator leftTask = new ForkJoinSumCalculator(numbers, start, start + length / 2);
     // 对子任务调用fork()可以把它排进ForkJoinPool.
