@@ -1,8 +1,11 @@
 package com.ggggght.learningjava8.guava;
 
-import static com.google.common.base.Preconditions.*;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
+import static com.google.common.base.Preconditions.checkArgument;
+import static com.google.common.base.Preconditions.checkElementIndex;
+import static com.google.common.base.Preconditions.checkNotNull;
+import static com.google.common.base.Preconditions.checkState;
 
 /**
  * @Dest: 使用guava进行数据验证

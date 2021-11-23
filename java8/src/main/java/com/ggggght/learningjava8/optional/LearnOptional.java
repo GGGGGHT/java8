@@ -1,9 +1,8 @@
 package com.ggggght.learningjava8.optional;
 
 import com.ggggght.learningjava8.po.User;
-import org.junit.Test;
-
 import java.util.Optional;
+import org.junit.jupiter.api.Test;
 
 /**
  * @Desc

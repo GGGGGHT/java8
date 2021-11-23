@@ -1,9 +1,25 @@
 package com.ggggght.learningjava8.guava;
 
-import com.google.common.collect.*;
-import org.junit.Test;
-
-import java.util.*;
+import com.google.common.collect.BiMap;
+import com.google.common.collect.BoundType;
+import com.google.common.collect.ClassToInstanceMap;
+import com.google.common.collect.HashBiMap;
+import com.google.common.collect.HashMultimap;
+import com.google.common.collect.HashMultiset;
+import com.google.common.collect.ListMultimap;
+import com.google.common.collect.Multimap;
+import com.google.common.collect.MultimapBuilder;
+import com.google.common.collect.Multiset;
+import com.google.common.collect.MutableClassToInstanceMap;
+import com.google.common.collect.Range;
+import com.google.common.collect.RangeSet;
+import com.google.common.collect.SetMultimap;
+import com.google.common.collect.SortedMultiset;
+import com.google.common.collect.TreeMultiset;
+import com.google.common.collect.TreeRangeSet;
+import java.util.Collection;
+import java.util.HashMap;
+import org.junit.jupiter.api.Test;
 
 /**
  * @desc: 可变的集合

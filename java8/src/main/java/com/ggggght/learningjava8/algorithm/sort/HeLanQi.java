@@ -1,8 +1,8 @@
 package com.ggggght.learningjava8.algorithm.sort;
 
-import org.junit.Test;
 
 import java.util.Arrays;
+import org.junit.jupiter.api.Test;
 
 public class HeLanQi {
 

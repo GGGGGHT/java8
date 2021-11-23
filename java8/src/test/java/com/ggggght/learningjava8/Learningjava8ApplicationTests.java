@@ -1,12 +1,11 @@
 package com.ggggght.learningjava8;
 
-import org.junit.Test;
-
 import java.time.Duration;
 import java.time.Instant;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveTask;
 import java.util.concurrent.locks.ReentrantLock;
+import org.junit.jupiter.api.Test;
 
 // @SpringBootTest
 class Learningjava8ApplicationTests {

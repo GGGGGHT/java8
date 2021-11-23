@@ -2,9 +2,8 @@ package com.ggggght.learningjava8.guava;
 
 import com.google.common.base.Joiner;
 import com.google.common.base.Splitter;
-import org.junit.Test;
-
 import java.util.Arrays;
+import org.junit.jupiter.api.Test;
 
 public class GuavaStrings {
 

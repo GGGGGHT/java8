@@ -4,8 +4,9 @@ import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ComparisonChain;
-import org.junit.Test;
-import static com.google.common.base.Objects.*;
+import org.junit.jupiter.api.Test;
+
+import static com.google.common.base.Objects.equal;
 
 public class ObjectsTest {
 

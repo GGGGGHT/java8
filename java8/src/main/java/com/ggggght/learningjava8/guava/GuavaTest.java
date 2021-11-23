@@ -3,14 +3,14 @@ package com.ggggght.learningjava8.guava;
 import com.google.common.base.CharMatcher;
 import com.google.common.base.Function;
 import com.google.common.base.Predicate;
-import com.google.common.cache.*;
-
+import com.google.common.cache.CacheBuilder;
+import com.google.common.cache.CacheLoader;
+import com.google.common.cache.LoadingCache;
 import com.google.common.collect.ImmutableList;
 import com.google.common.hash.HashFunction;
 import com.google.common.hash.Hashing;
-import org.junit.Test;
-
 import java.util.concurrent.ExecutionException;
+import org.junit.jupiter.api.Test;
 
 @SuppressWarnings("all")
 public class GuavaTest {

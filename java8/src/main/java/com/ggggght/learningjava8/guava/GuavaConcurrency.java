@@ -1,12 +1,16 @@
 package com.ggggght.learningjava8.guava;
 
-import com.google.common.util.concurrent.*;
-import org.checkerframework.checker.nullness.qual.Nullable;
-import org.junit.Test;
-
+import com.google.common.util.concurrent.FutureCallback;
+import com.google.common.util.concurrent.Futures;
+import com.google.common.util.concurrent.ListenableFuture;
+import com.google.common.util.concurrent.ListeningExecutorService;
+import com.google.common.util.concurrent.MoreExecutors;
+import com.google.common.util.concurrent.Service;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+import org.checkerframework.checker.nullness.qual.Nullable;
+import org.junit.jupiter.api.Test;
 
 /**
  * @desc: guava concurrency 原始的{@link Future} 代表了一个异步计算的结果 可能已经或可能尚未完成生成结果的计算。
