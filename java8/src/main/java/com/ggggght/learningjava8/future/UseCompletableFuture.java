@@ -1,10 +1,9 @@
 package com.ggggght.learningjava8.future;
 
-import org.junit.Test;
-
 import java.util.Random;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
+import org.junit.jupiter.api.Test;
 
 public class UseCompletableFuture {
 

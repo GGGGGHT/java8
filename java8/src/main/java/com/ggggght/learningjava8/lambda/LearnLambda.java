@@ -2,25 +2,24 @@ package com.ggggght.learningjava8.lambda;
 
 import com.ggggght.learningjava8.po.User;
 import com.google.common.base.Preconditions;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.TreeSet;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.junit.Before;
-import org.junit.Test;
-
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.TreeSet;
-import java.util.function.Function;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import org.springframework.util.CollectionUtils;
 
 /**
@@ -48,7 +47,7 @@ public class LearnLambda {
 	/**
 	 * @target: 为userList填充数据
 	 */
-	@Before
+	@BeforeAll
 	public void doSomeThingBefore() {
 		userList = new ArrayList<>(5);
 		userList.add(new User("zs", 19, "男"));

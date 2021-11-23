@@ -1,6 +1,5 @@
-module learningjava {
+open module learningjava {
   requires java.base;
-  requires junit;
   requires hutool.all;
   requires spring.core;
   requires java.management;
@@ -28,4 +27,5 @@ module learningjava {
   requires spring.webmvc;
   requires wildfly.common;
   requires jmh.core;
+  requires org.junit.jupiter.api;
 }

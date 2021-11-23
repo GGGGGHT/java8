@@ -2,7 +2,7 @@ package com.ggggght.learningjava8.guava;
 
 import com.google.common.base.Optional;
 import com.google.common.base.Strings;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * @Desc: 使用guava处理空对象

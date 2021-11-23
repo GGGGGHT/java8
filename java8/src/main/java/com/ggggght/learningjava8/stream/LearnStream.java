@@ -2,19 +2,36 @@ package com.ggggght.learningjava8.stream;
 
 import com.ggggght.learningjava8.po.User;
 import com.google.common.base.Preconditions;
-import java.util.function.Function;
-import java.util.stream.LongStream;
-import org.apache.commons.math3.stat.descriptive.summary.Sum;
-import org.junit.Before;
-import org.junit.Test;
-
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.IntSummaryStatistics;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.LongStream;
 import java.util.stream.Stream;
-import org.openjdk.jmh.annotations.Benchmark;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
-import static java.util.stream.Collectors.*;
+import static java.util.stream.Collectors.averagingInt;
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.maxBy;
+import static java.util.stream.Collectors.reducing;
+import static java.util.stream.Collectors.summarizingInt;
+import static java.util.stream.Collectors.summingInt;
+import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.toMap;
+import static java.util.stream.Collectors.toSet;
 
 /**
  * @author ght
@@ -38,7 +55,7 @@ public class LearnStream {
   /**
    * @target: 为userList填充数据
    */
-  @Before
+  @BeforeAll
   public void doSomeThingBefore() {
     userList = new ArrayList<>(5);
     userList.add(new User("zs", 19, "男"));

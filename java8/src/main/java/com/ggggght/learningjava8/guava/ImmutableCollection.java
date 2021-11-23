@@ -1,13 +1,9 @@
 package com.ggggght.learningjava8.guava;
 
-import com.google.common.collect.ImmutableSet;
-import com.google.common.collect.Lists;
-import org.junit.Test;
-
 import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import org.junit.jupiter.api.Test;
 
 /**
  * @Desc: 使用guava中不可变的集合

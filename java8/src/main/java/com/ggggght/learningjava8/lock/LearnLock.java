@@ -6,7 +6,7 @@ import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.LockSupport;
 import java.util.concurrent.locks.ReentrantLock;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author ght
