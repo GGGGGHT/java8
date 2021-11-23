@@ -51,9 +51,11 @@ class WordCounterSpliterator implements Spliterator<Character> {
 
   @Override public Spliterator<Character> trySplit() {
     int currentSize = str.length() - currentChar;
-    if (currentSize < 10) return null;
+    if (currentSize < 10) {
+      return null;
+    }
 
-    for (int splitPos = currentSize / 2 + currentChar; splitPos < str.length(); splitPos++) {
+    for (int splitPos = currentSize / 2 + currentChar; splitPos < str.length(); ++splitPos) {
       WordCounterSpliterator spliterator =
           new WordCounterSpliterator(str.substring(currentSize, splitPos));
 
