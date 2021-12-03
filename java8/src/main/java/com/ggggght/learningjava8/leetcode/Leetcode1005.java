@@ -51,15 +51,15 @@ import java.util.stream.IntStream;
 public class Leetcode1005 {
   public static void main(String[] args) {
     Leetcode1005 solution = new Leetcode1005();
-    var arr = new int[] {-5,-4,-3,-2,-1};
-    int i = solution.largestSumAfterKNegations(arr, 8);
-    System.out.println(i);
+    var arr = new int[] {4, 2, 3};
+    // int i = solution.largestSumAfterKNegations(arr, 1);
+    // int i2 = solution.largestSumAfterKNegations2(arr, 1);
+    int i3 = solution.largestSumAfterKNegations3(arr, 1);
+    // System.out.println(i);
+    // System.out.println(i2);
   }
 
   /**
-   * 如果k是奇数
-   * 如果k是偶数
-   *
    * @param nums
    * @param K
    * @return
@@ -80,5 +80,44 @@ public class Leetcode1005 {
     // 如果K还大于0，那么反复转变数值最小的元素，将K用完
     if (K % 2 == 1) nums[len - 1] = -nums[len - 1];
     return Arrays.stream(nums).sum();
+  }
+
+  public int largestSumAfterKNegations2(int[] nums, int k) {
+    Arrays.sort(nums);
+    for (int i = 0; i < nums.length && k > 0; i++) {
+      if (nums[i] < 0) {
+        nums[i] = -nums[i];
+        k--;
+      }
+    }
+
+    Arrays.sort(nums);
+    if ((k & 1) == 1) nums[0] = -nums[0];
+
+    return Arrays.stream(nums).sum();
+  }
+
+  @SuppressWarnings("all")
+  public int largestSumAfterKNegations3(int[] A, int K) {
+    int[] number = new int[201];//-100 <= A[i] <= 100,这个范围的大小是201
+    for (int t : A) {
+      number[t + 100]++;//将[-100,100]映射到[0,200]上
+    }
+    int i = 0;
+    while (K > 0) {
+      while (number[i] == 0)//找到A[]中最小的数字
+        i++;
+      number[i]--;//此数字个数-1
+      number[200 - i]++;//其相反数个数+1
+      if (i > 100) {//若原最小数索引>100,则新的最小数索引应为200-i.(索引即number[]数组的下标)
+        i = 200 - i;
+      }
+      K--;
+    }
+    int sum = 0;
+    for (int j = i; j <number.length ; j++) {//遍历number[]求和
+      sum += (j-100)*number[j];//j-100是数字大小,number[j]是该数字出现次数.
+    }
+    return sum;
   }
 }
