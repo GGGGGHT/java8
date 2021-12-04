@@ -1,5 +1,7 @@
 package com.ggggght.learningjava8.leetcode;
 
+import java.util.Arrays;
+
 /**
  * 给你一个整数 n，请你每隔三位添加点（即 "." 符号）作为千位分隔符，并将结果以字符串格式返回。
  * <p>
@@ -43,35 +45,22 @@ public class Leetcode1556 {
 
   /**
    * 使用StringBuilder
+   *
    * @param n
    * @return
    */
   public String thousandSeparator(int n) {
-    var len = countBit(n);
-    if (len <= 3) return n + "";
     StringBuilder builder = new StringBuilder();
     var a = 0;
-    while (n != 0) {
+    do {
       var mod = n % 10;
       n /= 10;
       builder.append(mod);
       a++;
-      if (a == 3 && n != 0) {
-        a = 0;
+      if (a % 3 == 0 && n != 0) {
         builder.append(".");
       }
-    }
+    } while (n != 0);
     return builder.reverse().toString();
   }
-
-  public int countBit(int x) {
-    int t = 1;
-    while (x / 10 != 0) {
-      x /= 10;
-      t++;
-    }
-
-    return t;
-  }
-
 }
