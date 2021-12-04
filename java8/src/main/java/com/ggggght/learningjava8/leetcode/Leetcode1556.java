@@ -41,6 +41,11 @@ public class Leetcode1556 {
     System.out.println(leetcode1556.thousandSeparator(123456789));
   }
 
+  /**
+   * 使用StringBuilder
+   * @param n
+   * @return
+   */
   public String thousandSeparator(int n) {
     var len = countBit(n);
     if (len <= 3) return n + "";
@@ -68,4 +73,5 @@ public class Leetcode1556 {
 
     return t;
   }
+
 }
