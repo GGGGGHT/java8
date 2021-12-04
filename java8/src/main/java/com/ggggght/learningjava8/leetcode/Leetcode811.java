@@ -1,5 +1,6 @@
 package com.ggggght.learningjava8.leetcode;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -75,7 +76,7 @@ public class Leetcode811 {
         "8263 cwn.org", "1873 kse.gjf.ca"};
     String[] strings = {"900 google.mail.com", "50 yahoo.com", "1 intel.mail.com", "5 wiki.org"};
     System.out.println(leetcode811.subdomainVisits(str));
-    System.out.println(leetcode811.subdomainVisits(strings));
+    System.out.println(leetcode811.subdomainVisits2(strings));
   }
 
   public List<String> subdomainVisits(String[] cpdomains) {
@@ -100,5 +101,26 @@ public class Leetcode811 {
         .stream()
         .map(e -> e.getValue() + " " + e.getKey())
         .collect(Collectors.toList());
+  }
+
+  /**
+   * 使用正则
+   * @param cpdomains
+   * @return
+   */
+  public List<String> subdomainVisits2(String[] cpdomains) {
+    Map<String, Integer> counts = new HashMap();
+    for (String domain : cpdomains) {
+      String[] cpinfo = domain.split("\\s+");
+      String[] frags = cpinfo[1].split("\\.");
+      int count = Integer.parseInt(cpinfo[0]);
+      String cur = "";
+      for (int i = frags.length - 1; i >= 0; --i) {
+        cur = frags[i] + (i < frags.length - 1 ? "." : "") + cur;
+        counts.put(cur, counts.getOrDefault(cur, 0) + count);
+      }
+    }
+
+    return counts.entrySet().stream().map(e -> e.getValue() + " " + e.getKey()).collect(Collectors.toList());
   }
 }
