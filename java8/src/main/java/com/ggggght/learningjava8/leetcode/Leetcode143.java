@@ -11,33 +11,9 @@ package com.ggggght.learningjava8.leetcode;
  * ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
  */
-class ListNode {
-  int val;
-  ListNode next;
-
-  ListNode() {
-  }
-
-  ListNode(int val) {
-    this.val = val;
-  }
-
-  ListNode(int val, ListNode next) {
-    this.val = val;
-    this.next = next;
-  }
-
-  @Override public String toString() {
-    return "ListNode{" +
-        "val=" + val +
-        ", next=" + next +
-        '}';
-  }
-}
-
-public class Leetcode1 {
+public class Leetcode143 {
   public static void main(String[] args) {
-    Leetcode1 solution = new Leetcode1();
+    Leetcode143 solution = new Leetcode143();
     ListNode head = new ListNode(1);
     head.next = new ListNode(2);
     head.next.next = new ListNode(3);
