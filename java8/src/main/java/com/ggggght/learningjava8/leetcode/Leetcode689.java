@@ -43,41 +43,12 @@ import java.util.Map;
 public class Leetcode689 {
   public static void main(String[] args) {
     Leetcode689 leetcode689 = new Leetcode689();
-    // int[] arr = {1,2,1,2,1,2,1,2,1};
+    // [7,13,20,19,19,2,10,1,1,19]
+    // 3
+    // int[] arr = {1, 2, 1, 2, 6, 7, 5, 1};
     int[] arr =
-        {780, 13064, 12173, 1276, 23860, 39384, 21772, 34161, 61405, 41752, 18187, 50465, 52713,
-            36623, 6284, 41896, 62018, 35662, 39318, 43667, 27325, 53359, 25428, 21587, 5038, 13444,
-            28434, 22077, 47751, 59482, 23999, 5423, 3308, 31759, 41732, 47742, 64560, 50014, 58182,
-            63547, 65480, 60979, 60704, 30082, 46270, 51002, 12160, 5324, 18914, 48153, 12996,
-            62814, 29771, 10443, 55406, 61804, 1999, 34662, 56965, 54278, 42731, 32035, 9692, 31986,
-            16860, 19829, 18683, 33799, 48816, 2084, 50986, 31129, 19019, 38917, 21731, 30201,
-            21927, 64496, 40215, 49382, 48382, 9297, 32969, 35819, 6604, 18729, 19512, 1383, 52777,
-            56971, 25882, 62064, 6784, 50830, 21420, 53795, 8744, 51452, 46643, 39592, 24684, 37063,
-            19890, 53821, 56982, 968, 36547, 33891, 2132, 21822, 34472, 1435, 43279, 25793, 10291,
-            28097, 49156, 41, 45384, 64910, 56377, 46774, 31633, 14469, 41444, 6473, 30490, 8989,
-            64223, 7371, 46473, 5742, 5506, 34715, 21890, 19507, 11804, 43473, 24346, 57437, 52825,
-            30888, 47668, 29345, 17053, 27932, 24937, 33517, 21, 38869, 56607, 17741, 28237, 5557,
-            47448, 60341, 18589, 59251, 8375, 1393, 23675, 13630, 49315, 65393, 13170, 46951, 34849,
-            63649, 52933, 23848, 45052, 41644, 6473, 18544, 43507, 8899, 1815, 20438, 22433, 53503,
-            10472, 446, 54022, 3446, 53385, 19018, 37833, 51111, 48772, 31993, 32789, 9979, 27696,
-            53864, 53510, 5286, 8681, 33874, 46843, 43669, 19404, 20031, 58248, 45655, 55274, 45952,
-            37587, 53716, 8739, 6858, 48440, 64472, 52393, 34187, 14667, 31744, 58472, 12227, 43802,
-            34813, 43230, 63661, 12220, 31879, 18372, 34912, 1931, 54289, 64798, 10154, 4812, 37933,
-            33569, 10814, 18129, 64170, 54203, 25465, 48078, 44624, 49913, 59895, 35795, 58702,
-            32061, 37130, 37800, 36289, 46650, 61935, 52204, 10753, 9524, 47098, 19326, 2679, 6726,
-            41766, 12883, 46579, 55945, 52092, 40869, 49045, 59358, 32605, 27789, 59012, 36421,
-            38579, 10628, 49790, 14706, 13488, 15004, 49158, 46424, 7528, 40608, 27528, 64720,
-            32236, 5606, 59699, 27671, 35413, 60866, 14719, 47927, 5969, 30254, 6511, 30826, 20063,
-            26823, 15905, 55884, 21071, 27893, 48304, 63498, 14586, 44877, 33306, 20250, 64971,
-            41653, 5141, 31025, 15848, 1250, 4937, 20561, 8123, 1617, 18292, 20594, 42088, 3076,
-            5469, 34967, 39105, 63498, 52919, 9057, 19980, 43796, 64789, 2607, 17534, 45384, 37116,
-            3161, 58081, 31110, 49466, 61438, 1614, 52519, 33719, 8135, 1186, 63629, 12105, 20436,
-            15514, 26058, 30151, 63263, 12509, 60882, 42176, 37124, 40481, 9917, 18402, 54354,
-            38534, 34391, 55489, 28843, 8572, 41518, 25472, 4296, 39575, 19269, 39540, 59858, 24054,
-            15452, 32635, 22047, 27389, 162, 38464, 1272, 29570, 16289, 35465, 37427, 23847, 57523,
-            33186, 44679, 53306, 38870, 54918, 22468, 49286, 12602, 49760, 56569, 1704, 39962,
-            22454, 24489, 13048, 52944, 64722};
-    System.out.println(Arrays.toString(leetcode689.maxSumOfThreeSubarrays(arr, 6)));
+        {4, 5, 10, 6, 11, 17, 4, 11, 1, 3};
+    System.out.println(Arrays.toString(leetcode689.maxSumOfThreeSubarrays3(arr, 1)));
   }
 
   /**
@@ -91,27 +62,35 @@ public class Leetcode689 {
     int len = nums.length;
     int[] dp = new int[len];
     // dp[i]表示以i为左边界  k和长度的和
-    for (int i = 0; i < len; i++) {
-      int j = 0;
-      int tmp = 0;
-      while (j < k && i <= len - k) {
-        tmp += nums[i + j++];
+    for (int i = 0; i < len - k + 1; i++) {
+      if (i == 0) {
+        int tmp = 0;
+        int t = 0;
+        while (t < k) {
+          tmp += nums[t++];
+        }
+        dp[i] = tmp;
+      } else {
+        dp[i] = dp[i - 1] - nums[i - 1] + nums[i + k - 1];
       }
-      dp[i] = tmp;
     }
 
-    Map<Integer, List<Integer>> map = new HashMap<>();
+    System.out.println(Arrays.toString(dp));
+    int[] res = new int[3];
     int max = -1;
     for (int i = 0; i < len - k; i++) {
-      // 因为不可以重叠
       int left = i + k;
       int right = i + 2 * k;
       // right变动的时候 left不变
-      // left变动的时候  right需要相应的做出变化 如何修改left???
+      // left变动的时候  right需要相应的做出变化
       while (left < right && right < len) {
         int add = dp[i] + dp[left] + dp[right];
-        map.putIfAbsent(add, List.of(i, left, right));
-        max = Math.max(max, add);
+        if (add > max) {
+          max = add;
+          res[0] = i;
+          res[1] = left;
+          res[2] = right;
+        }
         right++;
         if (right == len - 1) {
           left++;
@@ -120,12 +99,104 @@ public class Leetcode689 {
       }
     }
 
-    List<Integer> integers = map.get(max);
-    int[] res = new int[3];
-    res[0] = integers.get(0);
-    res[1] = integers.get(1);
-    res[2] = integers.get(2);
-
     return res;
+  }
+
+  /**
+   * 单个子数组的最大和
+   * 使用滑动窗口 使用右边界的滑动窗口
+   *
+   * @param nums
+   * @param k
+   * @return
+   */
+  public int[] maxSumOfThreeSubarrays1(int[] nums, int k) {
+    int[] ans = new int[1];
+    int sum1 = 0, maxSum1 = 0;
+    for (int i = 0; i < nums.length; ++i) {
+      sum1 += nums[i];
+      if (i >= k - 1) {
+        if (sum1 > maxSum1) {
+          maxSum1 = sum1;
+          ans[0] = i - k + 1;
+        }
+        sum1 -= nums[i - k + 1];
+      }
+    }
+    return ans;
+  }
+
+  /**
+   * 两个无重叠数组的最大和
+   * 使用两个窗口
+   * 第一个窗口从[0,k-1]
+   * 第二个窗口从[k,2k-1]
+   *
+   * @param nums
+   * @param k
+   * @return
+   */
+  public int[] maxSumOfThreeSubarrays2(int[] nums, int k) {
+    int[] ans = new int[2];
+    int sum1 = 0, maxSum1 = 0, maxSum1Idx = 0;
+    int sum2 = 0, maxSum12 = 0;
+    for (int i = k; i < nums.length; ++i) {
+      sum1 += nums[i - k];
+      sum2 += nums[i];
+      if (i >= k * 2 - 1) {
+        if (sum1 > maxSum1) {
+          maxSum1 = sum1;
+          maxSum1Idx = i - k * 2 + 1;
+        }
+        if (maxSum1 + sum2 > maxSum12) {
+          maxSum12 = maxSum1 + sum2;
+          ans[0] = maxSum1Idx;
+          ans[1] = i - k + 1;
+        }
+        sum1 -= nums[i - k * 2 + 1];
+        sum2 -= nums[i - k + 1];
+      }
+    }
+    return ans;
+  }
+
+  /**
+   * 三个无重叠窗口的最大值
+   * @param nums
+   * @param k
+   * @return
+   */
+  public int[] maxSumOfThreeSubarrays3(int[] nums, int k) {
+    int[] ans = new int[3];
+    int sum1 = 0, maxSum1 = 0, maxSum1Idx = 0;
+    int sum2 = 0, maxSum12 = 0, maxSum12Idx1 = 0, maxSum12Idx2 = 0;
+    int sum3 = 0, maxSum123 = 0;
+
+    for (int i = 2 * k; i < nums.length; ++i) {
+      sum1 += nums[i - 2 * k];
+      sum2 += nums[i - k];
+      sum3 += nums[i];
+      if (i >= k * 3 - 1) {
+        if (sum1 > maxSum1) {
+          maxSum1 = sum1;
+          maxSum1Idx = i - k * 3 + 1;
+        }
+        if (maxSum1 + sum2 > maxSum12) {
+          maxSum12 = maxSum1 + sum2;
+          maxSum12Idx1 = maxSum1Idx;
+          maxSum12Idx2 = i - k * 2 + 1;
+        }
+        if (maxSum12 + sum3 > maxSum123) {
+          maxSum123 = maxSum12 + sum3;
+          ans[0] = maxSum12Idx1;
+          ans[1] = maxSum12Idx2;
+          ans[2] = i - k + 1;
+        }
+        sum1 -= nums[i - k * 3 + 1];
+        sum2 -= nums[i - k * 2 + 1];
+        sum3 -= nums[i - k + 1];
+      }
+    }
+    return ans;
   }
 }
