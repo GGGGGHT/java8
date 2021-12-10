@@ -47,11 +47,91 @@ package com.ggggght.learningjava8.leetcode;
  */
 public class Leetcode445 {
 
-  public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+  public static void main(String[] args) {
+    ListNode listNode1 = ListNode.buildList(0);
+    ListNode listNode2 = ListNode.buildList(0);
+    ListNode listNode = addTwoNumbers(listNode1, listNode2);
+    System.out.println(listNode);
+    // ListNode rev = reverseList(listNode);
+    // System.out.println(rev);
+  }
+
+  public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
     if (l1 == null || l2 == null) {
       return l1 == null ? l2 : l1;
     }
 
-    return null;
+    // 翻转链表
+    ListNode revl1 = reverseList(l1);
+    ListNode revl2 = reverseList(l2);
+    ListNode cur1 = revl1;
+    ListNode cur2 = revl2;
+    ListNode dummy = new ListNode(-1);
+    ListNode cur = dummy;
+
+    int jin = 0;
+    while (cur1 != null && cur2 != null) {
+      int t = cur1.val + cur2.val + jin;
+      ListNode tmpNode;
+      if (t >= 10) {
+        tmpNode = new ListNode(t % 10);
+        jin = 1;
+      } else {
+        tmpNode = new ListNode(t);
+        jin = 0;
+      }
+      cur.next = tmpNode;
+      cur = cur.next;
+      cur1 = cur1.next;
+      cur2 = cur2.next;
+    }
+
+    while (cur1 != null) {
+      int t = cur1.val + jin;
+      ListNode tmpNode;
+      if (t >= 10) {
+        tmpNode = new ListNode(t % 10);
+        jin = 1;
+      } else {
+        jin = 0;
+        tmpNode = new ListNode(t);
+      }
+      cur.next = tmpNode;
+      cur = cur.next;
+      cur1 = cur1.next;
+    }
+
+    while (cur2 != null) {
+      int t = cur2.val + jin;
+      ListNode tmpNode;
+      if (t >= 10) {
+        tmpNode = new ListNode(t % 10);
+        jin = 1;
+      } else {
+        jin = 0;
+        tmpNode = new ListNode(t);
+      }
+      cur.next = tmpNode;
+      cur = cur.next;
+      cur2 = cur2.next;
+    }
+
+    if(jin == 1) {
+      cur.next = new ListNode(1);
+    }
+
+    return reverseList(dummy.next);
+  }
+
+  private static ListNode reverseList(ListNode head) {
+    ListNode newHead = null;
+    ListNode next;
+    while (head != null) {
+      next = head.next;
+      head.next = newHead;
+      newHead = head;
+      head = next;
+    }
+    return newHead;
   }
 }
