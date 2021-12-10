@@ -88,14 +88,19 @@ public class Leetcode748 {
   public static String shortestCompletingWord(String licensePlate, String[] words) {
     // 将所有的字符映射到数组中
     int[] chars = new int[26];
-    for (int i = 0; i < licensePlate.length(); i++) {
-      char c1 = licensePlate.charAt(i);
-      if ((c1 >= 'a' && c1 <= 'z')) {
-        chars[c1 - 'a']++;
-      } else if (c1 >= 'A' && c1 <= 'Z') {
-        chars[c1 + 32 - 'a']++;
+    for (char c : licensePlate.toCharArray()) {
+      if (Character.isLetter(c)) {
+        chars[Character.toLowerCase(c) - 'a']++;
       }
     }
+    // for (int i = 0; i < licensePlate.length(); i++) {
+    //   char c1 = licensePlate.charAt(i);
+    //   if ((c1 >= 'a' && c1 <= 'z')) {
+    //     chars[c1 - 'a']++;
+    //   } else if (c1 >= 'A' && c1 <= 'Z') {
+    //     chars[c1 + 32 - 'a']++;
+    //   }
+    // }
 
     // System.out.println(Arrays.toString(chars));
     int[] dp = new int[words.length];
@@ -131,5 +136,27 @@ public class Leetcode748 {
 
     // System.out.println(Arrays.toString(dp));
     return minIndex == -1 ? "" : words[minIndex];
+  }
+
+  public String shortestCompletingWord2(String licensePlate, String[] words) {
+    int[] cnt = getCnt(licensePlate);
+    String ans = null;
+    for (String s : words) {
+      int[] cur = getCnt(s);
+      boolean ok = true;
+      for (int i = 0; i < 26 && ok; i++) {
+        if (cnt[i] > cur[i]) ok = false;
+      }
+      if (ok && (ans == null || ans.length() > s.length())) ans = s;
+    }
+    return ans;
+  }
+
+  int[] getCnt(String s) {
+    int[] cnt = new int[26];
+    for (char c : s.toCharArray()) {
+      if (Character.isLetter(c)) cnt[Character.toLowerCase(c) - 'a']++;
+    }
+    return cnt;
   }
 }
