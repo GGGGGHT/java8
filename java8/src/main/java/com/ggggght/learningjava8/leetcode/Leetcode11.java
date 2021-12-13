@@ -54,7 +54,11 @@ import java.util.Arrays;
 public class Leetcode11 {
   public static void main(String[] args) {
     Leetcode11 leetcode11 = new Leetcode11();
-    System.out.println(leetcode11.maxArea(new int[] {1,1}));
+    System.out.println(leetcode11.maxArea2(new int[] {1,1}));
+    System.out.println(leetcode11.maxArea2(new int[] {1,8,6,2,5,4,8,3,7}));
+    System.out.println(leetcode11.maxArea2(new int[] {4,3,2,1,4}));
+    System.out.println(leetcode11.maxArea2(new int[] {1,2,1}));
+    System.out.println(leetcode11.maxArea2(new int[] {2,3,4,5,18,17,6}));
   }
 
   public int maxArea(int[] height) {
@@ -66,6 +70,26 @@ public class Leetcode11 {
         max = Math.max(max, tmp);
       }
     }
+    return max;
+  }
+
+  /**
+   * 双指针
+   * 双指针代表的是 可以作为容器边界的所有位置的范围。在一开始，双指针指向数组的左右边界，表示 数组中所有的位置都可以作为容器的边界，因为我们还没有进行过任何尝试。
+   * 在这之后，我们每次将 对应的数字较小的那个指针 往 另一个指针 的方向移动一个位置，就表示我们认为 这个指针不可能再作为容器的边界了。
+   *
+   * @param height
+   * @return
+   */
+  public int maxArea2(int[] height) {
+    int length = height.length;
+    int left = 0, right = length - 1;
+    int max = -1;
+    while (left != right) {
+      max = Math.max(max, height[left] < height[right] ? height[left] * (right - left++)
+          : height[right] * (right-- - left));
+    }
+
     return max;
   }
 }
