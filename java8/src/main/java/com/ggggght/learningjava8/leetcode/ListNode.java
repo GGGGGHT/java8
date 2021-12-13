@@ -14,4 +14,17 @@ public class ListNode {
         ", next=" + next +
         '}';
   }
+
+  public static ListNode buildList(Integer... integers) {
+    ListNode head = new ListNode(-1);
+    for (Integer integer : integers) {
+      ListNode cur = head;
+      while (cur.next != null) {
+        cur = cur.next;
+      }
+      cur.next = new ListNode(integer);
+    }
+
+    return head.next;
+  }
 }
