@@ -62,7 +62,7 @@ public class Leetcode851 {
     Leetcode851 leetcode851 = new Leetcode851();
     var richer = new int[][] {{1, 0}, {2, 1}, {3, 1}, {3, 7}, {4, 3}, {5, 3}, {6, 3}};
     var quiet = new int[] {3, 2, 5, 4, 6, 1, 7, 0};
-    int[] ints = leetcode851.loudAndRich1(richer, quiet);
+    int[] ints = leetcode851.loudAndRich(richer, quiet);
     System.out.println(Arrays.toString(ints));
   }
 
