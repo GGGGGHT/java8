@@ -1,7 +1,5 @@
 package com.ggggght.learningjava8.leetcode;
 
-import java.awt.image.SampleModel;
-import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
@@ -59,15 +57,17 @@ public class Leetcode31 {
     // var arr2 = new int[] {3, 2, 1};
     // var arr3 = new int[] {1, 1, 5};
     // var arr4 = new int[] {1, 3, 2};
-    // var arr5 = new int[] {5, 4, 7, 5, 3, 2};
-    // var arr6 = new int[] {4, 2, 0, 2, 3, 2, 0};
-    var arr7 = new int[] {1, 7, 8, 5, 7, 4, 1, 8, 5, 9, 7, 5};
+    // var arr5 = new int[] {5, 4, , 5, 3, 2};
+    var arr6 = new int[] {4, 2, 0, 2, 3, 2, 0};
+    var arr7 = new int[] {4, 2, 0, 2, 3, 2, 0};
+    // var arr7 = new int[] {1, 7, 8, 5, 7, 4, 1, 8, 5, 9, 7, 5};
     // nextPermutation(arr);
     // nextPermutation(arr1);
     // nextPermutation(arr2);
     // nextPermutation(arr3);
     // nextPermutation(arr4);
-    nextPermutation(arr7);
+    nextPermutation(arr6);
+    nextPermutation1(arr7);
   }
 
   public static void nextPermutation(int[] nums) {
@@ -116,5 +116,35 @@ public class Leetcode31 {
     }
 
     System.out.println(Arrays.toString(nums));
+  }
+
+  public static void nextPermutation1(int[] nums) {
+    int i = nums.length - 2;
+    while (i >= 0 && nums[i] >= nums[i + 1]) {
+      i--;
+    }
+    if (i >= 0) {
+      int j = nums.length - 1;
+      while (j >= 0 && nums[i] >= nums[j]) {
+        j--;
+      }
+      swap(nums, i, j);
+    }
+    reverse(nums, i + 1);
+  }
+
+  public static void swap(int[] nums, int i, int j) {
+    int temp = nums[i];
+    nums[i] = nums[j];
+    nums[j] = temp;
+  }
+
+  public static void reverse(int[] nums, int start) {
+    int left = start, right = nums.length - 1;
+    while (left < right) {
+      swap(nums, left, right);
+      left++;
+      right--;
+    }
   }
 }
