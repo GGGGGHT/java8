@@ -114,6 +114,29 @@ public class Leetcode997 {
 
     return res == -1 ? -1 : in[res] == n - 1 ? res : -1;
   }
+
+  /**
+   * 令 mm 为 trust 数组长度，对于每个 trust[i] = (a, b)trust[i]=(a,b) 而言，看作是从 aa 指向 bb 的有向边。
+   *
+   * 遍历 trust，统计每个节点的「入度」和「出度」：若存在 a -> ba−>b，则 aa 节点「出度」加一，bb 节点「入度」加一。
+   *
+   * 最后遍历所有点，若存在「入度」数量为 n - 1n−1，且「出度」数量为 00 的节点即是法官。
+   *
+   * @param n
+   * @param trust
+   * @return
+   */
+  public int findJudge1(int n, int[][] trust) {
+    int[] in = new int[n + 1], out = new int[n + 1];
+    for (int[] t : trust) {
+      int a = t[0], b = t[1];
+      in[b]++; out[a]++;
+    }
+    for (int i = 1; i <= n; i++) {
+      if (in[i] == n - 1 && out[i] == 0) return i;
+    }
+    return -1;
+  }
 }
 
 // 0 1 2 3 4
