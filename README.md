@@ -7,7 +7,7 @@
 - [x] Optional
 - [ ] 线程池
 - [x] java.time
-- [ ] guava 
+- [x] guava 
 - [x] 使用ASM动态生成class
 - [ ] mybatis
 - [ ] btrace
