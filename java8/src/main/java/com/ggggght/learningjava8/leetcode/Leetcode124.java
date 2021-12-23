@@ -56,7 +56,6 @@ public class Leetcode124 {
         right = integers.get(i + 1) == null ? 0 : integers.get(i + 1);
       } else {
         right = integers.get(i) == null ? 0 : integers.get(i);
-        ;
         father = integers.get((i - 2) / 2);
         left = integers.get(i - 1) == null ? 0 : integers.get(i - 1);
       }
