@@ -1,6 +1,7 @@
 package com.ggggght.learningjava8.leetcode;
 
 import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.Queue;
 /**
  <p>如果一棵二叉树满足下述几个条件，则可以称为 <strong>奇偶树</strong> ：</p>
@@ -120,7 +121,7 @@ public class Leetcode1609 {
     a.left.right = new TreeNode(7);
     a.left.right.right = new TreeNode(18);
     a.left.right.right.right = new TreeNode(6);
-    System.out.println(isEvenOddTree(a));
+    System.out.println(isEvenOddTree2(a));
   }
 
   public static boolean isEvenOddTree(TreeNode root) {
@@ -188,4 +189,30 @@ public class Leetcode1609 {
     System.out.println("current level = " + level);
     return true;
   }
+
+  /**
+   * 三叶姐解法 使用队列层序遍历 使用size记录该层的有几个元素
+   * @param root
+   * @return
+   */
+  public static boolean isEvenOddTree2(TreeNode root) {
+    Deque<TreeNode> d = new ArrayDeque<>();
+    boolean flag = true;
+    d.addLast(root);
+    while (!d.isEmpty()) {
+      int size = d.size(), prev = flag ? 0 : 0x3f3f3f3f;
+       while (size-- > 0) {
+        TreeNode node = d.pollFirst();
+        int cur = node.val;
+        if (flag && (cur % 2 == 0 || cur <= prev)) return false;
+        if (!flag && (cur % 2 != 0 || cur >= prev)) return false;
+        prev = cur;
+        if (node.left != null) d.addLast(node.left);
+        if (node.right != null) d.addLast(node.right);
+      }
+      flag = !flag;
+    }
+    return true;
+  }
+
 }
