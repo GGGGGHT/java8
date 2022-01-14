@@ -65,4 +65,24 @@ public class Leetcode747 {
     }
     return -1;
   }
+
+  /**
+   * 遍历过程中维护最大值和次大值的索引 遍历完成后判断最大和次大是否满足条件
+   * @param nums
+   * @return
+   */
+  public static int dominantIndex2(int[] nums) {
+    int n = nums.length;
+    if (n == 1) return 0;
+    // b最大  a次大
+    int a = -1, b = 0;
+    for (int i = 1; i < n; i++) {
+      if (nums[i] > nums[b]) {
+        a = b; b = i;
+      } else if (a == -1 || nums[i] > nums[a]) {
+        a = i;
+      }
+    }
+    return nums[b] >= nums[a] * 2 ? b : -1;
+  }
 }
