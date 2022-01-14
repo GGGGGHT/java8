@@ -1,8 +1,11 @@
 package com.ggggght.learningjava8.leetcode;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.PriorityQueue;
+import java.util.Queue;
+import java.util.Set;
 
 /**
  <p>给定两个以升序排列的整数数组 <code>nums1</code> 和<strong> </strong><code>nums2</code><strong> </strong>, 以及一个整数 <code>k</code><strong> </strong>。</p>
@@ -54,7 +57,9 @@ import java.util.PriorityQueue;
 public class Leetcode373 {
   public static void main(String[] args) {
     Leetcode373 leetcode373 = new Leetcode373();
-    System.out.println(leetcode373.kSmallestPairs(new int[] {1, 2}, new int[] {3}, 3));
+    // System.out.println(leetcode373.kSmallestPairs(new int[] {1, 2}, new int[] {3}, 3));
+    // System.out.println(leetcode373.nthUglyNumber2(10));
+    System.out.println(leetcode373.kSmallestPairs2(new int[] {1, 2}, new int[] {4, 5, 9}, 3));
   }
 
   public List<List<Integer>> kSmallestPairs(int[] nums1, int[] nums2, int k) {
@@ -89,9 +94,28 @@ public class Leetcode373 {
       for (int j = _2startIdx; j < nums2.length; j++) {
         path.add(nums2[j]);
         backtracking(path, _1startIdx, _2startIdx + 1, queue, nums1, nums2);
-        path.remove(path.size() - 1);
+        path.remove(1);
       }
       path.remove(0);
     }
+  }
+
+  boolean flag = true;
+  public List<List<Integer>> kSmallestPairs2(int[] nums1, int[] nums2, int k) {
+    int n = nums1.length, m = nums2.length;
+    if (n > m && !(flag = false)) return kSmallestPairs2(nums2, nums1, k);
+    List<List<Integer>> ans = new ArrayList<>();
+    PriorityQueue<int[]> q = new PriorityQueue<>((a,b)->(nums1[a[0]]+nums2[a[1]])-(nums1[b[0]]+nums2[b[1]]));
+    for (int i = 0; i < Math.min(n, k); i++) q.add(new int[]{i, 0});
+    while (ans.size() < k && !q.isEmpty()) {
+      int[] poll = q.poll();
+      int a = poll[0], b = poll[1];
+      ans.add(new ArrayList<>(){{
+        add(flag ? nums1[a] : nums2[b]);
+        add(flag ? nums2[b] : nums1[a]);
+      }});
+      if (b + 1 < m) q.add(new int[]{a, b + 1});
+    }
+    return ans;
   }
 }
