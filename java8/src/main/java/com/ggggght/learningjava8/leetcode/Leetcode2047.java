@@ -74,7 +74,7 @@ public class Leetcode2047 {
    */
   public static int countValidWords(String sentence) {
     var res = 0;
-    String[] s = sentence.split("\\s+");
+    String[] s = sentence.split(" ");
     for (String s1 : s) {
       if (isValid(s1)) {
         System.out.println(s1);
@@ -85,24 +85,18 @@ public class Leetcode2047 {
   }
 
   private static boolean isValid(String s) {
-    if(s.length() == 0) return false;
-    char[] chars = s.toCharArray();
-    int _size = 0;
-    for (int i = 0; i < chars.length; i++) {
-      // 仅由小写字母、连字符和/或标点（不含数字）。
-      if (Character.isDigit(chars[i])) return false;
-
-      // 至多一个 连字符 '-'
-      if ('-' == chars[i]) {
-        if (_size >= 1) return false;
-        if (i == 0 || i == chars.length -1 || !(Character.isLetter(chars[i - 1]) && Character.isLetter(chars[i + 1]))) {
-          return false;
-        }
-        _size++;
+    int n = s.length();
+    if (n == 0) return false;
+    for (int i = 0, c1 = 0, c2 = 0; i < n; i++) {
+      char c = s.charAt(i);
+      if (Character.isDigit(c)) return false;
+      if (c == ' ') return false;
+      if (c == '-') {
+        if (++c1 > 1 || (i == 0 || i == n - 1)) return false;
+        if (!Character.isLetter(s.charAt(i - 1)) || !Character.isLetter(s.charAt(i + 1))) return false;
       }
-
-      if ((chars[i] == '!' || chars[i] == '.' || chars[i] == ',') && i != chars.length - 1) {
-        return false;
+      if (c == '!' || c == '.' || c == ',') {
+        if (++c2 > 1 || (i != n - 1)) return false;
       }
     }
     return true;
