@@ -9,7 +9,7 @@
 - [x] java.time
 - [x] guava 
 - [x] 使用ASM动态生成class
-- [ ] mybatis
+- [x] mybatis
 - [ ] btrace
 - [ ] HSDB
 - [ ] javac 
