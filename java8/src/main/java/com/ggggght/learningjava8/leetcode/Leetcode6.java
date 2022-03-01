@@ -73,6 +73,38 @@ public class Leetcode6 {
     for (StringBuilder row : rows) res.append(row);
     return res.toString();
   }
+  
+  /**
+    * 对于第一行和最后一行：公差为 2 * (n − 1) 的等差数列，首项是 i 对于其他行：两个公差为 2 * (n − 1) 的等差数列交替排列，首项分别是 i 和 2 * n − i − 2
+    */
+  public String convert2(String s, int r) {
+         int n = s.length();
+        if (n == 1 || r == 1) return s;
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < r; i++) {
+            if (i == 0 || i == r - 1) {
+                int pos = i, offset = 2 * (r - 1);
+                while (pos < n) {
+                    sb.append(s.charAt(pos));
+                    pos += offset;
+                }
+            } else {
+                int pos1 = i, pos2 = 2 * r - i - 2;
+                int offset = 2 * (r - 1);
+                while (pos1 < n || pos2 < n) {
+                    if (pos1 < n) {
+                        sb.append(s.charAt(pos1));
+                        pos1 += offset;
+                    }
+                    if (pos2 < n) {
+                        sb.append(s.charAt(pos2));
+                        pos2 += offset;
+                    }
+                }
+            }
+        }
+        return sb.toString();
+    }
 }
 
 // PAYPALISHIRING
