@@ -1,3 +1,8 @@
+package com.ggggght.learningjava8.leetcode;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class Leetcode2100 {
   public List<Integer> goodDaysToRobBank(int[] security, int time) {
         int n = security.length;

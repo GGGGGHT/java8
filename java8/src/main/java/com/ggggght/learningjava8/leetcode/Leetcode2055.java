@@ -1,3 +1,5 @@
+package com.ggggght.learningjava8.leetcode;
+
 public class Leetcode2055 {
   // 在给定 s 的前提下，每个位置其左边和右边最近的蜡烛唯一确定。我们可以在预处理前缀和的同时，预处理每个位置左右最近的蜡烛下标，从而省去每次二分。
   public static int[] platesBetweenCandles(String s, int[][] qs) {
