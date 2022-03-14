@@ -2,11 +2,9 @@ package com.ggggght.learningjava8.leetcode;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 /**
  <p>假设 Andy 和 Doris 想在晚餐时选择一家餐厅，并且他们都有一个表示最喜爱餐厅的列表，每个餐厅的名字用字符串表示。</p>
 
@@ -119,8 +117,6 @@ public class Leetcode599 {
         ans.add(s);
       }
     }
-    return ans.toArray(new String[ans.size()]);
-
-
+    return ans.toArray(new String[0]);
   }
 }
