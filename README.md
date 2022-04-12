@@ -5,7 +5,7 @@
 - [x] Stream
 - [x] lambda lambda的局限性： 只有函数式接口才可以使用lambda 非函数式则不可以 lambda无法获取自身引用 即没有this对象 在lambda中this指的是外围实例 在匿名类中this则指的是匿名类实例
 - [x] Optional
-- [ ] 线程池
+- [x] 线程池
 - [x] java.time
 - [x] guava 
 - [x] 使用ASM动态生成class
