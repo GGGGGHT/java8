@@ -15,6 +15,7 @@
 - [x] javac 
 - [ ] valhandle
 - [ ] asm
+- [ ] javassist
 
 
 ## 方法引用
