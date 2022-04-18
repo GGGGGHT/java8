@@ -17,6 +17,8 @@
 - [ ] asm
 - [ ] javassist
 - [ ] jar
+- [ ] MXBean
+
 
 ## 方法引用
 
