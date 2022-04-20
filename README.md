@@ -18,6 +18,8 @@
 - [ ] javassist
 - [ ] jar
 - [x] MXBean
+- [ ] jmc(JDK Mission Control)
+- [ ] jfr
 
 
 ## 方法引用
