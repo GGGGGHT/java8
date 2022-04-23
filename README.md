@@ -19,7 +19,7 @@
 - [ ] jar
 - [x] MXBean
 - [ ] jmc(JDK Mission Control)
-- [ ] jfr
+- [x] jfr
 
 
 ## 方法引用
