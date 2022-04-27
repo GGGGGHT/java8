@@ -18,7 +18,7 @@
 - [ ] javassist
 - [ ] jar
 - [x] MXBean
-- [x] jmc(JDK Mission Control)
+- [ ] jmc(JDK Mission Control)
 - [x] jfr
 - [ ] TLAB
 
