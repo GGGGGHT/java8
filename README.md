@@ -14,7 +14,7 @@
 - [ ] HSDB
 - [x] javac 
 - [ ] valhandle
-- [ ] asm
+- [x] asm
 - [ ] javassist
 - [ ] jar
 - [x] MXBean
