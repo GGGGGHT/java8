@@ -10,7 +10,7 @@
 - [x] guava 
 - [x] 使用ASM动态生成class
 - [x] mybatis
-- [ ] btrace
+- [x] btrace
 - [ ] HSDB
 - [x] javac 
 - [ ] valhandle
