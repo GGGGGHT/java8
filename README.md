@@ -20,6 +20,7 @@
 - [x] MXBean
 - [x] jfr
 - [ ] TLAB
+- [ ] minio
 
 
 ## 方法引用
