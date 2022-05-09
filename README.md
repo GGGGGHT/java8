@@ -21,6 +21,7 @@
 - [x] jfr
 - [ ] TLAB
 - [ ] minio
+- [ ] graalvm
 
 
 ## 方法引用
