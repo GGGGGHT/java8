@@ -74,7 +74,7 @@ Lambda 只能读取final或者有效的final变量  不能修改任何local变�
 
 使用: 
 
-```shell
+```shell 
 $ javac com/ggggght/learningjava8/compiler/NameChecker.java
 $ javac com/ggggght/learningjava8/compiler/NameCheckProcessor.java
 $ javac -g -processor com.ggggght.learningjava8.compiler.NameCheckProcessorcom/ggggght/learningjava8/compiler/BADLY_NAMED_CODE.java
