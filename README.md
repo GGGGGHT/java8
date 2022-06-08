@@ -22,7 +22,7 @@
 - [ ] TLAB
 - [ ] minio
 - [ ] graalvm
-- [ ] kotlin
+- [x] kotlin
 
 
 ## 方法引用
