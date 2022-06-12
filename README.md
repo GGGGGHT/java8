@@ -24,6 +24,7 @@
 - [ ] graalvm
 - [x] kotlin
 - [ ] github codespace
+- [ ] gradle
 
 
 ## 方法引用
