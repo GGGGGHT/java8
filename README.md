@@ -23,7 +23,6 @@
 - [ ] minio
 - [ ] graalvm
 - [x] kotlin
-- [ ] github codespace
 - [ ] gradle
 
 
