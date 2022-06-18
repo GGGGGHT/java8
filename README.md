@@ -24,6 +24,7 @@
 - [ ] graalvm
 - [x] kotlin
 - [ ] gradle
+- [ ] classloader
 
 
 ## 方法引用
