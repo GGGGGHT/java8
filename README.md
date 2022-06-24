@@ -19,7 +19,6 @@
 - [ ] jar
 - [x] MXBean
 - [x] jfr
-- [ ] TLAB
 - [ ] minio
 - [ ] graalvm
 - [x] kotlin
