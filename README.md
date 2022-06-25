@@ -16,7 +16,6 @@
 - [ ] valhandle
 - [x] asm
 - [ ] javassist
-- [ ] jar
 - [x] MXBean
 - [x] jfr
 - [ ] minio
