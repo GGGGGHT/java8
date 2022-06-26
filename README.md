@@ -21,6 +21,7 @@
 - [ ] minio
 - [ ] graalvm
 - [x] kotlin
+- [ ] maven plugin
 - [ ] gradle
 - [ ] classloader
 
