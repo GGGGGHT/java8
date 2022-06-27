@@ -24,6 +24,7 @@
 - [ ] maven plugin
 - [ ] gradle
 - [ ] classloader
+- [ ] G1GC 
 
 
 ## 方法引用
@@ -140,3 +141,7 @@ LL(1)分析法中第一个L表示从左到右处理输入的Token对象；第二
 ```shell
 java -XX:StartFlightRecording=disk=true,dumponexit=true,filename=recording.jfr,maxsize=1024m,maxage=1d,settings=profile,path-to-gc-roots=true test.Main
 ```
+
+
+---
+[G1](https://inside.java/2022/06/20/sip056/)
