@@ -25,7 +25,7 @@
 - [ ] gradle
 - [ ] classloader
 - [ ] G1GC 
-
+- [ ] fence
 
 ## 方法引用
 
