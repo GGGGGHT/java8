@@ -26,6 +26,7 @@
 - [ ] classloader
 - [ ] G1GC 
 - [ ] fence
+- [ ] java agent
 
 ## 方法引用
 
