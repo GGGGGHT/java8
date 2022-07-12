@@ -27,6 +27,8 @@
 - [ ] G1GC 
 - [ ] fence
 - [ ] java agent
+- [ ] jmh
+- [ ] StackWalker
 
 ## 方法引用
 
