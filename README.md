@@ -28,8 +28,9 @@
 - [ ] fence
 - [ ] java agent
 - [ ] jmh
-- [ ] StackWalker[^Spring]
+- [ ] StackWalker[^2]
 
+[^2]: https://github.com/spring-projects/spring-boot/pull/31701
 ## 方法引用
 
 方法引用与匿名类相比的优势在于 语法更加简洁。方法引用比Lambda更简洁 
