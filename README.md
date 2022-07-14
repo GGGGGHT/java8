@@ -146,6 +146,3 @@ java -XX:StartFlightRecording=disk=true,dumponexit=true,filename=recording.jfr,m
 ```
 
 
----
-[G1](https://inside.java/2022/06/20/sip056/)
-[^Spring]: https://github.com/spring-projects/spring-boot/issues/31665
