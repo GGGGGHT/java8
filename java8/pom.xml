@@ -17,7 +17,7 @@
 
   <properties>
     <java.version>17</java.version>
-    <fastjson.version>1.2.83</fastjson.version>
+    <fastjson.version>2.0.11.graal</fastjson.version>
     <commons-lang3.version>3.12.0</commons-lang3.version>
     <jmh-version>1.21</jmh-version>
   </properties>
