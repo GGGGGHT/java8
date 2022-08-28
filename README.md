@@ -28,7 +28,7 @@
 - [ ] fence
 - [ ] java agent
 - [ ] jmh
-- [ ] StackWalker[^2]
+- [x] StackWalker[^2]
 - [ ] kotlin
 - [ ] skywalking
 
