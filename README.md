@@ -144,6 +144,9 @@ LL(1)分析法中第一个L表示从左到右处理输入的Token对象；第二
 |maxsize | 250MB | 这个参数只有在 disk 为 true 的情况下才有效。最大文件大小，支持单位配置， 不带单位是字节，m或者M代表MB，g或者G代表GB。设置为0代表不限制大小**。虽然官网说默认就是0，但是实际用的时候，不设置会有提示**： No limit specified, using maxsize=250MB as default. 注意，这个配置不能小于后面将会提到的 maxchunksize 这个参数。
 |path-to-gc-roots| false | 是否记录GC根节点到活动对象的路径，一般不打开这个，首先这个在我个人定位问题的时候，很难用到，只要你的编程习惯好。还有就是打开这个，性能损耗比较大，会导致FullGC一般是在怀疑有内存泄漏的时候热启动这种采集，并且通过产生对象堆栈无法定位的时候，动态打开即可。一般通过产生这个对象的堆栈就能定位，如果定位不到，怀疑有其他引用，例如 ThreadLocal 没有释放这样的，可以在 dump 的时候采集 gc roots
 
+JDK Flight Recorder (JFR) 是一个基于事件的工具，用于监视和分析内置在JDK中的工具。 使用默认设置，JFR 的开销非常低, 基本上<1%，因此可以在生产中使用。 
+通常从 JFR 中提取信息需要执行转储； 但是，在 JDK 14 中添加的包 jdk.jfr.consumer 提供了用于使用 JFR 事件的 API，而无需执行 JFR 转储。
+
 ```shell
 java -XX:StartFlightRecording=disk=true,dumponexit=true,filename=recording.jfr,maxsize=1024m,maxage=1d,settings=profile,path-to-gc-roots=true test.Main
 ```
