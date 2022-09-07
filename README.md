@@ -33,6 +33,7 @@
 - [ ] skywalking
 - [x] eclipse collection 
 - [ ] jetbrains annotation
+- [ ] idea Profiler
 
 [^2]: https://github.com/spring-projects/spring-boot/pull/31701
 ## 方法引用
