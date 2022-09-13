@@ -53,6 +53,9 @@ public class Learningjava8Application implements ApplicationRunner {
 		// System.out.println("hello world");
 	}
 
+	public static void main1(String[] args) throws RuntimeException {
+
+	}
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
 		// String[] beans = context.getBeanDefinitionNames();
