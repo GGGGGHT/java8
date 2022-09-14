@@ -3,6 +3,9 @@ package com.ggggght.learningjava8.aop;
 import java.lang.reflect.Method;
 import org.springframework.util.ReflectionUtils;
 
+/**
+ * use <b>-Dsun.misc.ProxyGenerator.saveGeneratedFiles=true</b> to generate class file
+ */
 public class TargetFilterDemo {
     public static void main(String[] args) throws ClassNotFoundException {
         String targetClassName = "com.ggggght.learningjava8.Learningjava8Application";
