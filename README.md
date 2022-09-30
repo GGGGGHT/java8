@@ -155,3 +155,5 @@ java -XX:StartFlightRecording=disk=true,dumponexit=true,filename=recording.jfr,m
 ```
 
 
+## Question
+[ ] Spring-batch 设置taskExecutor后jackson解析json失败
