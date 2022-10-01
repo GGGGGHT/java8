@@ -156,4 +156,4 @@ java -XX:StartFlightRecording=disk=true,dumponexit=true,filename=recording.jfr,m
 
 
 ## Question
-[ ] Spring-batch 设置taskExecutor后jackson解析json失败
+- [x] Spring-batch 设置taskExecutor后jackson解析json失败  [See Also](https://stackoverflow.com/questions/73915795/is-there-a-thread-safe-jacksonjsonobjectreader-class-in-spring-batch)
