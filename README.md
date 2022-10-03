@@ -157,3 +157,4 @@ java -XX:StartFlightRecording=disk=true,dumponexit=true,filename=recording.jfr,m
 
 ## Question
 - [x] Spring-batch 设置taskExecutor后jackson解析json失败  [See Also](https://stackoverflow.com/questions/73915795/is-there-a-thread-safe-jacksonjsonobjectreader-class-in-spring-batch) 原因是多线程读取json不安全导致
+- [x] SpringBoot Web项目没有 main线程 [See Also](https://stackoverflow.com/questions/73896394/there-is-no-main-thread-in-the-springboot-web-project) 原因是main线程的工作已经结束 但是由于进程中有其他非守护线程还在继续工作 所以进程不会退出
