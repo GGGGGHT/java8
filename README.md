@@ -162,3 +162,4 @@ java -XX:StartFlightRecording=disk=true,dumponexit=true,filename=recording.jfr,m
 - [x] SpringBoot Web项目没有 main线程 [See Also](https://stackoverflow.com/questions/73896394/there-is-no-main-thread-in-the-springboot-web-project) 原因是main线程的工作已经结束 但是由于进程中有其他非守护线程还在继续工作 所以进程不会退出
 - [x] 解决btrace的bug [See Also](https://github.com/btraceio/btrace/pull/584)
 - [x] Java8之前打印SafePoint的日志 [See Also](https://stackoverflow.com/questions/62819904/how-can-i-output-the-safepoint-log-in-a-specified-file) 使用`-XX:+LogVMOutput` `-XX:LogFile=logs/hotspot_pid%p.log`这两个参数
+- [x] Java 反射 [See Also](https://github.com/openjdk/jdk/blob/master/src/java.base/share/classes/jdk/internal/reflect/NativeMethodAccessorImpl.java#L55) 经过15次调用之后会生成直接调用的方法
