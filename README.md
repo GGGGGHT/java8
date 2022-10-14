@@ -33,7 +33,8 @@
 - [ ] skywalking
 - [x] eclipse collection 
 - [ ] jetbrains annotation
-- [ ] idea Profiler
+- [x] idea Profiler
+- [ ] JProfiler
 
 [^2]: https://github.com/spring-projects/spring-boot/pull/31701
 ## 方法引用
@@ -134,7 +135,7 @@ LL(1)分析法中第一个L表示从左到右处理输入的Token对象；第二
 
 
 ---
-# jfr  StartFlightRecording配置参数
+# jfr  [StartFlightRecording配置参数](https://docs.oracle.com/javase/7/docs/technotes/tools/windows/java.html#:~:text=%2DXX%3AStartFlightRecording%3Dparameter%3Dvalue)
 |配置key | 默认值 | 说明|
 |---|---|---|
 |delay | 0 | 延迟多久后启动 JFR 记录，支持带单位配置， 例如 delay=60s（秒）， delay=20m（分钟）， delay=1h（小时）， delay=1d（天），不带单位就是秒， 0就是没有延迟直接开始记录。一般为了避免框架初始化等影响，我们会延迟 1 分钟开始记录（例如Spring cloud应用，可以看下日志中应用启动耗时，来决定下这个时间）|
@@ -146,6 +147,7 @@ LL(1)分析法中第一个L表示从左到右处理输入的Token对象；第二
 |maxage | 0 | 这个参数只有在 disk 为 true 的情况下才有效。最大文件记录保存时间，就是 global buffer 满了需要刷入本地临时目录下保存，这些文件最多保留多久的。也可以通过单位配置，没有单位就是秒，默认是0，就是不限制
 |maxsize | 250MB | 这个参数只有在 disk 为 true 的情况下才有效。最大文件大小，支持单位配置， 不带单位是字节，m或者M代表MB，g或者G代表GB。设置为0代表不限制大小**。虽然官网说默认就是0，但是实际用的时候，不设置会有提示**： No limit specified, using maxsize=250MB as default. 注意，这个配置不能小于后面将会提到的 maxchunksize 这个参数。
 |path-to-gc-roots| false | 是否记录GC根节点到活动对象的路径，一般不打开这个，首先这个在我个人定位问题的时候，很难用到，只要你的编程习惯好。还有就是打开这个，性能损耗比较大，会导致FullGC一般是在怀疑有内存泄漏的时候热启动这种采集，并且通过产生对象堆栈无法定位的时候，动态打开即可。一般通过产生这个对象的堆栈就能定位，如果定位不到，怀疑有其他引用，例如 ThreadLocal 没有释放这样的，可以在 dump 的时候采集 gc roots
+|compress|false |指定是否使用 gzip 文件压缩实用程序压缩磁盘上的 JFR 记录日志文件（JFR 类型）。 此参数仅在指定文件名参数时有效。 默认情况下，它设置为 false（记录未压缩)。|
 
 JDK Flight Recorder (JFR) 是一个基于事件的工具，用于监视和分析内置在JDK中的工具。 使用默认设置，JFR 的开销非常低, 基本上<1%，因此可以在生产中使用。 
 通常从 JFR 中提取信息需要执行转储； 但是，在 JDK 14 中添加的包 jdk.jfr.consumer 提供了用于使用 JFR 事件的 API，而无需执行 JFR 转储。
@@ -155,3 +157,10 @@ java -XX:StartFlightRecording=disk=true,dumponexit=true,filename=recording.jfr,m
 ```
 
 
+## Question
+- [x] Spring-batch 设置taskExecutor后jackson解析json失败  [See Also](https://stackoverflow.com/questions/73915795/is-there-a-thread-safe-jacksonjsonobjectreader-class-in-spring-batch) 原因是多线程读取json不安全导致
+- [x] SpringBoot Web项目没有 main线程 [See Also](https://stackoverflow.com/questions/73896394/there-is-no-main-thread-in-the-springboot-web-project) 原因是main线程的工作已经结束 但是由于进程中有其他非守护线程还在继续工作 所以进程不会退出
+- [x] 解决btrace的bug [See Also](https://github.com/btraceio/btrace/pull/584)
+- [x] Java8之前打印SafePoint的日志 [See Also](https://stackoverflow.com/questions/62819904/how-can-i-output-the-safepoint-log-in-a-specified-file) 使用`-XX:+LogVMOutput` `-XX:LogFile=logs/hotspot_pid%p.log`这两个参数
+- [x] Java 反射 [See Also](https://github.com/openjdk/jdk/blob/master/src/java.base/share/classes/jdk/internal/reflect/NativeMethodAccessorImpl.java#L55) 经过15次调用之后会生成直接调用的方法
+- [ ] 测试环境服务经常下线的问题

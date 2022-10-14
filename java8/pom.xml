@@ -17,7 +17,7 @@
 
   <properties>
     <java.version>17</java.version>
-    <fastjson.version>2.0.12.graal</fastjson.version>
+    <fastjson.version>2.0.15.graal</fastjson.version>
     <commons-lang3.version>3.12.0</commons-lang3.version>
     <jmh-version>1.21</jmh-version>
     <kotlin.version>1.7.20</kotlin.version>
@@ -122,12 +122,12 @@
     <dependency>
       <groupId>io.netty</groupId>
       <artifactId>netty-all</artifactId>
-      <version>4.1.81.Final</version>
+      <version>4.1.84.Final</version>
     </dependency>
     <dependency>
       <groupId>com.google.protobuf</groupId>
       <artifactId>protobuf-java</artifactId>
-      <version>3.21.5</version>
+      <version>3.21.7</version>
     </dependency>
     <dependency>
       <groupId>dom4j</groupId>
@@ -148,7 +148,7 @@
     <dependency>
       <groupId>org.springframework.data</groupId>
       <artifactId>spring-data-redis</artifactId>
-      <version>2.7.2</version>
+      <version>2.7.4</version>
       <exclusions>
         <exclusion>
           <artifactId>spring-data-commons</artifactId>
@@ -159,7 +159,7 @@
     <dependency>
       <groupId>org.springframework.data</groupId>
       <artifactId>spring-data-commons</artifactId>
-      <version>2.7.2</version>
+      <version>2.7.4</version>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -197,31 +197,19 @@
       <artifactId>junit-jupiter-api</artifactId>
       <version>5.9.0</version>
     </dependency>
-<!--    <dependency>-->
-<!--      <groupId>org.apache.shardingsphere.elasticjob</groupId>-->
-<!--      <artifactId>elasticjob-lite-core</artifactId>-->
-<!--      <version>3.0.0</version>-->
-<!--    </dependency>-->
-<!--    <dependency>-->
-<!--      <groupId>org.apache.shardingsphere.elasticjob</groupId>-->
-<!--      <artifactId>elasticjob-cloud-spring-boot-starter</artifactId>-->
-<!--      <version>3.0.1</version>-->
-<!--    </dependency>-->
     <dependency>
-      <groupId>org.apache.shardingsphere.elasticjob</groupId>
-      <artifactId>elasticjob-cloud</artifactId>
-      <version>3.0.0</version>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-aop</artifactId>
+      <version>5.3.23</version>
     </dependency>
     <dependency>
-      <groupId>org.jetbrains.kotlin</groupId>
-      <artifactId>kotlin-stdlib-jdk8</artifactId>
-      <version>${kotlin.version}</version>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-aspects</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.jetbrains.kotlin</groupId>
-      <artifactId>kotlin-test</artifactId>
-      <version>${kotlin.version}</version>
-      <scope>test</scope>
+      <groupId>org.aspectj</groupId>
+      <artifactId>aspectjrt</artifactId>
+      <version>1.9.9.1</version>
     </dependency>
   </dependencies>
 
