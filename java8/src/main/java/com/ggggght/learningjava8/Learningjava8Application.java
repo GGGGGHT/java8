@@ -1,6 +1,5 @@
 package com.ggggght.learningjava8;
 
-import com.ggggght.learningjava8.jmx.Hello;
 import org.dom4j.DocumentException;
 
 import org.mybatis.spring.annotation.MapperScan;
@@ -9,15 +8,18 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.actuate.autoconfigure.security.servlet.ManagementWebSecurityAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.context.ApplicationContext;
-import org.springframework.data.redis.core.StringRedisTemplate;
+// import org.springframework.data.redis.core.StringRedisTemplate;
 
 import javax.management.*;
 import java.io.IOException;
-import java.lang.management.ManagementFactory;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 
-@SpringBootApplication
+@EnableWebSecurity
+@SpringBootApplication(exclude = {SecurityAutoConfiguration.class, ManagementWebSecurityAutoConfiguration.class})
 @MapperScan(basePackages = "com.ggggght.learningjava8")
 public class Learningjava8Application implements ApplicationRunner {
 
@@ -30,8 +32,8 @@ public class Learningjava8Application implements ApplicationRunner {
 	@Value("${test.value2}")
 	String value2;
 
-	@Autowired
-	StringRedisTemplate template;
+	// @Autowired
+	// StringRedisTemplate template;
 
 	public static void main(String[] args) throws IOException, DocumentException, MalformedObjectNameException,
 			NotCompliantMBeanException, InstanceAlreadyExistsException, MBeanRegistrationException {
