@@ -9,6 +9,8 @@ spring:
   redis:
     host: localhost
     port: 6379
+  lifecycle:
+    timeout-per-shutdown-phase: "30s"
 #    password: 123
 debug: false
 test:
@@ -16,3 +18,16 @@ test:
   value2: ${test.value} is a number
 server:
   port: 8888
+  shutdown: "graceful"
+management:
+  endpoint:
+    health:
+      probes:
+        enabled: true
+      show-details: always
+    shutdown:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include=*:
