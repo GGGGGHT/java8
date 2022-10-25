@@ -35,6 +35,8 @@
 - [ ] jetbrains annotation
 - [x] idea Profiler
 - [ ] JProfiler
+- [ ] RocketMQ
+- [ ] Annotation Processor
 
 [^2]: https://github.com/spring-projects/spring-boot/pull/31701
 ## 方法引用
@@ -164,3 +166,22 @@ java -XX:StartFlightRecording=disk=true,dumponexit=true,filename=recording.jfr,m
 - [x] Java8之前打印SafePoint的日志 [See Also](https://stackoverflow.com/questions/62819904/how-can-i-output-the-safepoint-log-in-a-specified-file) 使用`-XX:+LogVMOutput` `-XX:LogFile=logs/hotspot_pid%p.log`这两个参数
 - [x] Java 反射 [See Also](https://github.com/openjdk/jdk/blob/master/src/java.base/share/classes/jdk/internal/reflect/NativeMethodAccessorImpl.java#L55) 经过15次调用之后会生成直接调用的方法
 - [ ] 测试环境服务经常下线的问题
+- [ ] Kotlin字节码比Java字节码输出多一条指令[See Also](https://youtrack.jetbrains.com/issue/KT-54614)
+
+
+## MISC
+### google hacking
+Syntax Words:
+- intitle: restricts your search to the titles of web pages
+- inurl: restricts your search to the URLs of web pages.
+- intext: searches only body text (i.e., ignores link text, URLs, and titles).
+- inanchor: searches for text in a page's link anchors. A link anchor is the descriptive text of a link.
+- site: allows you to narrow your search by either a site or a top-level domain.
+- link: returns a list of pages linking to the specified URL. 
+- cache: finds a copy of the page that Google indexed even if that page is no longer available at its original URL or has since changed its content completely.
+- daterange 
+- filetype: searches the suffixes or filename extensions.  eg(pdf,ppt,asp)
+- related: as you might expect, finds pages that are related to the specified page. Not all pages are related to other pages. This is a good way to find categories of pages; a search for related:google.com would return a variety of search engines, including HotBot, Yahoo!, and Northern Light.
+- info: provides a page of links to more information about a specified URL. 
+- phonebook
+
