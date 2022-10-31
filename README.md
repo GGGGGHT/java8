@@ -37,6 +37,7 @@
 - [ ] JProfiler
 - [ ] RocketMQ
 - [ ] Annotation Processor
+- [ ] Spring retry
 
 [^2]: https://github.com/spring-projects/spring-boot/pull/31701
 ## 方法引用
@@ -165,8 +166,8 @@ java -XX:StartFlightRecording=disk=true,dumponexit=true,filename=recording.jfr,m
 - [x] 解决btrace的bug [See Also](https://github.com/btraceio/btrace/pull/584)
 - [x] Java8之前打印SafePoint的日志 [See Also](https://stackoverflow.com/questions/62819904/how-can-i-output-the-safepoint-log-in-a-specified-file) 使用`-XX:+LogVMOutput` `-XX:LogFile=logs/hotspot_pid%p.log`这两个参数
 - [x] Java 反射 [See Also](https://github.com/openjdk/jdk/blob/master/src/java.base/share/classes/jdk/internal/reflect/NativeMethodAccessorImpl.java#L55) 经过15次调用之后会生成直接调用的方法
-- [ ] 测试环境服务经常下线的问题
-- [ ] Kotlin字节码比Java字节码输出多一条指令[See Also](https://youtrack.jetbrains.com/issue/KT-54614)
+- [x] 测试环境服务经常下线的问题
+- [x] Kotlin字节码比Java字节码输出多一条指令[See Also](https://youtrack.jetbrains.com/issue/KT-54614)
 
 
 ## MISC
