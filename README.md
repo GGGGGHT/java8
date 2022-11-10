@@ -13,7 +13,7 @@
 - [x] btrace
 - [ ] HSDB
 - [x] javac 
-
+- [ ] GraphQL 
 - [x] asm
 - [ ] javassist
 - [x] MXBeang
