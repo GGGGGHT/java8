@@ -129,11 +129,11 @@
       <artifactId>protobuf-java</artifactId>
       <version>3.21.9</version>
     </dependency>
-    <dependency>
-      <groupId>dom4j</groupId>
-      <artifactId>dom4j</artifactId>
-      <version>20040902.021138</version>
-    </dependency>
+<!--    <dependency>-->
+<!--      <groupId>dom4j</groupId>-->
+<!--      <artifactId>dom4j</artifactId>-->
+<!--      <version>20040902.021138</version>-->
+<!--    </dependency>-->
     <dependency>
       <groupId>org.mybatis.spring.boot</groupId>
       <artifactId>mybatis-spring-boot-starter</artifactId>
@@ -231,21 +231,65 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-security</artifactId>
     </dependency>
-      <dependency>
-          <groupId>org.jetbrains.kotlin</groupId>
-          <artifactId>kotlin-stdlib-jdk8</artifactId>
-          <version>${kotlin.version}</version>
-      </dependency>
-      <dependency>
-          <groupId>org.jetbrains.kotlin</groupId>
-          <artifactId>kotlin-test</artifactId>
-          <version>${kotlin.version}</version>
-          <scope>test</scope>
-      </dependency>
+    <dependency>
+      <groupId>org.jetbrains.kotlinx</groupId>
+      <artifactId>kotlinx-coroutines-core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.assertj</groupId>
+      <artifactId>assertj-core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.github.javafaker</groupId>
+      <artifactId>javafaker</artifactId>
+      <version>1.0.2</version>
+    </dependency>
+    <dependency>
+      <groupId>com.alicp.jetcache</groupId>
+      <artifactId>jetcache-autoconfigure</artifactId>
+      <version>2.7.0</version>
+    </dependency>
   </dependencies>
 
   <build>
     <plugins>
+      <plugin>
+        <groupId>com.github.shalousun</groupId>
+        <artifactId>smart-doc-maven-plugin</artifactId>
+        <version>2.2.7</version>
+        <configuration>
+          <!--Specify the configuration file used to generate the document-->
+          <configFile>./src/main/resources/static/doc.json</configFile>
+          <projectName>java8</projectName>
+          <!--smart-doc.json implements automatic analysis of the dependency tree to load the source code of third-party dependencies. If some framework dependency libraries are not loaded, an error is reported, then use excludes to exclude-->
+          <!-- <excludes>-->
+            <!--The format is: groupId: artifactId; refer to the following-->
+            <!--Regular expressions can also be used, such as: com.google:.* -->
+            <!--<exclude>com.google.guava:guava</exclude>-->
+         <!--</excludes>-->
+          <!--Since version 1.0.8, the plugin provides includes support-->
+          <!--smart-doc.json can automatically analyze the dependency tree to load all dependent source code. In principle, it will affect the efficiency of document construction, so you can use includes to let the plugin load the components you configure.-->
+          <includes>
+            <!--The format is: groupId: artifactId; refer to the following-->
+            <!--Regular expressions can also be used, such as: com.google:.* -->
+            <include>com.alibaba:fastjson</include>
+            <!-- If includes is configured, paging using mybatis-plus requires the source package used by include -->
+            <include>com.baomidou:mybatis-plus-extension</include>
+            <!-- If includes is configured, paging using jpa requires the source package used by include -->
+            <include>org.springframework.data:spring-data-commons</include>
+          </includes>
+        </configuration>
+        <executions>
+          <execution>
+            <!--Comment out phase if you don't need to start smart-doc.json when compiling-->
+            <phase>compile</phase>
+            <goals>
+              <!--smart-doc.json provides html, openapi, markdown, adoc and other goals-->
+              <goal>html</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>

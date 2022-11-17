@@ -1,6 +1,5 @@
 package com.ggggght.learningjava8.leetcode;
 
-import java.util.Arrays;
 
 /**
  * <p>给你一个字符串 <code>s</code>，找到 <code>s</code> 中最长的回文子串。</p>
@@ -50,8 +49,9 @@ import java.util.Arrays;
 public class Leetcode5 {
   public static void main(String[] args) {
     Leetcode5 leetcode5 = new Leetcode5();
-    leetcode5.longestPalindrome("ababa");
-    leetcode5.longestPalindrome("abba");
+    System.out.println(leetcode5.longestPalindrome("ababa"));
+
+    System.out.println(leetcode5.longestPalindrome("abba"));
   }
 
   public String longestPalindrome(String s) {

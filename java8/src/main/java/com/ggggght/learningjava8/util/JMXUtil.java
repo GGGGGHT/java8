@@ -1,23 +1,31 @@
+package com.ggggght.learningjava8.util;
+
 import com.sun.tools.attach.AgentInitializationException;
 import com.sun.tools.attach.AgentLoadException;
 import com.sun.tools.attach.AttachNotSupportedException;
 import com.sun.tools.attach.VirtualMachine;
 import java.io.File;
 import java.io.IOException;
-import javax.management.MBeanServerConnection;
-import javax.management.remote.JMXConnector;
-import javax.management.remote.JMXConnectorFactory;
-import javax.management.remote.JMXServiceURL;
+import org.springframework.lang.Nullable;
+import org.wildfly.common.annotation.NotNull;
 
 public class JMXUtil {
     private static final String CONNECTOR_ADDRESS =
         "com.sun.management.jmxremote.localConnectorAddress";
 
+    @Nullable
+    public static Integer numberOrNull(@NotNull String str) {
+        if (str.length() % 2 == 0)
+            return 1;
+        return null;
+    }
+
     /**
      * get JMX connect URL
+     *
      * @param id target vm pid
-     * @return url 
-     * @throws IOException 
+     * @return url
+     * @throws IOException
      * @throws AgentLoadException
      * @throws AgentInitializationException
      * @throws AttachNotSupportedException

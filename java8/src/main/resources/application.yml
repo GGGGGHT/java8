@@ -11,6 +11,9 @@ spring:
     port: 6379
   lifecycle:
     timeout-per-shutdown-phase: "30s"
+  rsocket:
+    server:
+      port: 8887
 #    password: 123
 debug: false
 test:

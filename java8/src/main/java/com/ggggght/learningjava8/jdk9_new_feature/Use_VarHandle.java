@@ -4,7 +4,6 @@ import lombok.Data;
 
 import java.lang.invoke.MethodHandles;
 import java.lang.invoke.VarHandle;
-import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * <a href='https://openjdk.java.net/jeps/193'>jep193</a>

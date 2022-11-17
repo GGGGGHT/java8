@@ -9,8 +9,6 @@ import javax.annotation.processing.RoundEnvironment;
 import javax.annotation.processing.SupportedAnnotationTypes;
 import javax.annotation.processing.SupportedSourceVersion;
 import javax.lang.model.element.TypeElement;
-import javax.tools.JavaCompiler;
-import javax.tools.ToolProvider;
 import com.sun.tools.javac.tree.TreeMaker;
 import com.sun.tools.javac.util.Names;
 import com.sun.tools.javac.processing.JavacProcessingEnvironment;

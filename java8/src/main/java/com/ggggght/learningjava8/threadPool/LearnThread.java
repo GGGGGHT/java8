@@ -1,4 +1,4 @@
-package com.ggggght.learningjava8.threadPool;
+package com.ggggght.learningjava8.ThreadPool;
 
 import java.time.Duration;
 import java.time.Instant;
@@ -16,8 +16,8 @@ import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
-import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.Test;
+import org.wildfly.common.annotation.NotNull;
 
 /**
  * @author ght

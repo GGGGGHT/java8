@@ -1,8 +1,6 @@
 package com.ggggght.learningjava8;
 
-import org.dom4j.DocumentException;
 
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ApplicationArguments;
@@ -20,7 +18,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 
 @EnableWebSecurity
 @SpringBootApplication(exclude = {SecurityAutoConfiguration.class, ManagementWebSecurityAutoConfiguration.class})
-@MapperScan(basePackages = "com.ggggght.learningjava8")
+//@MapperScan(basePackages = "com.ggggght.learningjava8")
 public class Learningjava8Application implements ApplicationRunner {
 
 	@Autowired
@@ -35,7 +33,7 @@ public class Learningjava8Application implements ApplicationRunner {
 	// @Autowired
 	// StringRedisTemplate template;
 
-	public static void main(String[] args) throws IOException, DocumentException, MalformedObjectNameException,
+	public static void main(String[] args) throws IOException, MalformedObjectNameException,
 			NotCompliantMBeanException, InstanceAlreadyExistsException, MBeanRegistrationException {
 		// MBeanServer mbs = ManagementFactory.getPlatformMBeanServer();
 
