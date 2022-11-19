@@ -38,6 +38,7 @@
 - [ ] RocketMQ
 - [ ] Annotation Processor
 - [ ] Spring retry
+- [ ] tidb
 
 
 [^2]: https://github.com/spring-projects/spring-boot/pull/31701
