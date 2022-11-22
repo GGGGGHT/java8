@@ -40,6 +40,7 @@
 - [ ] Spring retry
 - [ ] tidb
 - [ ] netty 
+- [ ] jcstress
 
 
 [^2]: https://github.com/spring-projects/spring-boot/pull/31701
