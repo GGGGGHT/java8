@@ -39,7 +39,7 @@
 - [ ] Annotation Processor
 - [ ] Spring retry
 - [ ] tidb
-- [ ] netty 
+- [x] netty 
 - [ ] jcstress
 
 
