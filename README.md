@@ -44,6 +44,7 @@
 - [ ] ognl
 - [x] arthas
 - [ ] micrometer
+- [ ] Valhalla 
 
 [^2]: https://github.com/spring-projects/spring-boot/pull/31701
 ## 方法引用
