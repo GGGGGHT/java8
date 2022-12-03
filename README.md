@@ -207,3 +207,10 @@ Windows MSI installer for JDK 17:
 ```shell
 curl https://download.oracle.com/java/17/latest/jdk-17_windows-x64_bin.msi
 ```
+
+
+
+### ognl
+```sh
+vmtool --action getInstances  --className org.springframework.context.ApplicationContext --express 'instances[0].getBean("httpService").list'
+```
