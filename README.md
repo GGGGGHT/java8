@@ -216,3 +216,8 @@ curl https://download.oracle.com/java/17/latest/jdk-17_windows-x64_bin.msi
 ```sh
 vmtool --action getInstances  --className org.springframework.context.ApplicationContext --express 'instances[0].getBean("httpService").list'
 ```
+
+调用spring方法 
+```sh
+org.springframework.web.servlet.DispatcherServlet doDispatch  '{@org.springframework.web.context.support.WebApplicationContextUtils@getWebApplicationContext(params[0].getServletContext()).getBean(beanname).methodName(params[0]), params, returnObj}
+```
