@@ -50,6 +50,7 @@
 - [ ] k8s
 - [ ] powerjob 
 - [ ] Micrometer 
+- [ ] Resilience4j 
 
 [^2]: https://github.com/spring-projects/spring-boot/pull/31701
 ## 方法引用
