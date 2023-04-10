@@ -6,7 +6,7 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.7.5</version>
+    <version>3.0.5</version>
     <relativePath/> <!-- lookup parent from repository -->
   </parent>
   <groupId>com.ggggght</groupId>
@@ -17,10 +17,11 @@
 
   <properties>
     <java.version>17</java.version>
-    <fastjson.version>2.0.15.graal</fastjson.version>
+    <fastjson.version>2.0.25</fastjson.version>
     <commons-lang3.version>3.12.0</commons-lang3.version>
     <jmh-version>1.21</jmh-version>
-    <kotlin.version>1.7.21</kotlin.version>
+    <kotlin.version>1.8.20</kotlin.version>
+    <resilience4jVersion>1.7.1</resilience4jVersion>
   </properties>
   <dependencies>
     <dependency>
@@ -38,7 +39,7 @@
     <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
-      <version>8.0.31</version>
+      <version>8.0.32</version>
     </dependency>
     <dependency>
       <groupId>org.springframework</groupId>
@@ -116,28 +117,28 @@
     <dependency>
       <groupId>org.jetbrains</groupId>
       <artifactId>annotations</artifactId>
-      <version>23.0.0</version>
+      <version>24.0.1</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>io.netty</groupId>
       <artifactId>netty-all</artifactId>
-      <version>4.1.85.Final</version>
+      <version>4.1.90.Final</version>
     </dependency>
     <dependency>
       <groupId>com.google.protobuf</groupId>
       <artifactId>protobuf-java</artifactId>
       <version>3.21.9</version>
     </dependency>
-<!--    <dependency>-->
-<!--      <groupId>dom4j</groupId>-->
-<!--      <artifactId>dom4j</artifactId>-->
-<!--      <version>20040902.021138</version>-->
-<!--    </dependency>-->
+    <dependency>
+      <groupId>dom4j</groupId>
+      <artifactId>dom4j</artifactId>
+      <version>20040902.021138</version>
+    </dependency>
     <dependency>
       <groupId>org.mybatis.spring.boot</groupId>
       <artifactId>mybatis-spring-boot-starter</artifactId>
-      <version>2.2.2</version>
+      <version>3.0.1</version>
     </dependency>
     <!-- https://mvnrepository.com/artifact/org.ow2.asm/asm -->
     <dependency>
@@ -148,7 +149,7 @@
     <dependency>
       <groupId>org.springframework.data</groupId>
       <artifactId>spring-data-redis</artifactId>
-      <version>2.7.5</version>
+      <version>3.0.4</version>
       <exclusions>
         <exclusion>
           <artifactId>spring-data-commons</artifactId>
@@ -159,37 +160,37 @@
     <dependency>
       <groupId>org.springframework.data</groupId>
       <artifactId>spring-data-commons</artifactId>
-      <version>2.7.5</version>
+      <version>3.0.4</version>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-data-redis</artifactId>
-      <version>2.7.5</version>
+      <version>3.0.5</version>
     </dependency>
 
     <dependency>
       <groupId>org.jline</groupId>
       <artifactId>jline</artifactId>
-      <version>3.21.0</version>
+      <version>3.23.0</version>
     </dependency>
     <!-- https://mvnrepository.com/artifact/org.openjdk.jol/jol-core -->
     <dependency>
       <groupId>org.openjdk.jol</groupId>
       <artifactId>jol-core</artifactId>
-      <version>0.16</version>
+      <version>0.17</version>
     </dependency>
 
     <dependency>
       <groupId>org.openjdk.jmh</groupId>
       <artifactId>jmh-core</artifactId>
-      <version>1.35</version>
+      <version>1.36</version>
     </dependency>
 
     <!-- https://mvnrepository.com/artifact/org.openjdk.jmh/jmh-generator-annprocess -->
     <dependency>
       <groupId>org.openjdk.jmh</groupId>
       <artifactId>jmh-generator-annprocess</artifactId>
-      <version>1.35</version>
+      <version>1.36</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -200,7 +201,7 @@
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-aop</artifactId>
-      <version>5.3.24</version>
+      <version>6.0.7</version>
     </dependency>
     <dependency>
       <groupId>org.springframework</groupId>
@@ -209,7 +210,7 @@
     <dependency>
       <groupId>org.aspectj</groupId>
       <artifactId>aspectjrt</artifactId>
-      <version>1.9.9.1</version>
+      <version>1.9.19</version>
     </dependency>
     <dependency>
       <groupId>org.jetbrains.kotlin</groupId>
@@ -225,71 +226,62 @@
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-actuator</artifactId>
-      <version>2.7.5</version>
+      <version>3.0.5</version>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-security</artifactId>
     </dependency>
-    <dependency>
-      <groupId>org.jetbrains.kotlinx</groupId>
-      <artifactId>kotlinx-coroutines-core</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.assertj</groupId>
-      <artifactId>assertj-core</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.github.javafaker</groupId>
-      <artifactId>javafaker</artifactId>
-      <version>1.0.2</version>
-    </dependency>
-    <dependency>
-      <groupId>com.alicp.jetcache</groupId>
-      <artifactId>jetcache-autoconfigure</artifactId>
-      <version>2.7.0</version>
-    </dependency>
+      <dependency>
+          <groupId>org.jetbrains.kotlin</groupId>
+          <artifactId>kotlin-stdlib-jdk8</artifactId>
+          <version>${kotlin.version}</version>
+      </dependency>
+      <dependency>
+          <groupId>org.jetbrains.kotlin</groupId>
+          <artifactId>kotlin-test</artifactId>
+          <version>${kotlin.version}</version>
+          <scope>test</scope>
+      </dependency>
+      <dependency>
+            <groupId>io.github.resilience4j</groupId>
+            <artifactId>resilience4j-circuitbreaker</artifactId>
+            <version>${resilience4jVersion}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.resilience4j</groupId>
+            <artifactId>resilience4j-ratelimiter</artifactId>
+            <version>${resilience4jVersion}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.resilience4j</groupId>
+            <artifactId>resilience4j-retry</artifactId>
+            <version>${resilience4jVersion}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.resilience4j</groupId>
+            <artifactId>resilience4j-bulkhead</artifactId>
+            <version>${resilience4jVersion}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.resilience4j</groupId>
+            <artifactId>resilience4j-cache</artifactId>
+            <version>${resilience4jVersion}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.resilience4j</groupId>
+            <artifactId>resilience4j-timelimiter</artifactId>
+            <version>${resilience4jVersion}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.resilience4j</groupId>
+            <artifactId>resilience4j-all</artifactId>
+            <version>${resilience4jVersion}</version>
+        </dependency>
   </dependencies>
 
   <build>
     <plugins>
-      <plugin>
-        <groupId>com.github.shalousun</groupId>
-        <artifactId>smart-doc-maven-plugin</artifactId>
-        <version>2.2.7</version>
-        <configuration>
-          <!--Specify the configuration file used to generate the document-->
-          <configFile>./src/main/resources/static/doc.json</configFile>
-          <projectName>java8</projectName>
-          <!--smart-doc.json implements automatic analysis of the dependency tree to load the source code of third-party dependencies. If some framework dependency libraries are not loaded, an error is reported, then use excludes to exclude-->
-          <!-- <excludes>-->
-            <!--The format is: groupId: artifactId; refer to the following-->
-            <!--Regular expressions can also be used, such as: com.google:.* -->
-            <!--<exclude>com.google.guava:guava</exclude>-->
-         <!--</excludes>-->
-          <!--Since version 1.0.8, the plugin provides includes support-->
-          <!--smart-doc.json can automatically analyze the dependency tree to load all dependent source code. In principle, it will affect the efficiency of document construction, so you can use includes to let the plugin load the components you configure.-->
-          <includes>
-            <!--The format is: groupId: artifactId; refer to the following-->
-            <!--Regular expressions can also be used, such as: com.google:.* -->
-            <include>com.alibaba:fastjson</include>
-            <!-- If includes is configured, paging using mybatis-plus requires the source package used by include -->
-            <include>com.baomidou:mybatis-plus-extension</include>
-            <!-- If includes is configured, paging using jpa requires the source package used by include -->
-            <include>org.springframework.data:spring-data-commons</include>
-          </includes>
-        </configuration>
-        <executions>
-          <execution>
-            <!--Comment out phase if you don't need to start smart-doc.json when compiling-->
-            <phase>compile</phase>
-            <goals>
-              <!--smart-doc.json provides html, openapi, markdown, adoc and other goals-->
-              <goal>html</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>

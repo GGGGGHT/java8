@@ -38,7 +38,19 @@
 - [ ] RocketMQ
 - [ ] Annotation Processor
 - [ ] Spring retry
-
+- [ ] tidb
+- [x] netty 
+- [ ] jcstress
+- [ ] ognl
+- [x] arthas
+- [ ] micrometer
+- [ ] Valhalla 
+- [ ] prometheus
+- [ ] akka
+- [ ] k8s
+- [ ] powerjob 
+- [ ] Micrometer 
+- [ ] Resilience4j 
 
 [^2]: https://github.com/spring-projects/spring-boot/pull/31701
 ## 方法引用
@@ -187,3 +199,29 @@ Syntax Words:
 - info: provides a page of links to more information about a specified URL. 
 - phonebook
 
+## how to download java 
+Using Script Friendly JDK Download URLS <br/>
+e.g. https://download.oracle.com/java/[java-version]/latest/jdk-[java-version]_[os]-[cpu-architecture]_bin.[file-type]
+
+Linux ARM 64 JDK 19:
+```shell
+curl https://download.oracle.com/java/19/latest/jdk-19_linux-aarch_bin.tar.gz
+curl https://download.oracle.com/java/19/latest/jdk-19_linux-aarch_bin.rpm
+```
+
+Windows MSI installer for JDK 17:
+```shell
+curl https://download.oracle.com/java/17/latest/jdk-17_windows-x64_bin.msi
+```
+
+
+
+### ognl
+```sh
+vmtool --action getInstances  --className org.springframework.context.ApplicationContext --express 'instances[0].getBean("httpService").list'
+```
+
+调用spring方法 
+```sh
+org.springframework.web.servlet.DispatcherServlet doDispatch  '{@org.springframework.web.context.support.WebApplicationContextUtils@getWebApplicationContext(params[0].getServletContext()).getBean(beanname).methodName(params[0]), params, returnObj}
+```
