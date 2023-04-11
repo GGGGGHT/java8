@@ -1,6 +1,6 @@
 package com.ggggght.learningjava8.controller;
 
-import lombok.RequiredArgsConstructor;
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import org.springframework.boot.availability.AvailabilityChangeEvent;
 import org.springframework.boot.availability.LivenessState;
 import org.springframework.context.ApplicationContext;
@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
  * @author: ggggght
  */
 @RestController
-@RequiredArgsConstructor
 public class TestController {
 
     /**
@@ -59,6 +58,10 @@ public class TestController {
     //
     int i = 0;
 
+    public TestController(ApplicationContext context) {
+        this.context = context;
+    }
+
     public static void main(String[] args) throws InterruptedException {
         int[] ar = new int[0];
         // final TestController obn = new TestController();
@@ -93,4 +96,18 @@ public class TestController {
     ApplicationListener<AvailabilityChangeEvent<?>> availabilityChangeEventApplicationListener() {
         return event -> System.out.println(event.getResolvableType() + ":" + event.getState());
     }
+
+
+    @GetMapping("/testRate")
+    @RateLimiter(name = "backendA", fallbackMethod = "fallback")
+    public String rate() {
+        return "hello";
+    }
+
+    public String fallback() {
+        return "world";
+    }
+
+//    @Bean
+//    public io.github.resilience4j.ratelimiter.RateLimiter rateLimiter()
 }

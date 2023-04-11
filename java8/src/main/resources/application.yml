@@ -34,4 +34,35 @@ management:
     web:
       exposure:
         include: "*"
-        exclude: "env,beans"
+#        exclude: "env,beans"
+
+resilience4j.retry:
+    configs:
+      default:
+        max-attempts: 2
+
+    instances:
+      backend:
+        base-config: default
+        max-attempts: 2
+        wait-duration: 10s
+        enable-exponential-backoff: true
+        exponential-backoff-multiplier: 2
+        retry-exceptions:
+          - java.lang.Exception
+          - java.lang.NumberFormatException
+
+resilience4j.ratelimiter:
+  instances:
+    backendA:
+      limitForPeriod: 10
+      limitRefreshPeriod: 1s
+      timeoutDuration: 0
+      registerHealthIndicator: true
+      eventConsumerBufferSize: 100
+    backendB:
+      limitForPeriod: 6
+      limitRefreshPeriod: 500ms
+      timeoutDuration: 3s
+
+
