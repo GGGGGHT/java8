@@ -1,10 +1,11 @@
 package com.ggggght.learningjava8.leetcode;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import org.wildfly.common.annotation.NotNull;
 
 /**
  * 数字 n 代表生成括号的对数，请你设计一个函数，用于能够生成所有可能的并且 有效的 括号组合。
@@ -34,7 +35,8 @@ public class Leetcode22 {
     System.out.println(strings);
   }
 
-  @NotNull private static HashSet<Integer> getIntegers(String str) {
+  @NotNull
+  private static HashSet<Integer> getIntegers(String str) {
     HashSet<Integer> s = new HashSet<>();
     int i = 0;
     while (i <= str.length()) {

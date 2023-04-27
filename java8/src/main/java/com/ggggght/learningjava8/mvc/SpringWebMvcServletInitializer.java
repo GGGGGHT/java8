@@ -1,6 +1,7 @@
 package com.ggggght.learningjava8.mvc;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+/*
 
 public class SpringWebMvcServletInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
@@ -24,3 +25,4 @@ public class SpringWebMvcServletInitializer extends AbstractAnnotationConfigDisp
 	}
 
 }
+*/

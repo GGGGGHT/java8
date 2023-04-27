@@ -6,8 +6,9 @@ import com.sun.tools.attach.AttachNotSupportedException;
 import com.sun.tools.attach.VirtualMachine;
 import java.io.File;
 import java.io.IOException;
+
+import org.jetbrains.annotations.NotNull;
 import org.springframework.lang.Nullable;
-import org.wildfly.common.annotation.NotNull;
 
 public class JMXUtil {
     private static final String CONNECTOR_ADDRESS =

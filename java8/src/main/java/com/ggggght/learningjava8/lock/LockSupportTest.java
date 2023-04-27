@@ -2,9 +2,7 @@ package com.ggggght.learningjava8.lock;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.wildfly.common.lock.Locks;
 
-import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;

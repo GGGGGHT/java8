@@ -1,8 +1,9 @@
 package com.ggggght.learningjava8.ThreadPool;
 
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.concurrent.*;
-import org.wildfly.common.annotation.NotNull;
 
 /**
  * 如何拿到ThreadPoolExecutor中submit提交后的异常
