@@ -9,6 +9,8 @@ import org.assertj.core.description.Description;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import static org.assertj.core.api.BDDAssertions.*;
 
@@ -19,6 +21,7 @@ public class AssertJTest  implements WithAssertions {
 
     @BeforeAll
     public static void init() {
+        Assertions.setPrintAssertionsDescription(true);
         user = new User("ggggght", 19, "123456");
     }
 
@@ -108,5 +111,60 @@ public class AssertJTest  implements WithAssertions {
             // .withFailMessage("should be %s", user)
             .isEqualTo(10);
             // .overridingErrorMessage("check %s's age", user.getName()).isEqualTo(119);
+    }
+
+    @Test
+    void best_practices() {
+        // DO THIS
+        assertThat(user.getAge()).isEqualTo(19);
+        // OR THIS (less classy but ok)
+        assertThat("abc".equals("abc")).isTrue();
+        // DO THIS (fails as expected)
+        assertThat(1).isNotEqualTo(2);
+        // less classy but ok
+        assertThat(1 == 2).isFalse();
+
+        assertThat("abc").as("description").isEqualTo("abc");
+        assertThat("abc").describedAs("description").isEqualTo("abc");
+
+        // DO THIS: use overridingErrorMessage/withFailMessage before the assertion
+        assertThat("abc").overridingErrorMessage("custom error message").isEqualTo("abc");
+        assertThat("abc").withFailMessage("custom error message").isEqualTo("abc");
+
+        // DO THIS:
+        assertThat("abc").usingComparator((o1, o2) -> 0).isEqualTo("a");
+    }
+
+    @Test
+    void bad_practices() {
+        // DON'T DO THIS ! It does not assert anything
+        assertThat("abc".equals("abc"));
+        // It does not assert anything and passes
+        assertThat(1 == 2);
+
+        // DON'T DO THIS ! as/describedAs have no effect after the assertion
+        assertThat("abc").isEqualTo("abc").as("description");
+        assertThat("abc").isEqualTo("abc").describedAs("description");
+
+        // DON'T DO THIS ! overridingErrorMessage/withFailMessage have no effect after the assertion
+        assertThat("abc").isEqualTo("abc").overridingErrorMessage("custom error message");
+        assertThat("abc").isEqualTo("abc").withFailMessage("custom error message");
+
+        // DON'T DO THIS ! Comparator is not used
+        assertThat("abc").isEqualTo("abc").usingComparator((o1, o2) -> 0);
+    }
+
+    private static Object[] getValues() {
+        return new Object[] {
+            new Object[]{1,2,2},
+            new Object[]{2,3,6},
+            new Object[]{0,3,0}
+        };
+    }
+    @ParameterizedTest
+    @MethodSource("getValues")
+    public void multiplyTest(int a,int b, int expected) {
+        Assertions.setPrintAssertionsDescription(true);
+        assertThat(a * b).as("assert %d * %d = %d", a, b, expected).isEqualTo(expected);
     }
 }
