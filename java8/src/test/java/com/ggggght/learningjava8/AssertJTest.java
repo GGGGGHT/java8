@@ -5,24 +5,51 @@ import java.util.List;
 import java.util.function.Consumer;
 import org.assertj.core.api.Assertions;
 import org.assertj.core.api.WithAssertions;
+import org.assertj.core.configuration.Configuration;
 import org.assertj.core.description.Description;
+import org.assertj.core.presentation.Representation;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import static org.assertj.core.api.BDDAssertions.*;
+import static org.assertj.core.api.BDDAssertions.then;
 
-public class AssertJTest  implements WithAssertions {
+public class AssertJTest implements WithAssertions {
     static User user;
 
-    static List<String> list = List.of("a","b","c");
+    static List<String> list = List.of("a", "b", "c");
 
     @BeforeAll
     public static void init() {
         Assertions.setPrintAssertionsDescription(true);
         user = new User("ggggght", 19, "123456");
+    }
+
+    private static Object[] getValues() {
+        return new Object[] {
+            new Object[] {1, 2, 2}, new Object[] {2, 3, 6}, new Object[] {1, 3, 0}};
+    }
+
+    // @BeforeAll
+    static void configuration() {
+        Assertions.setAllowComparingPrivateFields(true);
+        Assertions.setAllowExtractingPrivateFields(false);
+        Assertions.setExtractBareNamePropertyMethods(false);
+        Assertions.setLenientDateParsing(true);
+        Assertions.setMaxElementsForPrinting(100);
+        Assertions.setMaxLengthForSingleLineDescription(250);
+        Assertions.setRemoveAssertJRelatedElementsFromStackTrace(true);
+        Assertions.setPrintAssertionsDescription(true);
+        Assertions.useRepresentation(new Representation() {
+            @Override
+            public String toStringOf(Object object) {
+                return null;
+            }
+        });
+        // Assertions.registerCustomDateFormat(myCustomDateFormat);
+        // Assertions.setConsumerDescription(description -> writeToFile(description, report));
     }
 
     @Test
@@ -60,7 +87,7 @@ public class AssertJTest  implements WithAssertions {
 
     @Test
     public void extracting() {
-        assertThat(user).extracting("name","age").contains("ggggght",19);
+        assertThat(user).extracting("name", "age").contains("ggggght", 19);
     }
 
     @Test
@@ -68,17 +95,13 @@ public class AssertJTest  implements WithAssertions {
         then(user.getAge()).isEqualTo(19);
         then(user.getName()).isEqualTo("ggggght").isNotEqualTo("other");
 
-
         then("1").isIn(list);
         then(4).isNotIn(list);
     }
 
     @Test
     void a_few_simple_assertions() {
-        assertThat("The Lord of the Rings").isNotNull()
-            .startsWith("The")
-            .contains("Lord")
-            .endsWith("Rings");
+        assertThat("The Lord of the Rings").isNotNull().startsWith("The").contains("Lord").endsWith("Rings");
     }
 
     @Test
@@ -98,19 +121,16 @@ public class AssertJTest  implements WithAssertions {
         };
 
         Assertions.setDescriptionConsumer(descriptionConsumer);
-        assertThat(user.getName()).as("check name")
-            .isEqualTo("ggggght");
-        assertThat(user.getAge()).as("check age")
-            .isEqualTo(19);
+        assertThat(user.getName()).as("check name").isEqualTo("ggggght");
+        assertThat(user.getAge()).as("check age").isEqualTo(19);
     }
 
     @Test
     void overriding_error_message() {
-        assertThat(user.getAge())
-            .overridingErrorMessage("should be %s", user)
-            // .withFailMessage("should be %s", user)
-            .isEqualTo(10);
-            // .overridingErrorMessage("check %s's age", user.getName()).isEqualTo(119);
+        assertThat(user.getAge()).overridingErrorMessage("should be %s", user)
+                                 // .withFailMessage("should be %s", user)
+                                 .isEqualTo(10);
+        // .overridingErrorMessage("check %s's age", user.getName()).isEqualTo(119);
     }
 
     @Test
@@ -154,17 +174,50 @@ public class AssertJTest  implements WithAssertions {
         assertThat("abc").isEqualTo("abc").usingComparator((o1, o2) -> 0);
     }
 
-    private static Object[] getValues() {
-        return new Object[] {
-            new Object[]{1,2,2},
-            new Object[]{2,3,6},
-            new Object[]{0,3,0}
-        };
-    }
     @ParameterizedTest
     @MethodSource("getValues")
-    public void multiplyTest(int a,int b, int expected) {
-        Assertions.setPrintAssertionsDescription(true);
+    public void multiplyTest(int a, int b, int expected) {
         assertThat(a * b).as("assert %d * %d = %d", a, b, expected).isEqualTo(expected);
+    }
+
+    // @BeforeEach
+    void conf() {
+        Configuration configuration = new Configuration();
+
+        configuration.setBareNamePropertyExtraction(false);
+        configuration.setComparingPrivateFields(false);
+        configuration.setExtractingPrivateFields(false);
+        configuration.setLenientDateParsing(true);
+        configuration.setMaxElementsForPrinting(1001);
+        configuration.setMaxLengthForSingleLineDescription(81);
+        configuration.setRemoveAssertJRelatedElementsFromStackTrace(false);
+
+        // don't forget to apply it!
+        configuration.applyAndDisplay();
+    }
+
+    /**
+     * {@link CustomConfiguration.CustomRepresentation#fallbackToStringOf(Object)}
+     * {@link CustomConfiguration.CustomRepresentation#toStringOf(String)}
+     */
+    @Test
+    @DisplayName("show default")
+    void show_default_error_msg() {
+        // Expected :null
+        // Actual   :User
+        assertThat(new User()).isNull();
+        // Expected :foo
+        // Actual   :bar
+        assertThat("bar").isEqualToIgnoringCase("foo");
+    }
+
+    @Test
+    void navigating_to_given_element() {
+        var language = List.of("java", "C++", "go");
+        assertThat(language).first().isEqualTo("java");
+        assertThat(language).element(0).isEqualTo("java");
+        assertThat(language).last().isEqualTo("go");
+
+        assertThat(language).allMatch(s -> s.length() > 1, "length check");
     }
 }
