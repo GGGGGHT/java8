@@ -201,6 +201,16 @@ Syntax Words:
 
 ## how to download java 
 Using Script Friendly JDK Download URLS <br/>
+
+There are several OS, architecture, and packaging options available. The following table lists them as they are spelled in the permanent URLs:
+|Operating Systems|	Architecture|	Packaging Options|
+|--|--|--|
+|linux|	aarch64	|rpm, tar.gz|
+||x64|	deb, rpm, tar.gz|
+|macos|	aarch64|	dmg, tar.gz|
+||x64|	dmg, tar.gz|
+|windows|	x64|	exe, msi, zip|
+
 e.g. https://download.oracle.com/java/[java-version]/latest/jdk-[java-version]_[os]-[cpu-architecture]_bin.[file-type]
 
 Linux ARM 64 JDK 19:
