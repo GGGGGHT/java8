@@ -215,8 +215,8 @@ e.g. https://download.oracle.com/java/[java-version]/latest/jdk-[java-version]_[
 
 Linux ARM 64 JDK 19:
 ```shell
-curl https://download.oracle.com/java/19/latest/jdk-19_linux-aarch_bin.tar.gz
-curl https://download.oracle.com/java/19/latest/jdk-19_linux-aarch_bin.rpm
+curl https://download.oracle.com/java/20/latest/jdk-20_linux-aarch64_bin.tar.gz
+curl https://download.oracle.com/java/20/latest/jdk-20_linux-aarch64_bin.rpm
 ```
 
 Windows MSI installer for JDK 17:
