@@ -1,5 +1,7 @@
 package com.ggggght.learningjava8.leetcode;
 
+import java.util.Stack;
+
 /**
  * <p>给你两个 <strong>非空 </strong>链表来代表两个非负整数。数字最高位位于链表开始位置。它们的每个节点只存储一位数字。将这两数相加会返回一个新的链表。</p>
  *
@@ -48,14 +50,64 @@ package com.ggggght.learningjava8.leetcode;
 public class Leetcode445 {
 
   public static void main(String[] args) {
-    ListNode listNode1 = ListNode.buildList(0);
-    ListNode listNode2 = ListNode.buildList(0);
+    ListNode listNode1 = ListNode.buildList(7,2,4,3);
+    ListNode listNode2 = ListNode.buildList(5,6,4);
     ListNode listNode = addTwoNumbers(listNode1, listNode2);
     System.out.println(listNode);
+    listNode1 = ListNode.buildList(7,2,4,3);
+    listNode2 = ListNode.buildList(5,6,4);
+    System.out.println(addTwoNumbers2(listNode1, listNode2));
     // ListNode rev = reverseList(listNode);
     // System.out.println(rev);
   }
 
+  /**
+   * use stack
+   * @param l1
+   * @param l2
+   * @return
+   */
+  public static ListNode addTwoNumbers2(ListNode l1, ListNode l2) {
+
+    Stack<ListNode> stack1 = new Stack<>();
+    Stack<ListNode> stack2 = new Stack<>();
+    while (l1 != null) {
+      stack1.push(l1);
+      l1 = l1.next;
+    }
+
+    while (l2 != null) {
+      stack2.push(l2);
+      l2 = l2.next;
+    }
+
+    Stack<ListNode> stack3 = new Stack<>();
+    int carry = 0;
+    while (!stack1.isEmpty() && !stack2.isEmpty()) {
+      ListNode pop1 = stack1.pop();
+      ListNode pop2 = stack2.pop();
+
+      var c = (pop1.val + pop2.val) + carry;
+      carry =  c / 10;
+
+      stack3.push(new ListNode(c % 10));
+    }
+
+    while (!stack1.isEmpty()) {
+      stack3.push(stack1.pop());
+    }
+    while (!stack2.isEmpty()) {
+      stack3.push(stack2.pop());
+    }
+
+    ListNode dummy = new ListNode(-1);
+    ListNode t = dummy;
+    while (!stack3.isEmpty()) {
+      dummy.next = stack3.pop();
+      dummy = dummy.next;
+    }
+    return t.next;
+  }
   public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
     if (l1 == null || l2 == null) {
       return l1 == null ? l2 : l1;
