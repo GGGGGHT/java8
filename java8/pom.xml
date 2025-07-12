@@ -18,7 +18,7 @@
   <properties>
     <java.version>17</java.version>
     <fastjson.version>2.0.25</fastjson.version>
-    <commons-lang3.version>3.12.0</commons-lang3.version>
+    <commons-lang3.version>3.18.0</commons-lang3.version>
     <jmh-version>1.21</jmh-version>
     <kotlin.version>1.8.20</kotlin.version>
     <resilience4jVersion>1.7.1</resilience4jVersion>
