@@ -30,14 +30,19 @@ jobs:
         with:
           java-version: ${{ matrix.java }}
           distribution: 'zulu'
-      - name: Checkstyle for Java
-        uses: dbelyaev/action-checkstyle@v0.7.4
-        with:
-          github_token: ${{ github.token }}
-          workdir: . # optional, default is .
-          level: info # optional, default is info
-          server-username: CI_DEPLOY_USERNAME
-          server-password: CI_DEPLOY_PASSWORD
+      # - name: Checkstyle for Java
+      #   uses: dbelyaev/action-checkstyle@v0.7.4
+      #   with:
+      #     github_token: ${{ github.token }}
+      #     workdir: . # optional, default is .
+      #     level: info # optional, default is info
+      #     server-username: CI_DEPLOY_USERNAME
+      #     server-password: CI_DEPLOY_PASSWORD
+      - name: Action to run java checkstyle
+        uses: nitinsh99/checkstyle-action@1.0.0
+
+  
+          
 
   generate_docs:
     name: 'Generate latest docs'
