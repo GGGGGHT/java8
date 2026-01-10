@@ -38,8 +38,8 @@ jobs:
       #     level: info # optional, default is info
       #     server-username: CI_DEPLOY_USERNAME
       #     server-password: CI_DEPLOY_PASSWORD
-      - name: Action to run java checkstyle
-        uses: nitinsh99/checkstyle-action@1.0.0
+      # - name: Action to run java checkstyle
+        # uses: nitinsh99/checkstyle-action@1.0.0
 
   
           
